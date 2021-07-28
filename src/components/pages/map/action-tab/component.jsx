@@ -30,7 +30,7 @@ class ActionTab extends PureComponent {
     return (
       <div className="l-action">
         <div className="l-filters">
-          <Filters name='Prioritize Action' />
+          <Filters name='Prioritize Basins' />
         </div>
       </div>
     );
