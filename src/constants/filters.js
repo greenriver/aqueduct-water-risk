@@ -49,7 +49,7 @@ export const TIMEFRAME_MODAL_DESCRIPTION = {
 
 export const BASIN_MODAL_PROPS = {
   name: 'Desired Conditions Threshold',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quid sentiat, non videtis. Duo Reges: constructio interrete. Torquatus, is qui consul cum Cn. Sed emolumenta communia esse dicuntur, recte autem facta et peccata non habentur communia. Re mihi non aeque satisfacit, et quidem locis pluribus. Praeclare enim Plato: Beatum, cui etiam in senectute contigerit, ut sapientiam verasque opiniones assequi possit. Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Quis enim confidit semper sibi illud stabile et firmum permansurum, quod fragile et caducum sit?'
+  description: 'Desired condition thresholds refer to the strategic goal relating to the reduction or elimination of  water challenge. Editable default values are provided. The map will display catchments not meeting the specified desired conditions.'
 };
 
 export default {
