@@ -79,8 +79,9 @@ class Filters extends Component {
             <div className="filters-section">
               <div className="row expanded collapse">
                 <div className="small-8 column">
-                  <div className="c-filters-item -inline">
+                  <div className="c-filters-item -inline" style={ {marginBottom: 25} }>
                     <CustomSelect
+                      className='-m-0'
                       options={indicators}
                       value={indicator}
                       placeholder={'Select Indicator'}
@@ -95,17 +96,18 @@ class Filters extends Component {
               <Fragment>
                 <div className="filters-section">
                   <div className="c-filters-item">
-                    <div className="filter-item-header" style={ {marginBottom: 65} }>
-                      <span className="title">
-                        <span>
-                          <strong>{INDICATORS[indicator]} Desired Condition </strong> (adjust slider to change results)
-                        </span>
-                      </span>
+                    <div className="filter-item-header" style={{ marginBottom: 60 }}>
+                      <div className="title">
+                        <div>
+                          <p><strong>{INDICATORS[indicator]} Desired Condition </strong></p>
+                          <p style={{ fontSize: 16 }}>(adjust slider to change results)</p>
+                        </div>
+                      </div>
                     </div>
-                    <ThresholdSlider indicatorId={indicator} threshold={threshold} handleChange={(value) => this.handleSliderChange(value)} />
+                    <ThresholdSlider indicatorId={indicator} threshold={threshold} handleChange={ (value) => this.handleSliderChange(value) } />
                   </div>
                 </div>
-                <div style={{ marginTop: 20 }} className="c-btn-menu -theme-secondary">
+                <div style={{ marginTop: 35 }} className="c-btn-menu -theme-secondary">
                   <button className="btn-menu-btn -shout" onClick={handleApply}>Apply Changes</button>
                 </div>
               </Fragment>
