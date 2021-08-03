@@ -14,7 +14,10 @@ import { LEGENDS, INDICATORS } from 'components/map/constants';
 class Filters extends Component {
   constructor(props) {
     super(props);
-    this.state = { indicator: null, threshold: null };
+    this.state = {
+      indicator: this.props.tabFilters.action.indicator || '',
+      threshold: this.props.tabFilters.action.threshold
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -37,18 +40,32 @@ class Filters extends Component {
     });
   }
 
+  getFilter(filterProp) {
+    const { tabFilters } = this.props;
+    return this.state[filterProp] || tabFilters.action[filterProp];
+  }
+
   handleIndicatorSelect(indicator) {
+    this.props.setTabFilters({
+      action: {
+        indicator,
+        threshold: this.getFilter('threshold') || LEGENDS[indicator].defaultValue
+      }
+    });
     this.setState({ indicator });
   }
 
-  handleSliderChange(threshold=null) {
+  handleSliderChange(threshold = null) {
+    this.props.setTabFilters({
+      action: { threshold, indicator: this.getFilter('indicator')}
+    });
     this.setState({ threshold });
   }
 
   render() {
-    const { name = '', setFilters, setTabFilters, tabFilters={} } = this.props;
-    const indicator = this.state.indicator || tabFilters.action.indicator;
-    const threshold = this.state.threshold || tabFilters.action.threshold;
+    const { name = '', setFilters, setTabFilters } = this.props;
+    const indicator = this.getFilter('indicator');
+    const threshold = this.getFilter('threshold');
 
     const indicators = Object.keys(LEGENDS)
       .filter((key) => Object.keys(INDICATORS).includes(key) )
@@ -60,7 +77,7 @@ class Filters extends Component {
         threshold: this.state.threshold
       };
       setFilters(newFilters);
-      setTabFilters({action: newFilters})
+      setTabFilters({ action: newFilters });
     };
 
     return (

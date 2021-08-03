@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { array, bool, func, string } from 'prop-types';
 import { Icon } from 'aqueduct-components';
 
 // components
@@ -37,9 +37,10 @@ class AnalyzerHeader extends PureComponent {
       mapMode,
       analyzerOpen,
       setAnalyzerOpen,
-      clearAnalysis
+      clearAnalysis,
+      indicator,
+      scope
     } = this.props;
-
     return (
       <div className="c-analyzer-header">
         <div className="actions-container">
@@ -66,7 +67,9 @@ class AnalyzerHeader extends PureComponent {
               },
               { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
               { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-              { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
+              ...(scope === 'action' && indicator !== null) && [
+                { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
+              ]
             ]}
           />
         </div>
@@ -76,13 +79,15 @@ class AnalyzerHeader extends PureComponent {
 }
 
 AnalyzerHeader.propTypes = {
-  points: PropTypes.array.isRequired,
-  mapMode: PropTypes.string.isRequired,
-  analyzerOpen: PropTypes.bool.isRequired,
-  setMapMode: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
-  setAnalyzerOpen: PropTypes.func.isRequired,
-  clearAnalysis: PropTypes.func.isRequired
+  points: array.isRequired,
+  mapMode: string.isRequired,
+  analyzerOpen: bool.isRequired,
+  setMapMode: func.isRequired,
+  toggleModal: func.isRequired,
+  setAnalyzerOpen: func.isRequired,
+  clearAnalysis: func.isRequired,
+  indicator: string,
+  scope: string
 };
 
 export default AnalyzerHeader;

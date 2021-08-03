@@ -13,7 +13,9 @@ export default connect(
   state => ({
     points: state.analyzeLocations.points.list,
     mapMode: state.app.mapMode,
-    analyzerOpen: state.settings.analyzer.open
+    analyzerOpen: state.settings.analyzer.open,
+    indicator: state.settings.tabFilters.action.indicator,
+    scope: state.app.scope
   }),
   {
     toggleModal,

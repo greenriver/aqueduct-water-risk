@@ -1,4 +1,5 @@
 import React from 'react';
+import { object } from 'prop-types';
 import { ExportToCsv } from 'export-to-csv';
 
 import CustomTable from 'components/ui/Table/Table';
@@ -17,11 +18,11 @@ const ExportModal = ({ filters={} }) => {
     country: 'USA',
     province: 'State',
     score: 'High',
-    desired_change: '25%',
+    desired_change: '25%'
   }));
 
   const downloadCSV = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const csvExporter = new ExportToCsv({
       showLabels: true,
       filename: `Prioritize Action Analyzer - ${indicator.name}`,
@@ -59,11 +60,15 @@ const ExportModal = ({ filters={} }) => {
         />
         <div>
           <span className='download-container'>Download result as </span>
-          <a href='#' onClick={downloadCSV}>CSV</a>
+          <button onClick={downloadCSV}>CSV</button>
         </div>
       </div>
     );
   }
+};
+
+ExportModal.propTypes = {
+  filters: object
 };
 
 export default ExportModal;
