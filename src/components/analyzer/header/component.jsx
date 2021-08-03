@@ -22,12 +22,12 @@ class AnalyzerHeader extends PureComponent {
     setMapMode(nextMapMode);
   }
 
-  toggleModal(children) {
+  toggleModal(children, size='-auto') {
     const { toggleModal } = this.props;
 
     toggleModal(true, {
       children,
-      size: '-auto'
+      size
     });
   }
 
@@ -66,7 +66,7 @@ class AnalyzerHeader extends PureComponent {
               },
               { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
               { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-              { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal); } }
+              { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
             ]}
           />
         </div>
