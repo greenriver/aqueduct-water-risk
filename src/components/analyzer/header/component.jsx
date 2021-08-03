@@ -6,6 +6,7 @@ import { Icon } from 'aqueduct-components';
 import BtnMenu from 'components/ui/BtnMenu';
 import CoordinatesModal from 'components/modal/coordinates';
 import ImportFileModal from 'components/modal/import';
+import ExportFileModal from 'components/modal/export';
 
 class AnalyzerHeader extends PureComponent {
   handleMapMode() {
@@ -64,7 +65,8 @@ class AnalyzerHeader extends PureComponent {
                 cb: () => { this.handleMapMode(); }
               },
               { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
-              { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } }
+              { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
+              { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal); } }
             ]}
           />
         </div>

@@ -45,7 +45,8 @@ class StickyLocation extends PureComponent {
             items={[
               { label: 'Click map' },
               { label: 'Coordinates' },
-              { label: 'Import file', cb: () => { this.handleModal(); } }
+              { label: 'Import file', cb: () => { this.handleModal(); } },
+              { label: 'Export file', cb: () => { this.handleModal(); } }
             ]}
           />
         </div>
