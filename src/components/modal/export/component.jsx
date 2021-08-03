@@ -1,30 +1,35 @@
 import React from 'react';
-import { LEGENDS } from '../../map/constants'
+import { ExportToCsv } from 'export-to-csv';
+
 import CustomTable from 'components/ui/Table/Table';
+import { LEGENDS } from '../../map/constants';
+import { COLUMNS } from './constants';
 
 // components
 // constants
 
 const ExportModal = ({ filters={} }) => {
-  const tableData = Array.from(Array(20)).map((i) => ({
-    watershed_id: '9044',
+  const indicator = filters.indicator && LEGENDS[filters.indicator];
+  const tableData = Array.from(Array(20)).map((a, b) => ({
+    watershed_id: b,
     major_basin: 'Major Basin',
     minor_basin: 'Minor Basin',
     country: 'USA',
     province: 'State',
-    bws_score: 'High',
-    bws_desired_change: '25%',
+    score: 'High',
+    desired_change: '25%',
   }));
-  const tableColumns = [
-    { label: 'Watershed ID', value: 'watershed_id' },
-    { label: 'Major Basin', value: 'major_basin' },
-    { label: 'Minor Basin', value: 'minor_basin' },
-    { label: 'Country', value: 'country' },
-    { label: 'Province', value: 'province' },
-    { label: 'BWS Score', value: 'bws_score' },
-    { label: 'BWS Desired Change', value: 'bws_desired_change' }
-  ];
-  const indicator = filters.indicator && LEGENDS[filters.indicator];
+
+  const downloadCSV = (event) => {
+    event.preventDefault()
+    const csvExporter = new ExportToCsv({
+      showLabels: true,
+      filename: `Prioritize Action Analyzer - ${indicator.name}`,
+      headers: COLUMNS.map(c => c.label)
+    });
+    csvExporter.generateCsv(tableData);
+  };
+
 
   if (indicator) {
     return (
@@ -38,7 +43,7 @@ const ExportModal = ({ filters={} }) => {
           </div>
         </div>
         <CustomTable
-          columns={tableColumns}
+          columns={COLUMNS}
           data={tableData}
           selected={[]}
           actions={{
@@ -52,6 +57,10 @@ const ExportModal = ({ filters={} }) => {
             page: 0
           }}
         />
+        <div>
+          <span className='download-container'>Download result as </span>
+          <a href='#' onClick={downloadCSV}>CSV</a>
+        </div>
       </div>
     );
   }
