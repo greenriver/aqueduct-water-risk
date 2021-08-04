@@ -49,7 +49,7 @@ class Filters extends Component {
     this.props.setTabFilters({
       action: {
         indicator,
-        threshold: this.getFilter('threshold') || LEGENDS[indicator].defaultValue
+        threshold: LEGENDS[indicator].defaultValue
       }
     });
     this.setState({ indicator });
