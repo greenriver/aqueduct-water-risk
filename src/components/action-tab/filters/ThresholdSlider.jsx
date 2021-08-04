@@ -46,7 +46,7 @@ const ThresholdSlider = ({ indicatorId, threshold, handleChange }) => {
     let prefix = '';
     const actualValue = getActualValue(value);
     if (rangeValues.indexOf(actualValue) > 0) {
-      prefix = '> ';
+      prefix = '< ';
     }
     return `${prefix}${actualValue} ${unit}`;
   };
