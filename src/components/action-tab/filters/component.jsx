@@ -46,13 +46,14 @@ class Filters extends Component {
   }
 
   handleIndicatorSelect(indicator) {
+    const newFilters = {
+      indicator,
+      threshold: LEGENDS[indicator].defaultValue
+    }
     this.props.setTabFilters({
-      action: {
-        indicator,
-        threshold: LEGENDS[indicator].defaultValue
-      }
+      action: newFilters
     });
-    this.setState({ indicator });
+    this.setState(newFilters);
   }
 
   handleSliderChange(threshold = null) {
