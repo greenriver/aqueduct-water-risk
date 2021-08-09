@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 // actions
 import { toggleModal } from 'aqueduct-components';
 import { setMapMode } from 'modules/app/actions';
-import { clearAnalysis } from 'modules/analyze-locations-tab/actions';
+import {
+  clearAnalysis,
+  onApplyBasinAnalysis,
+  onFetchBasinAnalysis
+} from 'modules/analyze-locations-tab/actions';
 
 // component
 import BasinAnalyzer from './component';
@@ -17,7 +21,9 @@ export default connect(
   }),
   {
     toggleModal,
-    clearAnalysis,
     setMapMode,
+    clearAnalysis,
+    onApplyBasinAnalysis,
+    onFetchBasinAnalysis
   }
 )(BasinAnalyzer);

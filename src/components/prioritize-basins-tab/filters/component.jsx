@@ -138,7 +138,6 @@ class Filters extends Component {
 }
 
 Filters.propTypes = {
-  name: string.isRequired,
   filters: object,
   tabFilters: object,
   setFilters: func.isRequired,

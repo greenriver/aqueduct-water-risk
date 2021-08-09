@@ -1,25 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { object } from 'prop-types';
 import { ExportToCsv } from 'export-to-csv';
 
 import CustomTable from 'components/ui/Table/Table';
 import { LEGENDS } from '../../map/constants';
 import { COLUMNS } from './constants';
+import { Spinner } from 'aqueduct-components';
 
 // components
 // constants
 
-const ExportModal = ({ filters={} }) => {
+const ExportModal = ({ filters={}, analysis={} }) => {
+  const { data=[], loading=true } = analysis
   const indicator = filters.indicator && LEGENDS[filters.indicator];
-  const tableData = Array.from(Array(20)).map((a, b) => ({
-    watershed_id: b,
-    major_basin: 'Major Basin',
-    minor_basin: 'Minor Basin',
-    country: 'USA',
-    province: 'State',
-    score: 'High',
-    desired_change: '25%'
-  }));
 
   const downloadCSV = (event) => {
     event.preventDefault();
@@ -28,9 +21,8 @@ const ExportModal = ({ filters={} }) => {
       filename: `Prioritize Basins Analyzer - ${indicator.name}`,
       headers: COLUMNS.map(c => c.label)
     });
-    csvExporter.generateCsv(tableData);
+    csvExporter.generateCsv(data);
   };
-
 
   if (indicator) {
     return (
@@ -43,24 +35,34 @@ const ExportModal = ({ filters={} }) => {
             </span>
           </div>
         </div>
-        <CustomTable
-          columns={COLUMNS}
-          data={tableData}
-          selected={[]}
-          actions={{
-            showable: false,
-            editable: false,
-            removable: false
-          }}
-          pagination={{
-            enabled: tableData.length > 10,
-            pageSize: 10,
-            page: 0
-          }}
-        />
-        <div>
-          <span className='download-container'>Download result as </span>
-          <button onClick={downloadCSV}>CSV</button>
+        <div className="info-content" style={{minHeight: 100, position: 'relative'}}>
+          <Spinner
+            isLoading={loading}
+            className="-transparent"
+          />
+          {(data.length > 0 && !loading) &&
+            <Fragment>
+              <CustomTable
+                columns={COLUMNS}
+                data={data}
+                selected={[]}
+                actions={{
+                  showable: false,
+                  editable: false,
+                  removable: false
+                }}
+                pagination={{
+                  enabled: data.length > 10,
+                  pageSize: 10,
+                  page: 0
+                }}
+              />
+              <div>
+                <span className='download-container'>Download result as </span>
+                <button onClick={downloadCSV}>CSV</button>
+              </div>
+            </Fragment>
+          }
         </div>
       </div>
     );
@@ -68,7 +70,8 @@ const ExportModal = ({ filters={} }) => {
 };
 
 ExportModal.propTypes = {
-  filters: object
+  filters: object,
+  analysis: object
 };
 
 export default ExportModal;

@@ -31,6 +31,52 @@ export const setGeostoreLocations = createAction('ANALYZE-LOCATIONS-TAB__SET-GEO
 export const setGeostoreLoading = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-LOADING');
 export const setGeostoreError = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-ERROR');
 
+export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-BASIN-ANALYSIS', () =>
+  (dispatch, getState) => {
+    const {
+      analyzeLocations: {
+        geostore: { id, locations }
+      },
+      settings: {
+        filters: { threshold, indicator }
+      }
+    } = getState();
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Fetch basin analysis based on location, indicator and threshold
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // return fetchAnalysis(params)
+    //   .then((analysis) => {
+    //     const { data, analysis_type: analysisType } = analysis;
+    //     dispatch(setAnalysis(data));
+    //     logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
+    //     dispatch(setAnalysisLoading(false));
+    //   })
+    //   .catch((err) => {
+    //     dispatch(setAnalysisError(err));
+    //     dispatch(setAnalysisLoading(false));
+    //   });
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Return fake data until API endpoint/params are determined
+    // May need to establish a new service here: services/analysis
+    // and replace `fetchAnalysis` above with it
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    console.log({location: { id, locations }, filters: { threshold, indicator }});
+    const data = Array.from(Array(20)).map((a, b) => ({
+      watershed_id: `Watershed ${b+1}`,
+      major_basin: 'Major Basin',
+      minor_basin: 'Minor Basin',
+      country: 'USA',
+      province: 'State',
+      score: 'High',
+      desired_change: threshold
+    }));
+
+    logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
+    dispatch(setAnalysis(data));
+    dispatch(setAnalysisLoading(false));
+  });
+
 export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-ANALYSIS', () =>
   (dispatch, getState) => {
     const {
@@ -210,6 +256,22 @@ export const onUpdateLocation = createThunkAction('ANALYZE-LOCATIONS-TAB__UPDATE
     }
   });
 
+export const onApplyBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__APPLY-BASIN-ANALYSIS', () =>
+  (dispatch, getState) => {
+    const { analyzeLocations: {
+      points: { list },
+      geostore: { locations }
+    } } = getState();
+
+    dispatch(setAnalysisLoading(true));
+
+    saveGeostore(list, { locations })
+      .then(({ id }) => {
+        dispatch(setGeostore(id));
+        dispatch(onFetchBasinAnalysis());
+      });
+  });
+
 export const onApplyAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__APPLY-ANALYSIS', () =>
   (dispatch, getState) => {
     const { analyzeLocations: {
@@ -244,6 +306,7 @@ export default {
   onAddPoint,
   onRemovePoint,
   onApplyAnalysis,
+  onApplyBasinAnalysis,
   onUpdateLocation,
   onAddLocation,
   onAddUnknownLocation,

@@ -8,6 +8,9 @@ import CoordinatesModal from 'components/modal/coordinates';
 import ImportFileModal from 'components/modal/import';
 import ExportFileModal from 'components/modal/export';
 
+// utils
+import { logEvent } from 'utils/analytics';
+
 class BasinAnalyzer extends PureComponent {
   handleMapMode() {
     const {
@@ -28,6 +31,14 @@ class BasinAnalyzer extends PureComponent {
     });
   }
 
+  handleExport() {
+    const { onApplyBasinAnalysis } = this.props;
+
+    logEvent('Analysis', 'Analyze Basins', 'Start Analysis');
+    onApplyBasinAnalysis();
+    this.toggleModal(ExportFileModal, '-medium');
+  }
+
   render() {
     const {
       points,
@@ -40,6 +51,11 @@ class BasinAnalyzer extends PureComponent {
         <div className="c-analyzer-header">
           <div className="actions-container">
             <span className="title">Analyze</span>
+            { points.length > 0 &&
+              <span className="">
+                Location: [{points[0].lat}, {points[0].lng}]
+              </span>
+            }
             <BtnMenu
               className="-theme-white"
               items={[
@@ -51,8 +67,8 @@ class BasinAnalyzer extends PureComponent {
                 },
                 { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
                 { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-                ...(indicator !== null) && [
-                  { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
+                ...(indicator !== null && points.length) && [
+                  { label: 'Export file', cb: () => { this.handleExport() } }
                 ]
               ]}
             />
@@ -66,13 +82,11 @@ class BasinAnalyzer extends PureComponent {
 BasinAnalyzer.propTypes = {
   points: array.isRequired,
   mapMode: string.isRequired,
-  analyzerOpen: bool.isRequired,
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
-  setAnalyzerOpen: func.isRequired,
   clearAnalysis: func.isRequired,
-  indicator: string,
-  scope: string
+  onApplyBasinAnalysis: func.isRequired,
+  indicator: string
 };
 
 export default BasinAnalyzer;
