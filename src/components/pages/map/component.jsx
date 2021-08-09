@@ -113,12 +113,12 @@ class MapPage extends PureComponent {
       setSidebarWidth
     } = this.props;
 
-    const sidebarClass = classnames({
-      'sidebar-with-open-analyzer': analyzerOpen,
-      'sidebar-with-data-analyzer': analyzerOpen && data.length
-    });
+    const scopeHasAccordionAnalyzer = scope !== 'prioritize-basins'
 
-    console.log({scope})
+    const sidebarClass = classnames({
+      'sidebar-with-open-analyzer': scopeHasAccordionAnalyzer && analyzerOpen,
+      'sidebar-with-data-analyzer': scopeHasAccordionAnalyzer && analyzerOpen && data.length
+    });
 
     return (
       <div className="c-map-page l-map-page">
@@ -137,8 +137,7 @@ class MapPage extends PureComponent {
             {scope === 'future' && (<FutureTab />)}
             {scope === 'prioritize-basins' && (<PrioritizeBasinsTab />)}
           </div>
-          { scope === 'prioritize-basins' ?
-             <BasinAnalyzer /> :
+          { scopeHasAccordionAnalyzer ?
             <CustomAccordion
               className="l-analyzer-accordion"
               open={analyzerOpen}
@@ -146,6 +145,8 @@ class MapPage extends PureComponent {
             >
               <Analyzer />
             </CustomAccordion>
+            :
+            <BasinAnalyzer />
           }
         </Sidebar>
         <MapComponent />
