@@ -3,7 +3,7 @@ import { func, object, string } from 'prop-types';
 
 import { CustomSelect, InfoModal } from 'aqueduct-components';
 
-import ContentModal from '../../ui/modal/content/';
+import ContentModal from '../../ui/modal/content';
 import TooltipIcon from '../../ui/TooltipIcon';
 import ThresholdSlider from './ThresholdSlider';
 

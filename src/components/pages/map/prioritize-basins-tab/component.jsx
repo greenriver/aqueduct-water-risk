@@ -1,9 +1,9 @@
 import React from 'react';
 
 // components
-import Filters from 'components/action-tab/filters';
+import Filters from 'components/prioritize-basins-tab/filters';
 
-const ActionTab = () => {
+const PrioritizeBasinsTab = () => {
   return (
     <div className="l-action">
       <div className="l-filters">
@@ -13,4 +13,4 @@ const ActionTab = () => {
   );
 };
 
-export default ActionTab;
+export default PrioritizeBasinsTab;

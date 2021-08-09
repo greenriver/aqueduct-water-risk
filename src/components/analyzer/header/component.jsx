@@ -67,7 +67,7 @@ class AnalyzerHeader extends PureComponent {
               },
               { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
               { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-              ...(scope === 'action' && indicator !== null) && [
+              ...(scope === 'prioritize-basins' && indicator !== null) && [
                 { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
               ]
             ]}

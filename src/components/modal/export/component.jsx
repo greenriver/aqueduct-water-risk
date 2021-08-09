@@ -25,7 +25,7 @@ const ExportModal = ({ filters={} }) => {
     event.preventDefault();
     const csvExporter = new ExportToCsv({
       showLabels: true,
-      filename: `Prioritize Action Analyzer - ${indicator.name}`,
+      filename: `Prioritize Basins Analyzer - ${indicator.name}`,
       headers: COLUMNS.map(c => c.label)
     });
     csvExporter.generateCsv(tableData);
@@ -37,7 +37,7 @@ const ExportModal = ({ filters={} }) => {
       <div className="c-info">
         <div className="info-header">
           <div className="info-titles">
-            <span className="info-title">Prioritize Action Analyzer</span>
+            <span className="info-title">Prioritize Basins Analyzer</span>
             <span className="info-description">
               <strong>{indicator.name}</strong> with desired condition set to > {filters.threshold}{indicator.unit}
             </span>
