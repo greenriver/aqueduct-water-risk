@@ -38,8 +38,6 @@ class AnalyzerHeader extends PureComponent {
       analyzerOpen,
       setAnalyzerOpen,
       clearAnalysis,
-      indicator,
-      scope
     } = this.props;
     return (
       <div className="c-analyzer-header">
@@ -67,9 +65,6 @@ class AnalyzerHeader extends PureComponent {
               },
               { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
               { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-              ...(scope === 'prioritize-basins' && indicator !== null) && [
-                { label: 'Export file', cb: () => { this.toggleModal(ExportFileModal, '-medium'); } }
-              ]
             ]}
           />
         </div>
@@ -87,7 +82,6 @@ AnalyzerHeader.propTypes = {
   setAnalyzerOpen: func.isRequired,
   clearAnalysis: func.isRequired,
   indicator: string,
-  scope: string
 };
 
 export default AnalyzerHeader;

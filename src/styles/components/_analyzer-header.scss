@@ -1,12 +1,22 @@
 .c-analyzer-header {
   > .actions-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: $space-1 $space-1 * 4 $space-1 $space-1 * 4;
     background-color: palette(sand);
 
+    .title {
+      margin: $space-1 0 $space-1 0;
+      line-height: $font-size-extrabig;
+      font-size: $font-size-extrabig;
+      color: palette(gray, dark);
+    }
     > .toggle-container {
+      .title {
+        margin: 0 0 0 $space-1 * 2;
+      }
       > .accordion-analyzer-btn {
         display: flex;
         justify-content: center;
@@ -17,13 +27,6 @@
           width: 16px;
           height: 16px;
         }
-      }
-
-      .title {
-        margin: 0 0 0 $space-1 * 2;
-        line-height: $font-size-extrabig;
-        font-size: $font-size-extrabig;
-        color: palette(gray, dark);
       }
     }
   }

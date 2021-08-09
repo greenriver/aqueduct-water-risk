@@ -13,6 +13,7 @@ import PrioritizeBasinsTab from 'components/pages/map/prioritize-basins-tab';
 import MapComponent from 'components/map';
 import CustomAccordion from 'components/ui/custom-accordion';
 import Analyzer from 'components/analyzer';
+import BasinAnalyzer from 'components/basin-analyzer';
 import AnalyzerHeader from 'components/analyzer/header';
 
 // utils
@@ -117,6 +118,8 @@ class MapPage extends PureComponent {
       'sidebar-with-data-analyzer': analyzerOpen && data.length
     });
 
+    console.log({scope})
+
     return (
       <div className="c-map-page l-map-page">
         <Sidebar
@@ -134,15 +137,16 @@ class MapPage extends PureComponent {
             {scope === 'future' && (<FutureTab />)}
             {scope === 'prioritize-basins' && (<PrioritizeBasinsTab />)}
           </div>
-          <CustomAccordion
-            className="l-analyzer-accordion"
-            open={analyzerOpen}
-            header={<AnalyzerHeader />}
-          >
-            <div className="l-analyzer">
+          { scope === 'prioritize-basins' ?
+             <BasinAnalyzer /> :
+            <CustomAccordion
+              className="l-analyzer-accordion"
+              open={analyzerOpen}
+              header={<AnalyzerHeader />}
+            >
               <Analyzer />
-            </div>
-          </CustomAccordion>
+            </CustomAccordion>
+          }
         </Sidebar>
         <MapComponent />
         <Spinner

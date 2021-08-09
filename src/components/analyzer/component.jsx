@@ -88,73 +88,75 @@ class Analyzer extends PureComponent {
     );
 
     return (
-      <div className="c-analyzer">
-        {(!!data.length && !loading) && (
-          <div className="analyzer-header">
+      <div className="l-analyzer">
+        <div className="c-analyzer">
+          {(!!data.length && !loading) && (
+            <div className="analyzer-header">
+              <button
+                type="button"
+                onClick={() => { this.triggerExpandedTableModal(); }}
+              >
+                <Icon
+                  name="icon-expand-window"
+                  className="expand-table-icon"
+                />
+              </button>
+            </div>
+          )}
+          <div className="analyzer-content">
+            <Spinner
+              isLoading={loading}
+              className="-transparent"
+            />
+            {(!data.length && !loading) && (
+              <div className="no-data-container">
+                <span className="no-data">
+                  Click on the map to select locations <br /> and then click &lsquo;Apply analysis&rsquo; button
+                </span>
+              </div>
+            )}
+
+            {(data.length > 0 && !loading) && (
+              <div className="table-container">
+                <DataTable />
+              </div>
+            )}
+
+            {(downloadUrl && !loading) &&
+              (<div className="download-container">
+              Download as
+                <ul>
+                  <li><button type="button" onClick={(e) => { this.handleDownload(e, 'csv'); }}>CSV</button>,</li>
+                  <li><button type="button" onClick={(e) => { this.handleDownload(e, 'gpkg'); }}>GPKG</button></li>
+                  <li className="download-spinner">
+                    <Spinner
+                      isLoading={fileLoading}
+                      className="-transparent -tiny"
+                    />
+                  </li>
+                </ul>
+                <p className="download-instructions">
+                  <a
+                    href="https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Instructions
+                  </a>
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="analyzer-footer">
             <button
               type="button"
-              onClick={() => { this.triggerExpandedTableModal(); }}
+              className={btnClass}
+              onClick={() => { this.onApplyAnalysis(); }}
+              disabled={!points.length}
             >
-              <Icon
-                name="icon-expand-window"
-                className="expand-table-icon"
-              />
+              Apply analysis
             </button>
           </div>
-        )}
-        <div className="analyzer-content">
-          <Spinner
-            isLoading={loading}
-            className="-transparent"
-          />
-          {(!data.length && !loading) && (
-            <div className="no-data-container">
-              <span className="no-data">
-                Click on the map to select locations <br /> and then click &lsquo;Apply analysis&rsquo; button
-              </span>
-            </div>
-          )}
-
-          {(data.length > 0 && !loading) && (
-            <div className="table-container">
-              <DataTable />
-            </div>
-          )}
-
-          {(downloadUrl && !loading) &&
-            (<div className="download-container">
-             Download as
-              <ul>
-                <li><button type="button" onClick={(e) => { this.handleDownload(e, 'csv'); }}>CSV</button>,</li>
-                <li><button type="button" onClick={(e) => { this.handleDownload(e, 'gpkg'); }}>GPKG</button></li>
-                <li className="download-spinner">
-                  <Spinner
-                    isLoading={fileLoading}
-                    className="-transparent -tiny"
-                  />
-                </li>
-              </ul>
-              <p className="download-instructions">
-                <a
-                  href="https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Instructions
-                </a>
-              </p>
-            </div>
-          )}
-        </div>
-        <div className="analyzer-footer">
-          <button
-            type="button"
-            className={btnClass}
-            onClick={() => { this.onApplyAnalysis(); }}
-            disabled={!points.length}
-          >
-            Apply analysis
-          </button>
         </div>
       </div>
     );
