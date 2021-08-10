@@ -616,7 +616,7 @@ export const LEGENDS = {
 
 export const BASIN_INDICATORS = {
   bws_cat: LEGENDS.bws_cat,
-  bwd_cat: LEGENDS.bws_cat,
+  bwd_cat: LEGENDS.bwd_cat,
   gtd_cat: LEGENDS.gtd_cat,
   cep_cat: LEGENDS.cep_cat,
   udw_cat: LEGENDS.udw_cat,
