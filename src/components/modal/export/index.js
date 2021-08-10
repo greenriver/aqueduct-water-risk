@@ -3,7 +3,7 @@ import ExportModal from './component';
 
 export default connect(
   state => ({
-    filters: state.settings.tabFilters.action,
+    filters: state.settings.tabFilters.basins,
     analysis: state.analyzeLocations.analysis,
   }), {}
 )(ExportModal);

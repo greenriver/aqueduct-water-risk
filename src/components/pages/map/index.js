@@ -16,6 +16,7 @@ export default connect(
     mapState: state.map,
     loading: state.layers.loading || state.map.loading,
     filters: state.settings.filters,
+    tabFilters: state.settings.tabFilters,
     ponderation: state.settings.ponderation,
     geostore: state.analyzeLocations.geostore.id,
     analysis: state.analyzeLocations.analysis,

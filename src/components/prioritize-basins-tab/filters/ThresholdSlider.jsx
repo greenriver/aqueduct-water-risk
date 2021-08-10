@@ -3,12 +3,12 @@ import { func, number, string } from 'prop-types';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-import { LEGENDS } from 'components/map/constants';
+import { BASIN_INDICATORS } from 'components/map/constants';
 import SliderMarkLabel from './SliderMarkLabel';
 import { style } from './slider_style';
 
 const ThresholdSlider = ({ indicatorId, threshold, handleChange }) => {
-  const indicator = LEGENDS[indicatorId];
+  const indicator = BASIN_INDICATORS[indicatorId];
   const {
     items = [],
     rangeValues = [],

@@ -614,6 +614,15 @@ export const LEGENDS = {
   }
 };
 
+export const BASIN_INDICATORS = {
+  bws_cat: LEGENDS.bws_cat,
+  bwd_cat: LEGENDS.bws_cat,
+  gtd_cat: LEGENDS.gtd_cat,
+  cep_cat: LEGENDS.cep_cat,
+  udw_cat: LEGENDS.udw_cat,
+  usa_cat: LEGENDS.usa_cat
+};
+
 export const HYDRO_LAYER = 'c3844335-db59-4a42-94fa-77ff47adc731';
 export const AQUIFER_LAYER = '695a26a0-92d3-4a5f-98e5-1ebc4d55ba27';
 

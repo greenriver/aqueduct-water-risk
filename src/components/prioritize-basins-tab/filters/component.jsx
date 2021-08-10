@@ -3,25 +3,35 @@ import { func, object, string } from 'prop-types';
 
 import { CustomSelect, InfoModal } from 'aqueduct-components';
 
+// constants
+import { BASIN_MODAL_PROPS, WATER_RISK_PROPS } from 'constants/filters';
+import { BASIN_INDICATORS, INDICATORS } from 'components/map/constants';
+
 import ContentModal from '../../ui/modal/content';
 import TooltipIcon from '../../ui/TooltipIcon';
 import ThresholdSlider from './ThresholdSlider';
 
-// constants
-import { BASIN_MODAL_PROPS, WATER_RISK_PROPS  } from 'constants/filters';
-import { LEGENDS, INDICATORS } from 'components/map/constants';
-
 class Filters extends Component {
   constructor(props) {
     super(props);
+    const { indicator, threshold } = this.props.tabFilters.basins || {};
+    const activeIndicator = indicator || this.props.filters.indicator;
+    const activeThreshold = threshold ||
+      this.props.filters.threshold ||
+      (BASIN_INDICATORS[activeIndicator] && BASIN_INDICATORS[activeIndicator].defaultValue);
     this.state = {
-      indicator: this.props.tabFilters.action.indicator || '',
-      threshold: this.props.tabFilters.action.threshold
+      indicator: activeIndicator,
+      threshold: +activeThreshold
     };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.indicator !== nextState.indicator;
+  }
+
+  getFilter(filterProp) {
+    const { tabFilters } = this.props;
+    return this.state[filterProp] || tabFilters.basins[filterProp];
   }
 
   handleTooltipClick() {
@@ -40,25 +50,20 @@ class Filters extends Component {
     });
   }
 
-  getFilter(filterProp) {
-    const { tabFilters } = this.props;
-    return this.state[filterProp] || tabFilters.action[filterProp];
-  }
-
   handleIndicatorSelect(indicator) {
     const newFilters = {
       indicator,
-      threshold: LEGENDS[indicator].defaultValue
-    }
+      threshold: BASIN_INDICATORS[indicator].defaultValue
+    };
     this.props.setTabFilters({
-      action: newFilters
+      basins: newFilters
     });
     this.setState(newFilters);
   }
 
   handleSliderChange(threshold = null) {
     this.props.setTabFilters({
-      action: { threshold, indicator: this.getFilter('indicator')}
+      basins: { threshold, indicator: this.getFilter('indicator')}
     });
     this.setState({ threshold });
   }
@@ -68,9 +73,8 @@ class Filters extends Component {
     const indicator = this.getFilter('indicator');
     const threshold = this.getFilter('threshold');
 
-    const indicators = Object.keys(LEGENDS)
-      .filter((key) => Object.keys(INDICATORS).includes(key) )
-      .map((key) => ({ label: INDICATORS[key], value: key } ));
+    const indicators = Object.keys(BASIN_INDICATORS)
+      .map((key) => ({ label: BASIN_INDICATORS[key].name, value: key } ));
 
     const handleApply = () => {
       const newFilters = {
@@ -78,7 +82,7 @@ class Filters extends Component {
         threshold: this.state.threshold
       };
       setFilters(newFilters);
-      setTabFilters({ action: newFilters });
+      setTabFilters({ basins: newFilters });
     };
 
     return (
@@ -103,7 +107,7 @@ class Filters extends Component {
                       options={indicators}
                       value={indicator}
                       placeholder={'Select Indicator'}
-                      onValueChange={({ value }) => { this.handleIndicatorSelect(value) }}
+                      onValueChange={({ value }) => { this.handleIndicatorSelect(value); }}
                     />
                     <TooltipIcon handleClick={() => this.handleInfoClick()} />
                   </div>
@@ -122,7 +126,11 @@ class Filters extends Component {
                         </div>
                       </div>
                     </div>
-                    <ThresholdSlider indicatorId={indicator} threshold={threshold} handleChange={ (value) => this.handleSliderChange(value) } />
+                    <ThresholdSlider
+                      indicatorId={indicator}
+                      threshold={threshold}
+                      handleChange={(value) => { this.handleSliderChange(value); }}
+                    />
                   </div>
                 </div>
                 <div style={{ marginTop: 35 }} className="c-btn-menu -theme-secondary">
@@ -138,6 +146,7 @@ class Filters extends Component {
 }
 
 Filters.propTypes = {
+  name: string,
   filters: object,
   tabFilters: object,
   setFilters: func.isRequired,

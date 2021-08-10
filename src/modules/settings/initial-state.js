@@ -17,7 +17,7 @@ const defaultFilters = {
 export default {
   filters: defaultFilters,
   tabFilters: {
-    action: {
+    basins: {
       indicator: null,
       threshold: null
     },

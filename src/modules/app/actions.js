@@ -3,7 +3,7 @@ import { replace } from 'react-router-redux';
 
 // actions
 import { setMapLocation, setLayerParametrization } from 'modules/map/actions';
-import { setFilters, setPonderation, setAnalyzerOpen } from 'modules/settings/actions';
+import { setFilters, setTabFilters, setPonderation, setAnalyzerOpen } from 'modules/settings/actions';
 import { setGeostore, getGeostore, setAnalysisLoading } from 'modules/analyze-locations-tab/actions';
 
 // constants
@@ -22,7 +22,10 @@ export const updateUrl = createThunkAction('APP__UPDATE-URL', () =>
       app: { scope, advanced, mapMode },
       analyzeLocations: { geostore: { id } }
     } = getState();
-    const { year, scenario, timeScale, projection, month, indicator, predefined } = settings.filters;
+    const {
+      year, scenario, timeScale, projection, month,
+      indicator, predefined, threshold
+    } = settings.filters;
     const { ponderation: { scheme, custom } } = settings;
     const {
       basemap,
@@ -45,6 +48,7 @@ export const updateUrl = createThunkAction('APP__UPDATE-URL', () =>
         month,
         projection,
         indicator,
+        threshold,
         ponderation: scheme,
         ...scheme === 'custom' && { ponderation_values: `[${Object.values(custom).toString()}]` },
         scope,
@@ -61,7 +65,6 @@ export const updateUrl = createThunkAction('APP__UPDATE-URL', () =>
 export const onEnterMapPage = createThunkAction('APP__MAP-PAGE-HOOK', ({ params, done }) =>
   (dispatch) => {
     const { location } = params;
-
     if (location.query.zoom) {
       const map = {
         basemap: location.query.basemap,
@@ -79,7 +82,7 @@ export const onEnterMapPage = createThunkAction('APP__MAP-PAGE-HOOK', ({ params,
       }));
     }
     if (location.query.year) {
-      const { year, scenario, timeScale, projection, month, indicator, predefined } = location.query;
+      const { year, scenario, timeScale, projection, month, indicator, predefined, threshold } = location.query;
       dispatch(setFilters({
         year,
         scenario,
@@ -87,8 +90,14 @@ export const onEnterMapPage = createThunkAction('APP__MAP-PAGE-HOOK', ({ params,
         month,
         projection,
         indicator,
-        predefined
+        predefined,
+        threshold
       }));
+      if (indicator && threshold) {
+        dispatch(setTabFilters({
+          basins: { indicator, threshold }
+        }));
+      }
     }
 
     if (location.query.ponderation) dispatch(setPonderation({ scheme: location.query.ponderation }));

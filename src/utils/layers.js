@@ -35,8 +35,13 @@ const getDefaultPonderationParametrization = ({ indicator }, customPonderation) 
   }
 );
 
+const getBasinParametrization = ({ indicator, threshold }) => ({
+  indicator,
+  threshold
+});
+
 export const getLayerParametrization = (parametrization, ponderation) => {
-  const { year, timeScale } = parametrization;
+  const { year, timeScale, threshold } = parametrization;
   const {
     scheme: ponderationScheme,
     custom: customPonderation
@@ -44,6 +49,10 @@ export const getLayerParametrization = (parametrization, ponderation) => {
   let params = {};
 
   switch (true) {
+    // prioritize basins
+    case (threshold):
+      params = getBasinParametrization(parametrization);
+      break;
     // future layers
     case (year !== 'baseline'):
       params = getProjectedParametrization(parametrization);

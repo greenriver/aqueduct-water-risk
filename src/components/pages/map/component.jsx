@@ -79,6 +79,7 @@ class MapPage extends PureComponent {
     const {
       setScope,
       setFilters,
+      tabFilters,
       filters: { projection, timeScale }
     } = this.props;
     const isFuture = value === 'future';
@@ -88,8 +89,8 @@ class MapPage extends PureComponent {
       case 'future':
         indicator = DEFAULT_FUTURE_INDICATOR[projection];
         break;
-      case 'action':
-        indicator = '';
+      case 'prioritize-basins':
+        indicator = (tabFilters.basins && tabFilters.basins.indicator) || '';
         break;
       default:
         indicator = defaultIndicator;
@@ -161,6 +162,7 @@ class MapPage extends PureComponent {
 
 MapPage.propTypes = {
   filters: PropTypes.object.isRequired,
+  tabFilters: PropTypes.object.isRequired,
   ponderation: PropTypes.object.isRequired,
   analysis: PropTypes.object.isRequired,
   scope: PropTypes.string.isRequired,

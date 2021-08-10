@@ -16,7 +16,7 @@ export default connect(
   state => ({
     points: state.analyzeLocations.points.list,
     mapMode: state.app.mapMode,
-    indicator: state.settings.tabFilters.action.indicator,
+    indicator: state.settings.tabFilters.basins.indicator,
     scope: state.app.scope
   }),
   {
