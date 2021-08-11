@@ -9,7 +9,7 @@ import { toastr } from 'react-redux-toastr';
 // components
 import BaselineTab from 'components/pages/map/baseline-tab';
 import FutureTab from 'components/pages/map/future-tab';
-import PrioritizeBasinsTab from 'components/pages/map/prioritize-basins-tab';
+import PrioritizeBasinsTab from 'components/pages/map/basins-tab';
 import MapComponent from 'components/map';
 import CustomAccordion from 'components/ui/custom-accordion';
 import Analyzer from 'components/analyzer';
@@ -89,7 +89,7 @@ class MapPage extends PureComponent {
       case 'future':
         indicator = DEFAULT_FUTURE_INDICATOR[projection];
         break;
-      case 'prioritize-basins':
+      case 'basins':
         indicator = (tabFilters.basins && tabFilters.basins.indicator) || '';
         break;
       default:
@@ -114,7 +114,7 @@ class MapPage extends PureComponent {
       setSidebarWidth
     } = this.props;
 
-    const scopeHasAccordionAnalyzer = scope !== 'prioritize-basins'
+    const scopeHasAccordionAnalyzer = scope !== 'basins'
 
     const sidebarClass = classnames({
       'sidebar-with-open-analyzer': scopeHasAccordionAnalyzer && analyzerOpen,
@@ -136,7 +136,7 @@ class MapPage extends PureComponent {
           <div className="l-mapview-content">
             {scope === 'baseline' && (<BaselineTab />)}
             {scope === 'future' && (<FutureTab />)}
-            {scope === 'prioritize-basins' && (<PrioritizeBasinsTab />)}
+            {scope === 'basins' && (<PrioritizeBasinsTab />)}
           </div>
           { scopeHasAccordionAnalyzer ?
             <CustomAccordion

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import Filters from 'components/prioritize-basins-tab/filters';
+import Filters from 'components/basins-tab/filters';
 
 const PrioritizeBasinsTab = () => {
   return (
