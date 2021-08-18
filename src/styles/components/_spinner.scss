@@ -7,4 +7,12 @@
     left: auto;
     bottom: auto;
   }
+
+  @include only-mobile {
+    &.-map {
+      top: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Filters from 'components/filters';
 import { Icon } from 'aqueduct-components';
 
 class MobileFilters extends PureComponent {
@@ -20,7 +19,7 @@ class MobileFilters extends PureComponent {
   }
 
   render() {
-    const { className, children, headingContent } = this.props;
+    const { className, children } = this.props;
     const { opened } = this.state;
     const classNames = classnames('c-mobile-filters', {
       '-opened': opened,
@@ -29,10 +28,6 @@ class MobileFilters extends PureComponent {
 
     return (
       <div className={classNames}>
-        <div className="mobile-filters-content">
-          {children}
-        </div>
-
         <button
           type="button"
           className="mobile-filters-btn"
@@ -44,8 +39,7 @@ class MobileFilters extends PureComponent {
         </button>
 
         <div className="mobile-filters-wrapper">
-          {headingContent}
-          <Filters {...this.props} />
+          {children}
         </div>
       </div>
     );
@@ -54,8 +48,7 @@ class MobileFilters extends PureComponent {
 
 MobileFilters.propTypes = {
   children: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  headingContent: PropTypes.object.isRequired
+  className: PropTypes.string
 };
 
 MobileFilters.defaultProps = { className: null };

@@ -63,7 +63,7 @@ class Filters extends Component {
 
   handleSliderChange(threshold = null) {
     this.props.setTabFilters({
-      basins: { threshold, indicator: this.getFilter('indicator')}
+      basins: { threshold, indicator: this.getFilter('indicator') }
     });
     this.setState({ threshold });
   }
@@ -74,7 +74,7 @@ class Filters extends Component {
     const threshold = this.getFilter('threshold');
 
     const indicators = Object.keys(BASIN_INDICATORS)
-      .map((key) => ({ label: BASIN_INDICATORS[key].name, value: key } ));
+      .map((key) => ({ label: BASIN_INDICATORS[key].name, value: key }));
 
     const handleApply = () => {
       const newFilters = {
@@ -101,9 +101,9 @@ class Filters extends Component {
             <div className="filters-section">
               <div className="row expanded collapse">
                 <div className="small-8 column">
-                  <div className="c-filters-item -inline" style={ {marginBottom: 25} }>
+                  <div className="c-filters-item -inline" style={{ marginBottom: 25 }}>
                     <CustomSelect
-                      className='-m-0'
+                      className="-m-0"
                       options={indicators}
                       value={indicator}
                       placeholder={'Select Indicator'}
