@@ -1,4 +1,7 @@
 .c-sidebar {
+  &.-right {
+    position: fixed;
+  }
   &.-context {
     left: auto;
     right: 0;

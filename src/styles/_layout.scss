@@ -18,6 +18,8 @@ $max-height-analyzer: 445px;
 
 /* Main content */
 .l-main {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   position: relative;
   overflow: hidden;
@@ -25,9 +27,8 @@ $max-height-analyzer: 445px;
 
 /* Sidebar */
 .l-sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  flex: 1 1 50%;
   height: 100%;
   width: 50%;
   max-width: $max-width-sidebar;
@@ -55,13 +56,47 @@ $max-height-analyzer: 445px;
   }
 }
 
-/* Map page */
-.l-map-page {
+.l-device-wrapper {
   height: 100%;
+}
 
-  .l-map {
-    height: 100%;
+// Util class, must override height property value
+.-fullscreen {
+  height: calc(100vh - #{$size-header}) !important;
+}
+
+.-mobile-fullscreen {
+  @include only-mobile {
+    height: calc(100vh - #{$size-header}) !important;
   }
+}
+
+.mobile-map-wrapper {
+  @include only-mobile {
+    flex: 1;
+  }
+}
+
+.l-fullheight {
+  min-height: 100vh;
+}
+
+.l-map {
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+  z-index: 1;
+}
+
+.l-map-mobile {
+  flex: 1;
+  position: relative;
+}
+
+.l-map-page {
+  flex: 1;
+  display: flex;
+  width: 100%;
 
   .c-map {
     &.-analysis {
