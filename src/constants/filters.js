@@ -50,7 +50,7 @@ export const TIMEFRAME_MODAL_DESCRIPTION = {
 
 export const BASIN_MODAL_PROPS = {
   name: 'Desired Conditions Threshold',
-  description: 'Desired condition thresholds refer to the strategic goal relating to the reduction or elimination of  water challenge. Editable default values are provided. The map will display catchments not meeting the specified desired conditions.'
+  description: 'A Desired condition threshold refers to the strategic goal relating to the reduction or elimination of a water challenge. Adjust the slider based on your ambition or basin needs. The provided default values represent examples of thresholds that have been adopted by the private sector for setting contextual water targets. The map will display catchments not meeting the specified desired conditions.'
 };
 
 // The content rendered in AsideContext is edited

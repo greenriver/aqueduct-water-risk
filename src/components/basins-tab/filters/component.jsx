@@ -94,7 +94,7 @@ class Filters extends Component {
           <div className="filters-section">
             <div className="c-filters-item">
               <div className="filter-item-header">
-                <span className="title">Highlight basins exceeding desired condition threshold</span>
+                <span className="title">Desired condition threshold</span>
                 <TooltipIcon handleClick={() => this.handleTooltipClick()} />
               </div>
             </div>
@@ -122,7 +122,7 @@ class Filters extends Component {
                       <div className="title">
                         <div>
                           <p><strong>{INDICATORS[indicator]} Desired Condition </strong></p>
-                          <p style={{ fontSize: 16 }}>(adjust slider to change results)</p>
+                          <p style={{ fontSize: 16 }}>(Adjust slider to set a desired condition threshold)</p>
                         </div>
                       </div>
                     </div>
