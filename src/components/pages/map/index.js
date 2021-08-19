@@ -10,7 +10,8 @@ export default connect(
   state => ({
     loading: state.layers.loading || state.map.loading,
     analysis: state.analyzeLocations.analysis,
-    analyzerOpen: state.settings.analyzer.open
+    analyzerOpen: state.settings.analyzer.open,
+    scope: state.app.scope
   }),
   { setSidebarWidth }
 )(MapPage);

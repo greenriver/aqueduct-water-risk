@@ -100,7 +100,7 @@ class Filters extends Component {
             </div>
             <div className="filters-section">
               <div className="row expanded collapse">
-                <div className="small-8 column">
+                <div className="medium-8 column">
                   <div className="c-filters-item -inline" style={{ marginBottom: 25 }}>
                     <CustomSelect
                       className="-m-0"

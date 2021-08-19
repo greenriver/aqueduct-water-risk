@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import APP_DEFINITIONS from 'aqueduct-components'
+import React, { Fragment } from 'react';
+import APP_DEFINITIONS from 'aqueduct-components';
 
 const IndicatorDefinitions = () => {
   const {
@@ -7,7 +7,7 @@ const IndicatorDefinitions = () => {
     instructions,
     description,
     source
-  } = APP_DEFINITIONS['water-risk']
+  } = APP_DEFINITIONS['water-risk'];
   return (
     <Fragment>
       <div className="c-info">
@@ -22,19 +22,15 @@ const IndicatorDefinitions = () => {
             <dd>{instructions}</dd>
             <dt>Description:</dt>
             <dd>{description}</dd>
-            <table>
-              
-              <tr></tr>
-            </table>
+            <table> <tr /> </table>
             <dt>Source:</dt>
             <dd>{source}</dd>
           </dl>
         </p>
-        <p className="info-description">
-        </p>
+        <p className="info-description" />
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
 export default IndicatorDefinitions;

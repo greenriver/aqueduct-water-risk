@@ -1,7 +1,15 @@
 .c-sidebar {
   &.-right {
     position: fixed;
+    @include only-mobile {
+      z-index: 10000;
+      &.-opened {
+        width: 100%;
+        box-shadow: none;
+      }
+    }
   }
+
   &.-context {
     left: auto;
     right: 0;

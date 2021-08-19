@@ -15,7 +15,7 @@
     }
     > .toggle-container {
       .title {
-        margin: 0 0 0 $space-1 * 2;
+        margin: $space-1 0 $space-1 $space-1 * 2;
       }
       > .accordion-analyzer-btn {
         display: flex;

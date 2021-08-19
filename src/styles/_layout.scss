@@ -124,6 +124,7 @@ $max-height-analyzer: 445px;
 
 .l-container {
   padding: $sidebar-padding;
+  background: palette(white);
 
   &.-top { padding-top: 0 }
   &.-bottom { padding-bottom: 0 }
