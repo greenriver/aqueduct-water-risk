@@ -14,15 +14,20 @@ class AnalyzerHeader extends PureComponent {
       mapMode,
       analyzerOpen,
       setMapMode,
-      setAnalyzerOpen
+      setAnalyzerOpen,
+      toggleMobileFilters
     } = this.props;
     const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
     if (!analyzerOpen) setAnalyzerOpen(true);
     setMapMode(nextMapMode);
+    // Toggle filters on mobile so users can access the map
+    if (nextMapMode === 'analysis') {
+      toggleMobileFilters(false);
+    }
   }
 
-  toggleModal(children, size='-auto') {
+  toggleModal(children, size = '-auto') {
     const { toggleModal } = this.props;
 
     toggleModal(true, {
@@ -37,7 +42,7 @@ class AnalyzerHeader extends PureComponent {
       mapMode,
       analyzerOpen,
       setAnalyzerOpen,
-      clearAnalysis,
+      clearAnalysis
     } = this.props;
     return (
       <div className="c-analyzer-header">
@@ -79,6 +84,7 @@ AnalyzerHeader.propTypes = {
   analyzerOpen: bool.isRequired,
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
+  toggleMobileFilters: func.isRequired,
   setAnalyzerOpen: func.isRequired,
   clearAnalysis: func.isRequired,
   indicator: string,

@@ -15,11 +15,18 @@ class BasinAnalyzer extends PureComponent {
   handleMapMode() {
     const {
       mapMode,
-      setMapMode
+      setMapMode,
+      toggleMobileFilters
     } = this.props;
     const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
+    console.log({nextMapMode})
+
     setMapMode(nextMapMode);
+    // Toggle filters on mobile so users can access the map
+    if (nextMapMode === 'analysis') {
+      toggleMobileFilters(false);
+    }
   }
 
   toggleModal(children, size='-auto') {
@@ -84,6 +91,7 @@ BasinAnalyzer.propTypes = {
   mapMode: string.isRequired,
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
+  toggleMobileFilters: func.isRequired,
   clearAnalysis: func.isRequired,
   onApplyBasinAnalysis: func.isRequired,
   indicator: string

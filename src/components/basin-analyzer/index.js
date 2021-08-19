@@ -6,8 +6,9 @@ import { setMapMode } from 'modules/app/actions';
 import {
   clearAnalysis,
   onApplyBasinAnalysis,
-  onFetchBasinAnalysis
+  onFetchBasinAnalysis,
 } from 'modules/analyze-locations-tab/actions';
+import { toggleMobileFilters } from 'modules/settings/actions';
 
 // component
 import BasinAnalyzer from './component';
@@ -21,6 +22,7 @@ export default connect(
   }),
   {
     toggleModal,
+    toggleMobileFilters,
     setMapMode,
     clearAnalysis,
     onApplyBasinAnalysis,
