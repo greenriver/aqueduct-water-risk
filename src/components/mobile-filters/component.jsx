@@ -1,54 +1,41 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { func, object, string } from 'prop-types';
 import classnames from 'classnames';
 import { Icon } from 'aqueduct-components';
 
-class MobileFilters extends PureComponent {
-  constructor(props) {
-    super(props);
+const MobileFilters = ({ className, children, mobileFilters, toggleMobileFilters }) => {
+  const handleToggle = () => {
+    toggleMobileFilters(!mobileFilters.open)
+  };
+  const classNames = classnames('c-mobile-filters', {
+    '-opened': mobileFilters.open,
+    [className]: !!className
+  });
 
-    this.state = { opened: false };
+  return (
+    <div className={classNames}>
+      <button
+        type="button"
+        className="mobile-filters-btn"
+        onClick={handleToggle}
+      >
+        <Icon name="icon-filters" className="-medium" />
+        <span>Filters</span>
+        <Icon name="icon-expand" className="-medium icon-toggle" />
+      </button>
 
-    // Bindings
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    const { opened } = this.state;
-    this.setState({ opened: !opened });
-  }
-
-  render() {
-    const { className, children } = this.props;
-    const { opened } = this.state;
-    const classNames = classnames('c-mobile-filters', {
-      '-opened': opened,
-      [className]: !!className
-    });
-
-    return (
-      <div className={classNames}>
-        <button
-          type="button"
-          className="mobile-filters-btn"
-          onClick={this.toggle}
-        >
-          <Icon name="icon-filters" className="-medium" />
-          <span>Filters</span>
-          <Icon name="icon-expand" className="-medium icon-toggle" />
-        </button>
-
-        <div className="mobile-filters-wrapper">
-          {children}
-        </div>
+      <div className="mobile-filters-wrapper">
+        {children}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 MobileFilters.propTypes = {
-  children: PropTypes.object.isRequired,
-  className: PropTypes.string
+  children: object.isRequired,
+  mobileFilters: object.isRequired,
+  className: string,
+  toggleMobileFilters: func.isRequired
 };
 
 MobileFilters.defaultProps = { className: null };

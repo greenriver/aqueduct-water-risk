@@ -69,7 +69,12 @@ class Filters extends Component {
   }
 
   render() {
-    const { name = '', setFilters, setTabFilters } = this.props;
+    const {
+      name = '',
+      setFilters,
+      setTabFilters,
+      toggleMobileFilters
+    } = this.props;
     const indicator = this.getFilter('indicator');
     const threshold = this.getFilter('threshold');
 
@@ -83,6 +88,7 @@ class Filters extends Component {
       };
       setFilters(newFilters);
       setTabFilters({ basins: newFilters });
+      toggleMobileFilters(false);
     };
 
     return (
@@ -151,6 +157,7 @@ Filters.propTypes = {
   tabFilters: object,
   setFilters: func.isRequired,
   setTabFilters: func.isRequired,
+  toggleMobileFilters: func.isRequired,
   toggleModal: func.isRequired,
   toggleAside: func.isRequired
 };

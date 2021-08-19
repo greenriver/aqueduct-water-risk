@@ -28,5 +28,6 @@ export default {
     scheme: 'DEF',
     custom: PRESET_VALUES.custom
   },
-  analyzer: { open: false }
+  analyzer: { open: false },
+  mobileFilters: { open: false }
 };

@@ -29,5 +29,9 @@ export default {
   [actions.setAnalyzerOpen]: (state, { payload }) => ({
     ...state,
     analyzer: { open: payload }
+  }),
+  [actions.toggleMobileFilters]: (state, { payload }) => ({
+    ...state,
+    mobileFilters: { open: payload }
   })
 };
