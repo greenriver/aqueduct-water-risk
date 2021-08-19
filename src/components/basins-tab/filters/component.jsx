@@ -75,10 +75,14 @@ class Filters extends Component {
       setTabFilters,
       toggleMobileFilters
     } = this.props;
-    const indicator = this.getFilter('indicator');
+    let indicator = this.getFilter('indicator');
+    const indicatorIds = Object.keys(BASIN_INDICATORS)
+    if (!indicatorIds.includes(indicator)) {
+      indicator = null;
+    }
     const threshold = this.getFilter('threshold');
 
-    const indicators = Object.keys(BASIN_INDICATORS)
+    const indicators = indicatorIds
       .map((key) => ({ label: BASIN_INDICATORS[key].name, value: key }));
 
     const handleApply = () => {

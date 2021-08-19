@@ -7,8 +7,11 @@ import { BASIN_INDICATORS } from 'components/map/constants';
 import SliderMarkLabel from './SliderMarkLabel';
 import { style } from './slider_style';
 
-const ThresholdSlider = ({ indicatorId, threshold, handleChange }) => {
-  const indicator = BASIN_INDICATORS[indicatorId];
+const ThresholdSlider = ({ indicatorId='', threshold, handleChange }) => {
+  let indicator = {}
+  if (Object.keys(BASIN_INDICATORS).includes(indicatorId)) {
+    indicator = BASIN_INDICATORS[indicatorId];
+  }
   const {
     items = [],
     rangeValues = [],
