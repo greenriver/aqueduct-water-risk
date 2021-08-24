@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react';
 import { OnlyOn } from 'aqueduct-components';
 
-import MobileMap from './MobileMap';
 import DesktopMap from './DesktopMap';
 
 const MapPage = (props) => {
   return (
     <Fragment>
       <OnlyOn device="mobile">
-        <MobileMap >
+        <div className="mobile-map-wrapper">
           <DesktopMap {...props} />
-        </MobileMap>
+        </div>
       </OnlyOn>
       <OnlyOn device="desktop">
         <DesktopMap {...props} />
