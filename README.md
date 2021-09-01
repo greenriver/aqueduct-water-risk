@@ -28,3 +28,10 @@
 
   * Copy the build to the main wri repo and push there to get it deployed via
     pantheon
+
+    ```bash
+    # For example, for Lucas:
+    mv dist water-risk-atlas
+    rm -rf ~/dev/clients/wri/wriorg/applications/aqueduct/water-risk-atlas
+    mv water-risk-atlas ~/dev/clients/wri/wriorg/applications/aqueduct/
+    ```
