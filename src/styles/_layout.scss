@@ -28,15 +28,18 @@ $max-height-analyzer: 445px;
 /* Sidebar */
 .l-sidebar {
   position: relative;
-  flex: 1 1 50%;
+  flex: 0 1 auto;
   height: 100%;
-  width: 50%;
-  max-width: $max-width-sidebar;
+  max-width: 10px;
   display: flex;
   flex-direction: column;
   z-index: 999; // Must be over Leaflet map
-  min-width: 650px;
   transition: all .3s $ease-in-out-sine;
+
+  &.-opened {
+    min-width: 650px;
+    max-width: $max-width-sidebar;
+  }
 
   .l-sidebar-toggle {
     position: absolute;
