@@ -64,8 +64,6 @@ const getFilteredLayers = createSelector(
   (_layers, _markerLayer, _parametrization, _ponderation, _mapMode) => {
     if (!Object.keys(_layers).length) return [];
 
-    console.log({ _layers, _markerLayer, _parametrization, _ponderation, _mapMode })
-
     const { scheme: ponderationScheme } = _ponderation;
     const { year, timeScale, indicator, predefined, threshold } = _parametrization;
     let layers = [];

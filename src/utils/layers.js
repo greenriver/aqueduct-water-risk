@@ -36,15 +36,14 @@ const getDefaultPonderationParametrization = ({ indicator }, customPonderation) 
   }
 );
 
-const getBasinParametrization = ({ indicator, threshold, ...rest }) => {
-  console.log({ indicator, threshold, rest })
-  const transformer = INDICATOR_THRESHOLD_TRANSFORMERS[indicator]
+const getBasinParametrization = ({ indicator, threshold }) => {
+  const transformer = INDICATOR_THRESHOLD_TRANSFORMERS[indicator];
   return ({
     indicator,
     label: indicator.replace('cat', 'label'),
     value: indicator.replace('cat', 'raw'),
     threshold: transformer ? transformer(threshold) : threshold
-  })
+  });
 };
 
 export const getLayerParametrization = (parametrization, ponderation) => {

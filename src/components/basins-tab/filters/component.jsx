@@ -51,7 +51,6 @@ class Filters extends Component {
   }
 
   handleIndicatorSelect(indicator) {
-    console.log({ indicator })
     const newFilters = {
       indicator,
       threshold: BASIN_INDICATORS[indicator].defaultValue
