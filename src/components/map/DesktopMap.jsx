@@ -239,8 +239,7 @@ class DesktopMap extends PureComponent {
                 plugin={PluginLeaflet}
                 onReady={() => { if (loading) setLoading(false); }}
               >
-                {layers.map((layer, i) => {
-                  const l = { ...layer };
+                {layers.map((l, i) => {
                   return (
                     <Layer
                       {...l}
