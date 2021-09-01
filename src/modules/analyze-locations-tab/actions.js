@@ -61,7 +61,6 @@ export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FE
     // May need to establish a new service here: services/analysis
     // and replace `fetchAnalysis` above with it
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    console.log({location: { id, locations }, filters: { threshold, indicator }});
     const data = Array.from(Array(20)).map((a, b) => ({
       watershed_id: `Watershed ${b+1}`,
       major_basin: 'Major Basin',

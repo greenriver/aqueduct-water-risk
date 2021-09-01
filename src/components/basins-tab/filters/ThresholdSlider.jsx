@@ -7,8 +7,8 @@ import { BASIN_INDICATORS } from 'components/map/constants';
 import SliderMarkLabel from './SliderMarkLabel';
 import { style } from './slider_style';
 
-const ThresholdSlider = ({ indicatorId='', threshold, handleChange }) => {
-  let indicator = {}
+const ThresholdSlider = ({ indicatorId = '', threshold, handleChange }) => {
+  let indicator = {};
   if (Object.keys(BASIN_INDICATORS).includes(indicatorId)) {
     indicator = BASIN_INDICATORS[indicatorId];
   }
@@ -31,14 +31,14 @@ const ThresholdSlider = ({ indicatorId='', threshold, handleChange }) => {
   const step = 10;
 
   let sliderDefaultValue = defaultValue;
-  const valueMap = {};
+  const valueDictionary = {};
   rangeValues.forEach((v, i) => {
     const sliderValue = i * 10;
     if (v === defaultValue) sliderDefaultValue = sliderValue;
-    valueMap[sliderValue] = v;
+    valueDictionary[sliderValue] = v;
   });
-  const getActualValue = v => valueMap[v];
-  const getSliderValue = v => Object.keys(valueMap).find(key => valueMap[key] === v);
+  const getActualValue = v => valueDictionary[v];
+  const getSliderValue = v => Object.keys(valueDictionary).find(key => valueDictionary[key] === v);
 
   const marks = {};
   items.forEach(({ name, value }, i) => {
