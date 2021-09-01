@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import isEqual from 'lodash/isEqual';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import isNil from 'lodash/isNil';
 
 // utils
 import {
@@ -63,11 +64,16 @@ const getFilteredLayers = createSelector(
   (_layers, _markerLayer, _parametrization, _ponderation, _mapMode) => {
     if (!Object.keys(_layers).length) return [];
 
+    console.log({ _layers, _markerLayer, _parametrization, _ponderation, _mapMode })
+
     const { scheme: ponderationScheme } = _ponderation;
-    const { year, timeScale, indicator, predefined } = _parametrization;
+    const { year, timeScale, indicator, predefined, threshold } = _parametrization;
     let layers = [];
 
     switch (true) {
+      case (!isNil(threshold)):
+        layers = _layers.threshold;
+        break;
       case (ponderationScheme === 'custom'):
         layers = _layers.custom;
         break;

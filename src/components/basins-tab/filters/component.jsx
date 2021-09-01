@@ -51,6 +51,7 @@ class Filters extends Component {
   }
 
   handleIndicatorSelect(indicator) {
+    console.log({ indicator })
     const newFilters = {
       indicator,
       threshold: BASIN_INDICATORS[indicator].defaultValue
@@ -76,14 +77,13 @@ class Filters extends Component {
       toggleMobileFilters
     } = this.props;
     let indicator = this.getFilter('indicator');
-    const indicatorIds = Object.keys(BASIN_INDICATORS)
+    const indicatorIds = Object.keys(BASIN_INDICATORS);
     if (!indicatorIds.includes(indicator)) {
       indicator = null;
     }
     const threshold = this.getFilter('threshold');
 
-    const indicators = indicatorIds
-      .map((key) => ({ label: BASIN_INDICATORS[key].name, value: key }));
+    const indicators = indicatorIds.map(key => ({ label: BASIN_INDICATORS[key].name, value: key }));
 
     const handleApply = () => {
       const newFilters = {
@@ -91,7 +91,7 @@ class Filters extends Component {
         threshold: this.state.threshold
       };
       setFilters(newFilters);
-      setTabFilters({ basins: newFilters });
+      setTabFilters({ basins: { ...newFilters, indicator: (BASIN_INDICATORS[indicator] && BASIN_INDICATORS[indicator].rawField) || indicator } });
       toggleMobileFilters(false);
     };
 

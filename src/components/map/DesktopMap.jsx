@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import objectPath from 'object-path'
 import { PluginLeaflet } from 'layer-manager/dist/layer-manager';
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import {
@@ -240,26 +241,64 @@ class DesktopMap extends PureComponent {
                 plugin={PluginLeaflet}
                 onReady={() => { if (loading) setLoading(false); }}
               >
-                {layers.map((l, i) => (
-                  <Layer
-                    {...l}
-                    key={l.id}
-                    opacity={l.opacity}
-                    zIndex={1000 - i}
-                    {...l.params && { params: l.params }}
-                    {...l.sqlParams && { sqlParams: l.sqlParams }}
-                    {...l.decodeParams && { decodeParams: l.decodeParams }}
-                    {...l.interactionConfig && {
-                      interactivity: ['carto', 'cartodb'].includes(l.provider)
-                        ? (l.interactionConfig.output || []).map(o => o.column)
-                        : true
-                    }}
-                    events={{
-                      ...mapMode === 'analysis' && { click: (e) => { this.handlePoint(e, _map); } },
-                      ...mapMode === 'view' && { click: (e) => { this.handleClickMap(e); } }
-                    }}
-                  />
-                  ))}
+                {layers.map((layer, i) => {
+                  const l = { ...layer }
+                  // if (l.slug === 'Annual-indicator-layer-with-threshold') {
+                  //   const p = 'layerConfig.body.layers.0.options.sql'
+                  //   const p3 = 'layerConfig.body.layers.0.options.cartocss'
+                  //   // const p2 = 'layerConfig.params_config'
+                  //   if (objectPath.get(l, p)) objectPath.set(l, p, `SELECT s.aq30_id as cartodb_id, coalesce(NULLIF({{label}},''), 'No Data') as label, r.the_geom, r.the_geom_webmercator, (CASE WHEN {{label}} = 'Insignificant Trend' THEN -1 ELSE coalesce({{indicator}}, -9999)END) as water_risk FROM water_risk_indicators_annual s LEFT JOIN y2018m12d06_rh_master_shape_v01 r on s.aq30_id=r.aq30_id WHERE s.pfaf_id != -9999 and s.gid_1 != '-9999' and r.aqid != -9999 and {{value}} < {{threshold}} ORDER BY s.aq30_id`)
+                  //   if (objectPath.get(l, p3)) objectPath.set(l, p3, "#water_risk_indicators_annual [water_risk=4] { polygon-fill:#990000; line-color:#990000 } #water_risk_indicators_annual [water_risk=3] { polygon-fill:  #FF1900; line-color:  #FF1900 } #water_risk_indicators_annual [water_risk=2] { polygon-fill: #FF9900; line-color: #FF9900 } #water_risk_indicators_annual [water_risk=1] { polygon-fill: #FFE600; line-color:  #FFE600 } #water_risk_indicators_annual [water_risk=0] { polygon-fill: #FFFF99; line-color:  #FFFF99 } #water_risk_indicators_annual [water_risk=-1] { polygon-fill: #808080; line-color:  #808080 } #water_risk_indicators_annual [water_risk<-1] { polygon-fill: #4E4E4E; line-color:  #4E4E4E }")
+                  //   // if (objectPath.get(l, p2)) objectPath.set(l, p2, [
+                  //   //   {
+                  //   //     key: 'threshold',
+                  //   //     required: false,
+                  //   //     default: 0,
+                  //   //   },
+                  //   //   {
+                  //   //     key: 'value',
+                  //   //     required: true,
+                  //   //     default: 0,
+                  //   //   },
+                  //   // ])
+                  //   // l.params = {
+                  //   //   ...l.params,
+                  //   //   threshold: (() => {
+                  //   //     let t = objectPath.get(this.props, 'filters.threshold')
+                  //   //     t = parseInt(t)
+                  //   //     if (isNaN(t)) return -1
+                  //   //     if (t >= 80) return ((t - 80) / 20) + 4
+                  //   //     if (t >= 40) return ((t - 40) / 40) + 3
+                  //   //     if (t >= 20) return ((t - 20) / 20) + 2
+                  //   //     if (t >= 10) return ((t - 10) / 10) + 1
+                  //   //     if (t >= 0) return (t / 10)
+                  //   //     return -1
+                  //   //   })(),
+                  //   //   indicator: l.params.indicator.replace(/(.*?)_cat/, '$1_score')
+                  //   // }
+                  // }
+                  console.log({l, filters: this.props.filters})
+                  return (
+                    <Layer
+                      {...l}
+                      key={l.id}
+                      opacity={l.opacity}
+                      zIndex={1000 - i}
+                      {...l.params && { params: l.params }}
+                      {...l.sqlParams && { sqlParams: l.sqlParams }}
+                      {...l.decodeParams && { decodeParams: l.decodeParams }}
+                      {...l.interactionConfig && {
+                        interactivity: ['carto', 'cartodb'].includes(l.provider)
+                          ? (l.interactionConfig.output || []).map(o => o.column)
+                          : true
+                      }}
+                      events={{
+                        ...mapMode === 'analysis' && { click: (e) => { this.handlePoint(e, _map); } },
+                        ...mapMode === 'view' && { click: (e) => { this.handleClickMap(e); } }
+                      }}
+                    />
+                  );
+                }).filter(e => e)}
               </LayerManager>
 
               <MapControls>
