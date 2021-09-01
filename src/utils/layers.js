@@ -1,9 +1,10 @@
 import { formatDate } from 'utils/dates';
 import { deburrUpper } from 'utils/data';
 import moment from 'moment';
+import isNil from 'lodash/isNil';
 
 // utils
-import { INDICATOR_SCHEME_ORDER } from 'constants/indicators';
+import { INDICATOR_SCHEME_ORDER, INDICATOR_THRESHOLD_TRANSFORMERS } from 'constants/indicators';
 import { LEGENDS } from 'components/map/constants';
 
 
@@ -35,10 +36,15 @@ const getDefaultPonderationParametrization = ({ indicator }, customPonderation) 
   }
 );
 
-const getBasinParametrization = ({ indicator, threshold }) => ({
-  indicator,
-  threshold
-});
+const getBasinParametrization = ({ indicator, threshold }) => {
+  const transformer = INDICATOR_THRESHOLD_TRANSFORMERS[indicator];
+  return ({
+    indicator,
+    label: indicator.replace('cat', 'label'),
+    value: indicator.replace('cat', 'raw'),
+    threshold: transformer ? transformer(threshold) : threshold
+  });
+};
 
 export const getLayerParametrization = (parametrization, ponderation) => {
   const { year, timeScale, threshold } = parametrization;
@@ -50,7 +56,7 @@ export const getLayerParametrization = (parametrization, ponderation) => {
 
   switch (true) {
     // prioritize basins
-    case (threshold):
+    case (!isNil(threshold)):
       params = getBasinParametrization(parametrization);
       break;
     // future layers
