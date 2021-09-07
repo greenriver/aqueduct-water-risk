@@ -2,17 +2,23 @@ import React, { Fragment } from 'react';
 import { object } from 'prop-types';
 import { ExportToCsv } from 'export-to-csv';
 
+import { Spinner } from 'aqueduct-components';
 import CustomTable from 'components/ui/Table/Table';
 import { LEGENDS } from '../../map/constants';
 import { COLUMNS } from './constants';
-import { Spinner } from 'aqueduct-components';
 
-// components
-// constants
-
-const ExportModal = ({ filters={}, analysis={} }) => {
-  const { data=[], loading=true } = analysis
+const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
+  const { data = [], loading = true } = analysis;
   const indicator = filters.indicator && LEGENDS[filters.indicator];
+
+  const transformed = data.map(row => (
+    Object.entries(row)
+    .map(([k, v]) => {
+      const column = COLUMNS.find(c => c.value === k);
+      return [k, (column && column.render && column.render(filters.indicator, v)) || v];
+    })
+    .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {})
+  ));
 
   const downloadCSV = (event) => {
     event.preventDefault();
@@ -21,7 +27,7 @@ const ExportModal = ({ filters={}, analysis={} }) => {
       filename: `Prioritize Basins Analyzer - ${indicator.name}`,
       headers: COLUMNS.map(c => c.label)
     });
-    csvExporter.generateCsv(data);
+    csvExporter.generateCsv(transformed);
   };
 
   if (indicator) {
@@ -44,7 +50,7 @@ const ExportModal = ({ filters={}, analysis={} }) => {
             <Fragment>
               <CustomTable
                 columns={COLUMNS}
-                data={data}
+                data={transformed}
                 selected={[]}
                 actions={{
                   showable: false,
@@ -67,6 +73,8 @@ const ExportModal = ({ filters={}, analysis={} }) => {
       </div>
     );
   }
+
+  return null;
 };
 
 ExportModal.propTypes = {
