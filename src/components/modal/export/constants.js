@@ -54,12 +54,10 @@ export const COLUMNS = [
   },
   {
     label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} Score`.trim(),
-    // label: 'Score',
     value: 'score'
   },
   {
     label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} Raw Value`.trim(),
-    // label: 'Raw Value',
     value: 'raw_value',
     render: (indicator, value) => INDICATOR_RAW_VALUE_RENDER_MAP[indicator] ? INDICATOR_RAW_VALUE_RENDER_MAP[indicator](value) : value
   },
@@ -70,7 +68,6 @@ export const COLUMNS = [
   },
   {
     label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} % Change Required`.trim(),
-    // label: '% Change Required',
     value: 'desired_change',
     render: (indicator, value) => renderPercent(indicator, value)
   }
