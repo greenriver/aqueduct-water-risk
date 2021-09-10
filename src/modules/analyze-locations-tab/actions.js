@@ -1,5 +1,6 @@
 import { createAction, createThunkAction } from 'redux-tools';
 import compact from 'lodash/compact';
+import isNil from 'lodash/isNil'
 
 // services
 import { fetchGeostore, saveGeostore } from 'services/geostore';
@@ -36,17 +37,20 @@ export const setGeostoreError = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTOR
 export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-BASIN-ANALYSIS', () =>
   (dispatch, getState) => {
     const {
-      analyzeLocations: {
-        points: { list: pointsList }
-      },
+      analyzeLocations,
       settings: {
         filters: { threshold: thresholdParam, indicator }
       }
     } = getState();
-    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, pointsList) })
+    const {
+      points: { list: pointsList },
+      geostore: { locations }
+    } = analyzeLocations;
+    const mergedLocations = locations.map((l, i) => ({ ...l, ...pointsList[i] }));
+    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, mergedLocations) })
     .then(({ rows = [] }) => {
       logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
-      dispatch(setAnalysis(rows));
+      dispatch(setAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
       dispatch(setAnalysisLoading(false));
     })
     .catch((err) => {

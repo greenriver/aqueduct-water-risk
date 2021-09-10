@@ -1,7 +1,7 @@
-import { LEGENDS } from '../../map/constants';
+import { LEGENDS, SHORT_NAMES } from '../../map/constants';
 
-const renderStatic = (indicator, value, fixed = 0) => `${value.toFixed(fixed)}${(LEGENDS[indicator] && LEGENDS[indicator].unit) || ''}`;
-const renderPercent = (indicator, value, fixed = 0) => `${(value * 100).toFixed(fixed)}${(LEGENDS[indicator] && LEGENDS[indicator].unit) || ''}`;
+const renderStatic = (indicator, value, fixed = 0) => `${value && value.toFixed(fixed)}${(LEGENDS[indicator] && LEGENDS[indicator].unit) || ''}`;
+const renderPercent = (indicator, value, fixed = 0) => `${value && (value * 100).toFixed(fixed)}%`;
 export const INDICATOR_RAW_VALUE_RENDER_MAP = {
   bws_cat: value => renderPercent('bws_cat', value),
   bwd_cat: value => renderPercent('bwd_cat', value),
@@ -14,7 +14,27 @@ export const INDICATOR_RAW_VALUE_RENDER_MAP = {
 export const COLUMNS = [
   {
     label: 'Watershed ID',
-    value: 'watershed_id',
+    value: 'watershed_id'
+  },
+  {
+    label: 'Name',
+    value: 'location_name'
+  },
+  {
+    label: 'Input Address',
+    value: 'input_address'
+  },
+  {
+    label: 'Match Address',
+    value: 'match_address'
+  },
+  {
+    label: 'Latitude',
+    value: 'lat'
+  },
+  {
+    label: 'Longitude',
+    value: 'lng'
   },
   {
     label: 'Major Basin',
@@ -33,17 +53,25 @@ export const COLUMNS = [
     value: 'province'
   },
   {
-    label: 'Score',
+    label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} Score`.trim(),
+    // label: 'Score',
     value: 'score'
   },
   {
-    label: 'Raw Value',
+    label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} Raw Value`.trim(),
+    // label: 'Raw Value',
     value: 'raw_value',
     render: (indicator, value) => INDICATOR_RAW_VALUE_RENDER_MAP[indicator] ? INDICATOR_RAW_VALUE_RENDER_MAP[indicator](value) : value
   },
   {
-    label: 'Desired Change',
-    value: 'desired_change',
+    label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} Desired Condition`.trim(),
+    value: 'threshold',
     render: (indicator, value) => INDICATOR_RAW_VALUE_RENDER_MAP[indicator] ? INDICATOR_RAW_VALUE_RENDER_MAP[indicator](value) : value
+  },
+  {
+    label: (indicator) => `${(SHORT_NAMES[indicator]) || ''} % Change Required`.trim(),
+    // label: '% Change Required',
+    value: 'desired_change',
+    render: (indicator, value) => renderPercent(indicator, value)
   }
 ];
