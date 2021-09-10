@@ -4,11 +4,13 @@ import compact from 'lodash/compact';
 // services
 import { fetchGeostore, saveGeostore } from 'services/geostore';
 import { fetchAnalysis } from 'services/analysis';
+import { fetchQuery } from 'services/query';
 
 // utils
 import { parseWeights } from 'utils/weights';
 import { getAnalysisType, filterData } from 'utils/analysis';
 import { logEvent } from 'utils/analytics';
+import { getExportSql } from 'utils/export';
 
 // constants
 import { FUTURE_LAYERS_GROUPS } from 'constants/analysis';
@@ -35,45 +37,22 @@ export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FE
   (dispatch, getState) => {
     const {
       analyzeLocations: {
-        geostore: { id, locations }
+        points: { list: pointsList }
       },
       settings: {
-        filters: { threshold, indicator }
+        filters: { threshold: thresholdParam, indicator }
       }
     } = getState();
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Fetch basin analysis based on location, indicator and threshold
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // return fetchAnalysis(params)
-    //   .then((analysis) => {
-    //     const { data, analysis_type: analysisType } = analysis;
-    //     dispatch(setAnalysis(data));
-    //     logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
-    //     dispatch(setAnalysisLoading(false));
-    //   })
-    //   .catch((err) => {
-    //     dispatch(setAnalysisError(err));
-    //     dispatch(setAnalysisLoading(false));
-    //   });
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // Return fake data until API endpoint/params are determined
-    // May need to establish a new service here: services/analysis
-    // and replace `fetchAnalysis` above with it
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    const data = Array.from(Array(20)).map((a, b) => ({
-      watershed_id: `Watershed ${b+1}`,
-      major_basin: 'Major Basin',
-      minor_basin: 'Minor Basin',
-      country: 'USA',
-      province: 'State',
-      score: 'High',
-      desired_change: threshold
-    }));
-
-    logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
-    dispatch(setAnalysis(data));
-    dispatch(setAnalysisLoading(false));
+    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, pointsList) })
+    .then(({ rows = [] }) => {
+      logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
+      dispatch(setAnalysis(rows));
+      dispatch(setAnalysisLoading(false));
+    })
+    .catch((err) => {
+      dispatch(setAnalysisError(err));
+      dispatch(setAnalysisLoading(false));
+    });
   });
 
 export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-ANALYSIS', () =>

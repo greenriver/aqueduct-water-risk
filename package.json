@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack.config.js",
-    "postinstall": "npm run build",
+    "postinstall": "echo 'npm run build'",
     "export": "next export",
     "test": "./node_modules/.bin/eslint ."
   },
