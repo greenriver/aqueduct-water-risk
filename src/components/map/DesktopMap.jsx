@@ -330,7 +330,7 @@ DesktopMap.propTypes = {
   analysisData: PropTypes.array.isRequired,
   analysisSelectedData: PropTypes.array.isRequired,
   layerGroup: PropTypes.array.isRequired,
-  indicator: PropTypes.string.isRequired,
+  indicator: PropTypes.string,
   boundaries: PropTypes.bool.isRequired,
   popup: PropTypes.object.isRequired,
   analysisPopupColumns: PropTypes.array.isRequired,

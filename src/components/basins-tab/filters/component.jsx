@@ -29,10 +29,12 @@ class Filters extends Component {
   }
 
   componentDidMount() {
-    const defaultIndicator = Object.keys(BASIN_INDICATORS)[0];
+    // const defaultIndicator = Object.keys(BASIN_INDICATORS)[0];
     const newFilters = {
-      indicator: defaultIndicator,
-      threshold: BASIN_INDICATORS[defaultIndicator].defaultValue
+      // indicator: defaultIndicator,
+      // threshold: BASIN_INDICATORS[defaultIndicator].defaultValue,
+      indicator: null,
+      threshold: null
     };
     if (!Object.keys(BASIN_INDICATORS).includes(this.props.filters.indicator)) {
       this.props.setFilters({
@@ -176,9 +178,6 @@ class Filters extends Component {
                     />
                   </div>
                 </div>
-                {/* <div style={{ marginTop: 35 }} className="c-btn-menu -theme-secondary">
-                  <button className="btn-menu-btn -shout" onClick={() => this.handleApply()}>Apply Changes</button>
-                </div> */}
               </Fragment>
             }
           </div>
