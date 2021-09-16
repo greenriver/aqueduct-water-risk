@@ -44,8 +44,7 @@ class DesktopMap extends PureComponent {
       layers: nextLayers,
       indicator: nextIndicator,
       analysisSelectedData: nextAnalysisSelectedData,
-      analysisData,
-      sidebarWidth
+      analysisData
     } = nextProps;
     const layersChanged = !isEqual(layers, nextLayers);
     const indicatorChanged = !isEqual(indicator, nextIndicator);
@@ -54,21 +53,6 @@ class DesktopMap extends PureComponent {
     if ((layersChanged || indicatorChanged) && nextIndicator) {
       setLoading(true);
       if (this.popup) this.popup._close();
-    }
-
-    if (selectedChanged) {
-      const currentPoint = analysisData[nextAnalysisSelectedData[0]];
-
-      if (currentPoint && this.map) {
-        const { latitude, longitude } = currentPoint;
-        this.map.fitBounds(
-          L.latLng(latitude, longitude).toBounds(500),
-          {
-            paddingTopLeft: [sidebarWidth, 0],
-            maxZoom: 4
-          }
-        );
-      }
     }
   }
 
@@ -346,7 +330,7 @@ DesktopMap.propTypes = {
   analysisData: PropTypes.array.isRequired,
   analysisSelectedData: PropTypes.array.isRequired,
   layerGroup: PropTypes.array.isRequired,
-  indicator: PropTypes.string.isRequired,
+  indicator: PropTypes.string,
   boundaries: PropTypes.bool.isRequired,
   popup: PropTypes.object.isRequired,
   analysisPopupColumns: PropTypes.array.isRequired,

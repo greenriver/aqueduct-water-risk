@@ -26,6 +26,11 @@ class Analyzer extends PureComponent {
 
     this.state = { fileLoading: false };
   }
+
+  componentDidMount() {
+    this.props.onFetchAnalysis()
+  }
+
   componentWillReceiveProps(nextProps) {
     const { filters, onFetchAnalysis } = this.props;
     const {

@@ -4,6 +4,23 @@ export const MAP_OPTIONS = {
   maxZoom: 15
 };
 
+// From: https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md#indicators
+export const SHORT_NAMES = {
+  bws_cat: 'BWS',
+  bwd_cat: 'BWD',
+  iav_cat: 'IAV',
+  sev_cat: 'SEV',
+  gtd_cat: 'GTD',
+  rfr_cat: 'RFR',
+  cfr_cat: 'CFR',
+  drr_cat: 'DRR',
+  ucw_cat: 'UCW',
+  cep_cat: 'CEP',
+  udw_cat: 'UDW',
+  usa_cat: 'USA',
+  rri_cat: 'RRI'
+};
+
 export const BASEMAPS = {
   // Open Street Maps
   osm: {

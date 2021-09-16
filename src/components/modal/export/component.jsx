@@ -12,20 +12,21 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
   const indicator = filters.indicator && LEGENDS[filters.indicator];
 
   const transformed = data.map(row => (
-    Object.entries(row)
-    .map(([k, v]) => {
-      const column = COLUMNS.find(c => c.value === k);
-      return [k, (column && column.render && column.render(filters.indicator, v)) || v];
-    })
-    .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {})
+    COLUMNS.reduce((acc, col) => {
+      let field = row[col.value];
+      if (col.render) field = col.render(filters.indicator, field);
+      return { ...acc, [col.value]: field };
+    }, {})
   ));
+
+  const transformedColumns = COLUMNS.map(c => ({ ...c, label: typeof c.label === 'function' ? c.label(filters.indicator) : c.label }))
 
   const downloadCSV = (event) => {
     event.preventDefault();
     const csvExporter = new ExportToCsv({
       showLabels: true,
       filename: `Prioritize Basins Analyzer - ${indicator.name}`,
-      headers: COLUMNS.map(c => c.label)
+      headers: transformedColumns.map(c => c.label)
     });
     csvExporter.generateCsv(transformed);
   };
@@ -37,7 +38,7 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
           <div className="info-titles">
             <span className="info-title">Prioritize Basins Analyzer</span>
             <span className="info-description">
-              <strong>{indicator.name}</strong> with desired condition set to > {filters.threshold}{indicator.unit}
+              <strong>{indicator.name}</strong> with desired condition set to &lt; {filters.threshold}{indicator.unit}
             </span>
           </div>
         </div>
@@ -49,7 +50,7 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
           {(data.length > 0 && !loading) &&
             <Fragment>
               <CustomTable
-                columns={COLUMNS}
+                columns={transformedColumns}
                 data={transformed}
                 selected={[]}
                 actions={{
