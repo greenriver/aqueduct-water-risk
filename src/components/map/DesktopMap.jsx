@@ -44,8 +44,7 @@ class DesktopMap extends PureComponent {
       layers: nextLayers,
       indicator: nextIndicator,
       analysisSelectedData: nextAnalysisSelectedData,
-      analysisData,
-      sidebarWidth
+      analysisData
     } = nextProps;
     const layersChanged = !isEqual(layers, nextLayers);
     const indicatorChanged = !isEqual(indicator, nextIndicator);
@@ -54,22 +53,6 @@ class DesktopMap extends PureComponent {
     if ((layersChanged || indicatorChanged) && nextIndicator) {
       setLoading(true);
       if (this.popup) this.popup._close();
-    }
-
-    if (selectedChanged) {
-      const currentPoint = analysisData[nextAnalysisSelectedData[0]];
-
-      if (currentPoint && this.map) {
-        const { latitude, longitude } = currentPoint;
-        console.log({ currentPoint, map: this.map, L })
-        // this.map.fitBounds(
-        //   L.latLng(latitude, longitude) ? L.latLng(latitude, longitude).toBounds(500) : undefined,
-        //   {
-        //     paddingTopLeft: [sidebarWidth, 0],
-        //     maxZoom: 4
-        //   }
-        // );
-      }
     }
   }
 
@@ -241,7 +224,6 @@ class DesktopMap extends PureComponent {
                 onReady={() => { if (loading) setLoading(false); }}
               >
                 {layers.map((l, i) => {
-                  console.log({ l })
                   return (
                     <Layer
                       {...l}
