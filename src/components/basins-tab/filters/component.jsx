@@ -7,6 +7,9 @@ import { CustomSelect, InfoModal } from 'aqueduct-components';
 import { BASIN_MODAL_PROPS, WATER_RISK_PROPS } from 'constants/filters';
 import { BASIN_INDICATORS, INDICATORS } from 'components/map/constants';
 
+// utils
+import { debounce } from 'utils/general';
+
 import ContentModal from '../../ui/modal/content';
 import TooltipIcon from '../../ui/TooltipIcon';
 import ThresholdSlider from './ThresholdSlider';
@@ -68,31 +71,35 @@ class Filters extends Component {
     this.setState({ threshold });
   }
 
-  render() {
+  handleApply() {
     const {
-      name = '',
       setFilters,
       setTabFilters,
       toggleMobileFilters
+    } = this.props;
+    const indicator = this.getFilter('indicator');
+    const newFilters = {
+      indicator: this.getFilter('indicator'),
+      threshold: this.state.threshold
+    };
+    setFilters(newFilters);
+    setTabFilters({ basins: { ...newFilters, indicator: (BASIN_INDICATORS[indicator] && BASIN_INDICATORS[indicator].rawField) || indicator } });
+    toggleMobileFilters(false);
+  }
+
+  render() {
+    const {
+      name = ''
     } = this.props;
     let indicator = this.getFilter('indicator');
     const indicatorIds = Object.keys(BASIN_INDICATORS);
     if (!indicatorIds.includes(indicator)) {
       indicator = null;
     }
+    const debouncedApply = debounce(() => this.handleApply());
     const threshold = this.getFilter('threshold');
 
     const indicators = indicatorIds.map(key => ({ label: BASIN_INDICATORS[key].name, value: key }));
-
-    const handleApply = () => {
-      const newFilters = {
-        indicator,
-        threshold: this.state.threshold
-      };
-      setFilters(newFilters);
-      setTabFilters({ basins: { ...newFilters, indicator: (BASIN_INDICATORS[indicator] && BASIN_INDICATORS[indicator].rawField) || indicator } });
-      toggleMobileFilters(false);
-    };
 
     return (
       <div>
@@ -138,13 +145,13 @@ class Filters extends Component {
                     <ThresholdSlider
                       indicatorId={indicator}
                       threshold={threshold}
-                      handleChange={(value) => { this.handleSliderChange(value); }}
+                      handleChange={(value) => { this.handleSliderChange(value); debouncedApply(); }}
                     />
                   </div>
                 </div>
-                <div style={{ marginTop: 35 }} className="c-btn-menu -theme-secondary">
-                  <button className="btn-menu-btn -shout" onClick={handleApply}>Apply Changes</button>
-                </div>
+                {/* <div style={{ marginTop: 35 }} className="c-btn-menu -theme-secondary">
+                  <button className="btn-menu-btn -shout" onClick={() => this.handleApply()}>Apply Changes</button>
+                </div> */}
               </Fragment>
             }
           </div>
