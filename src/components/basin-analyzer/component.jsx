@@ -60,7 +60,7 @@ class BasinAnalyzer extends PureComponent {
             <span className="title">Analyze</span>
             { points.length > 0 &&
               <span className="">
-                Location: [{points[0].lat}, {points[0].lng}]
+                Location: {points.length > 1 ? <React.Fragment>[{points.length} Locations]</React.Fragment> : <React.Fragment>[{points[0].lat}, {points[0].lng}]</React.Fragment>}
               </span>
             }
             <BtnMenu

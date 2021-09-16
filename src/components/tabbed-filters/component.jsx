@@ -133,7 +133,14 @@ class TabbedFilters extends PureComponent {
             <Analyzer />
           </CustomAccordion>
           :
-          <BasinAnalyzer />
+          <CustomAccordion
+            className="l-analyzer-accordion"
+            open={analyzerOpen}
+            header={<BasinAnalyzer />}
+          >
+            
+          </CustomAccordion>
+          
         }
       </Fragment>
     );
