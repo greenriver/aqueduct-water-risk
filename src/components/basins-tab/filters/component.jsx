@@ -28,13 +28,40 @@ class Filters extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.indicator !== nextState.indicator;
+  componentDidMount() {
+    const defaultIndicator = Object.keys(BASIN_INDICATORS)[0];
+    const newFilters = {
+      indicator: defaultIndicator,
+      threshold: BASIN_INDICATORS[defaultIndicator].defaultValue
+    };
+    if (!Object.keys(BASIN_INDICATORS).includes(this.props.filters.indicator)) {
+      this.props.setFilters({
+        ...this.props.filters,
+        ...newFilters
+      });
+    }
+    if (!Object.keys(BASIN_INDICATORS).includes(this.props.tabFilters.indicator)) {
+      this.props.setTabFilters({
+        ...this.props.tabFilters,
+        basins: {
+          ...this.props.tabFilters.basins,
+          ...newFilters
+        }
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.tabFilters.basins.indicator !== nextProps.tabFilters.basins.indicator;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.tabFilters.indicator !== this.props.tabFilters.indicator) this.handleApply()
   }
 
   getFilter(filterProp) {
     const { tabFilters } = this.props;
-    return this.state[filterProp] || tabFilters.basins[filterProp];
+    return tabFilters.basins[filterProp];
   }
 
   handleTooltipClick() {
@@ -61,7 +88,7 @@ class Filters extends Component {
     this.props.setTabFilters({
       basins: newFilters
     });
-    this.setState(newFilters);
+    setImmediate(() => this.handleApply()); // Wait until next event loop so that tabFilters update is done and handleApply will work right
   }
 
   handleSliderChange(threshold = null) {
@@ -80,7 +107,7 @@ class Filters extends Component {
     const indicator = this.getFilter('indicator');
     const newFilters = {
       indicator: this.getFilter('indicator'),
-      threshold: this.state.threshold
+      threshold: this.getFilter('threshold')
     };
     setFilters(newFilters);
     setTabFilters({ basins: { ...newFilters, indicator: (BASIN_INDICATORS[indicator] && BASIN_INDICATORS[indicator].rawField) || indicator } });
@@ -144,7 +171,7 @@ class Filters extends Component {
                     </div>
                     <ThresholdSlider
                       indicatorId={indicator}
-                      threshold={threshold}
+                      threshold={parseFloat(threshold)}
                       handleChange={(value) => { this.handleSliderChange(value); debouncedApply(); }}
                     />
                   </div>

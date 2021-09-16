@@ -61,13 +61,14 @@ class DesktopMap extends PureComponent {
 
       if (currentPoint && this.map) {
         const { latitude, longitude } = currentPoint;
-        this.map.fitBounds(
-          L.latLng(latitude, longitude).toBounds(500),
-          {
-            paddingTopLeft: [sidebarWidth, 0],
-            maxZoom: 4
-          }
-        );
+        console.log({ currentPoint, map: this.map, L })
+        // this.map.fitBounds(
+        //   L.latLng(latitude, longitude) ? L.latLng(latitude, longitude).toBounds(500) : undefined,
+        //   {
+        //     paddingTopLeft: [sidebarWidth, 0],
+        //     maxZoom: 4
+        //   }
+        // );
       }
     }
   }
@@ -240,6 +241,7 @@ class DesktopMap extends PureComponent {
                 onReady={() => { if (loading) setLoading(false); }}
               >
                 {layers.map((l, i) => {
+                  console.log({ l })
                   return (
                     <Layer
                       {...l}
