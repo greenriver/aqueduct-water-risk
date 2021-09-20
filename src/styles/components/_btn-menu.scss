@@ -3,6 +3,11 @@
   // margin: 0 (-$space-1);
 
   /* Modifiers */
+
+  &.-flex-inline {
+    display: inline-flex;
+  }
+
   &.-stacked {
     .btn-menu-item {
       flex: 1;

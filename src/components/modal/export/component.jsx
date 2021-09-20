@@ -4,6 +4,7 @@ import { ExportToCsv } from 'export-to-csv';
 
 import { Spinner } from 'aqueduct-components';
 import CustomTable from 'components/ui/Table/Table';
+import BtnMenu from 'components/ui/BtnMenu';
 import { LEGENDS } from '../../map/constants';
 import { COLUMNS } from './constants';
 
@@ -22,7 +23,7 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
   const transformedColumns = COLUMNS.map(c => ({ ...c, label: typeof c.label === 'function' ? c.label(filters.indicator) : c.label }))
 
   const downloadCSV = (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     const csvExporter = new ExportToCsv({
       showLabels: true,
       filename: `Prioritize Basins Analyzer - ${indicator.name}`,
@@ -65,8 +66,11 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
                 }}
               />
               <div>
-                <span className='download-container'>Download result as </span>
-                <button onClick={downloadCSV}>CSV</button>
+                <span style={{marginRight: 5}}>Download result as: </span>
+                <BtnMenu
+                  className="-theme-white -flex-inline"
+                  items={[{ label: 'CSV', cb: () => { downloadCSV(); } }]}
+                />
               </div>
             </Fragment>
           }
