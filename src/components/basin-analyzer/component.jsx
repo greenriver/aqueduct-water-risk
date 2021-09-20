@@ -53,6 +53,11 @@ class BasinAnalyzer extends PureComponent {
       clearAnalysis,
       indicator
     } = this.props;
+    const exportAction = () => {
+      if (indicator !== null && points.length) {
+        this.handleExport();
+      }
+    };
     return (
       <div className="l-analyzer">
         <div className="c-analyzer-header">
@@ -69,9 +74,7 @@ class BasinAnalyzer extends PureComponent {
                 },
                 { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
                 { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-                ...(indicator !== null && points.length) && [
-                  { label: 'Export file', cb: () => { this.handleExport(); } }
-                ]
+                { label: 'Export file', cb: () => { exportAction(); }, disabled: !(indicator !== null && points.length) }
               ]}
             />
           </div>

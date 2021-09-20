@@ -73,6 +73,11 @@
   font-size: $font-size-big;
   font-weight: 500;
   transition: background-color linear $animation-time;
+  &.-disabled {
+    pointer-events: none;
+    opacity: .5;
+    cursor: not-allowed;
+  }
   &.-shout {
     text-transform: uppercase;
   }
