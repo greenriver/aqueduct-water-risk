@@ -58,11 +58,6 @@ class BasinAnalyzer extends PureComponent {
         <div className="c-analyzer-header">
           <div className="actions-container">
             <span className="title">Analyze</span>
-            { points.length > 0 &&
-              <span className="">
-                Location: {points.length > 1 ? <React.Fragment>[{points.length} Locations]</React.Fragment> : <React.Fragment>[{points[0].lat}, {points[0].lng}]</React.Fragment>}
-              </span>
-            }
             <BtnMenu
               className="-theme-white"
               items={[
@@ -75,7 +70,7 @@ class BasinAnalyzer extends PureComponent {
                 { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
                 { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
                 ...(indicator !== null && points.length) && [
-                  { label: 'Export file', cb: () => { this.handleExport() } }
+                  { label: 'Export file', cb: () => { this.handleExport(); } }
                 ]
               ]}
             />
