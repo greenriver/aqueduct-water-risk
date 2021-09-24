@@ -58,7 +58,7 @@ class Filters extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.tabFilters.indicator !== this.props.tabFilters.indicator) this.handleApply()
+    if (prevProps.tabFilters.indicator !== this.props.tabFilters.indicator) this.handleApply();
   }
 
   getFilter(filterProp) {
@@ -137,12 +137,6 @@ class Filters extends Component {
         </div>
         <div className="c-filters">
           <div className="filters-section">
-            <div className="c-filters-item">
-              <div className="filter-item-header">
-                <span className="title">Desired condition threshold</span>
-                <TooltipIcon handleClick={() => this.handleTooltipClick()} />
-              </div>
-            </div>
             <div className="filters-section">
               <div className="row expanded collapse">
                 <div className="medium-8 column">
@@ -166,7 +160,7 @@ class Filters extends Component {
                     <div className="filter-item-header" style={{ marginBottom: 60 }}>
                       <div className="title">
                         <div>
-                          <p><strong>{INDICATORS[indicator]} Desired Condition </strong></p>
+                          <p><strong>{INDICATORS[indicator]} Desired Condition </strong> <TooltipIcon handleClick={() => this.handleTooltipClick()} /></p>
                           <p style={{ fontSize: 16 }}>(Adjust slider to set a desired condition threshold)</p>
                         </div>
                       </div>
