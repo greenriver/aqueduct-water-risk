@@ -62,8 +62,8 @@ class Filters extends Component {
   }
 
   getFilter(filterProp) {
-    const { tabFilters } = this.props;
-    return tabFilters.basins[filterProp];
+    const { tabFilters, filters } = this.props;
+    return tabFilters.basins[filterProp] || filters[filterProp];
   }
 
   handleTooltipClick() {
