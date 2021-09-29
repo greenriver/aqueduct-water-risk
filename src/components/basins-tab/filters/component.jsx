@@ -140,7 +140,10 @@ class Filters extends Component {
             <div className="filters-section">
               <div className="row expanded collapse">
                 <div className="medium-8 column">
-                  <div className="c-filters-item -inline" style={{ marginBottom: 25 }}>
+                  <div className="c-filters-item" style={{ marginBottom: 25 }}>
+                    <div className="filter-item-header" style={{ marginBottom: 16 }}>
+                      <span className="title">Select Water Risk Indicator</span> <TooltipIcon handleClick={() => this.handleInfoClick()} />
+                    </div>
                     <CustomSelect
                       className="-m-0"
                       options={indicators}
@@ -148,7 +151,6 @@ class Filters extends Component {
                       placeholder={'Select Indicator'}
                       onValueChange={({ value }) => { this.handleIndicatorSelect(value); }}
                     />
-                    <TooltipIcon handleClick={() => this.handleInfoClick()} />
                   </div>
                 </div>
               </div>
