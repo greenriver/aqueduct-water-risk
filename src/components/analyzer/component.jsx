@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
 import isEqual from 'lodash/isEqual';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { toastr } from 'react-redux-toastr';
-import { Spinner, Icon } from 'aqueduct-components';
+import { Spinner } from 'aqueduct-components';
 import { saveAs } from 'file-saver';
 
 // components
 import DataTable from 'components/analyze-locations-tab/data-table';
 import AnalysisModal from 'components/modal/analysis';
+import {
+  DownloadableTable,
+  Layout
+} from 'components/ui/analyzer';
 
 // services
 import { fetchCARTOQuery } from 'services/query';
@@ -28,7 +31,7 @@ class Analyzer extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.onFetchAnalysis()
+    this.props.onFetchAnalysis();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -87,27 +90,25 @@ class Analyzer extends PureComponent {
       analysis: { data, loading, downloadUrl }
     } = this.props;
     const { fileLoading } = this.state;
-    const btnClass = classnames(
-      'c-btn -light apply-analysis-btn',
-      { '-disabled': !points.length }
-    );
 
     return (
-      <div className="l-analyzer">
-        <div className="c-analyzer">
-          {(!!data.length && !loading) && (
-            <div className="analyzer-header">
-              <button
-                type="button"
-                onClick={() => { this.triggerExpandedTableModal(); }}
-              >
-                <Icon
-                  name="icon-expand-window"
-                  className="expand-table-icon"
-                />
-              </button>
-            </div>
-          )}
+      <Layout
+        disableApply={!points.length}
+        onApply={() => this.onApplyAnalysis()}
+      >
+        {(!!data.length && !loading) ? (
+          <DownloadableTable
+            onExpandTable={() => this.triggerExpandedTableModal()}
+            downloading={fileLoading}
+            downloadDisabled={!(downloadUrl && !loading)}
+            downloadOptions={[
+              { name: 'CSV', action: (e) => { this.handleDownload(e, 'csv'); } },
+              { name: 'GPKG', action: (e) => { this.handleDownload(e, 'gpkg'); } }
+            ]}
+          >
+            <DataTable />
+          </DownloadableTable>
+        ) : (
           <div className="analyzer-content">
             <Spinner
               isLoading={loading}
@@ -120,50 +121,9 @@ class Analyzer extends PureComponent {
                 </span>
               </div>
             )}
-
-            {(data.length > 0 && !loading) && (
-              <div className="table-container">
-                <DataTable />
-              </div>
-            )}
-
-            {(downloadUrl && !loading) &&
-              (<div className="download-container">
-              Download as
-                <ul>
-                  <li><button type="button" onClick={(e) => { this.handleDownload(e, 'csv'); }}>CSV</button>,</li>
-                  <li><button type="button" onClick={(e) => { this.handleDownload(e, 'gpkg'); }}>GPKG</button></li>
-                  <li className="download-spinner">
-                    <Spinner
-                      isLoading={fileLoading}
-                      className="-transparent -tiny"
-                    />
-                  </li>
-                </ul>
-                <p className="download-instructions">
-                  <a
-                    href="https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Instructions
-                  </a>
-                </p>
-              </div>
-            )}
           </div>
-          <div className="analyzer-footer">
-            <button
-              type="button"
-              className={btnClass}
-              onClick={() => { this.onApplyAnalysis(); }}
-              disabled={!points.length}
-            >
-              Apply analysis
-            </button>
-          </div>
-        </div>
-      </div>
+        )}
+      </Layout>
     );
   }
 }

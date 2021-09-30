@@ -12,6 +12,7 @@ import PrioritizeBasinsTab from 'components/pages/map/basins-tab';
 import CustomAccordion from 'components/ui/custom-accordion';
 import Analyzer from 'components/analyzer';
 import BasinAnalyzer from 'components/basin-analyzer';
+import BasinAnalyzerHeader from 'components/basin-analyzer/header';
 import AnalyzerHeader from 'components/analyzer/header';
 
 // utils
@@ -109,8 +110,6 @@ class TabbedFilters extends PureComponent {
       analyzerOpen
     } = this.props;
 
-    const scopeHasAccordionAnalyzer = scope !== 'basins';
-
     return (
       <Fragment>
         <SegmentedUi
@@ -124,24 +123,13 @@ class TabbedFilters extends PureComponent {
           {scope === 'future' && (<FutureTab />)}
           {scope === 'basins' && (<PrioritizeBasinsTab />)}
         </div>
-        { scopeHasAccordionAnalyzer ?
-          <CustomAccordion
-            className="l-analyzer-accordion"
-            open={analyzerOpen}
-            header={<AnalyzerHeader />}
-          >
-            <Analyzer />
-          </CustomAccordion>
-          :
-          <CustomAccordion
-            className="l-analyzer-accordion"
-            open={analyzerOpen}
-            header={<BasinAnalyzer />}
-          >
-            
-          </CustomAccordion>
-          
-        }
+        <CustomAccordion
+          className="l-analyzer-accordion"
+          open={analyzerOpen}
+          header={scope === 'basins' ? <BasinAnalyzerHeader /> : <AnalyzerHeader />}
+        >
+          {scope === 'basins' ? <BasinAnalyzer /> : <Analyzer />}
+        </CustomAccordion>
       </Fragment>
     );
   }

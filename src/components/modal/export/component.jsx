@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 import { ExportToCsv } from 'export-to-csv';
 
 import { Spinner } from 'aqueduct-components';
-import CustomTable from 'components/ui/Table/Table';
+import DataTable from 'components/basin-analyzer/table';
 import BtnMenu from 'components/ui/BtnMenu';
 import { LEGENDS } from '../../map/constants';
 import { COLUMNS } from './constants';
@@ -50,21 +50,7 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
           />
           {(data.length > 0 && !loading) &&
             <Fragment>
-              <CustomTable
-                columns={transformedColumns}
-                data={transformed}
-                selected={[]}
-                actions={{
-                  showable: false,
-                  editable: false,
-                  removable: false
-                }}
-                pagination={{
-                  enabled: data.length > 10,
-                  pageSize: 10,
-                  page: 0
-                }}
-              />
+              <DataTable noExpand />
               <div>
                 <span style={{marginRight: 5}}>Download result as: </span>
                 <BtnMenu
