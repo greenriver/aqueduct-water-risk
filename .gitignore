@@ -18,3 +18,7 @@
 
 # Compiled assets
 /dist
+
+# yalc files
+.yalc
+yalc.lock
