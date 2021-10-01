@@ -51,13 +51,13 @@ const ExportModal = ({ filters = {}, analysis = {} } = {}) => {
           {(data.length > 0 && !loading) &&
             <Fragment>
               <DataTable noExpand />
-              <div>
+              {/* <div>
                 <span style={{marginRight: 5}}>Download result as: </span>
                 <BtnMenu
                   className="-theme-white -flex-inline"
                   items={[{ label: 'CSV', cb: () => { downloadCSV(); } }]}
                 />
-              </div>
+              </div> */}
             </Fragment>
           }
         </div>

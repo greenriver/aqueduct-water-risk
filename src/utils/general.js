@@ -6,6 +6,8 @@ export const debounce = (callback, delay = 500) => {
   };
 };
 
+export const isNil = value => value === null || value === undefined;
+
 export const insertBetweenNodes = (
   nodes,
   renderInsertion

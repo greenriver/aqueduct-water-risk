@@ -8,7 +8,7 @@ import { BASIN_MODAL_PROPS, WATER_RISK_PROPS } from 'constants/filters';
 import { BASIN_INDICATORS, INDICATORS } from 'components/map/constants';
 
 // utils
-import { debounce } from 'utils/general';
+import { debounce, isNil } from 'utils/general';
 
 import ContentModal from '../../ui/modal/content';
 import TooltipIcon from '../../ui/TooltipIcon';
@@ -29,12 +29,9 @@ class Filters extends Component {
   }
 
   componentDidMount() {
-    // const defaultIndicator = Object.keys(BASIN_INDICATORS)[0];
     const newFilters = {
-      // indicator: defaultIndicator,
-      // threshold: BASIN_INDICATORS[defaultIndicator].defaultValue,
-      indicator: null,
-      threshold: null
+      threshold: this.props.tabFilters.basins.threshold || (BASIN_INDICATORS[this.props.tabFilters.basins] ? BASIN_INDICATORS[this.props.tabFilters.basins].defaultValue : null),
+      indicator: this.props.tabFilters.basins.indicator || null
     };
     if (!Object.keys(BASIN_INDICATORS).includes(this.props.filters.indicator)) {
       this.props.setFilters({
@@ -63,7 +60,7 @@ class Filters extends Component {
 
   getFilter(filterProp) {
     const { tabFilters, filters } = this.props;
-    return tabFilters.basins[filterProp] || filters[filterProp];
+    return !isNil(tabFilters.basins[filterProp]) ? tabFilters.basins[filterProp] : filters[filterProp];
   }
 
   handleTooltipClick() {

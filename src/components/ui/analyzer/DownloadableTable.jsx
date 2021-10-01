@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner, Icon } from 'aqueduct-components';
-
+import BtnMenu from 'components/ui/BtnMenu';
 
 class AnalyzerDownloadableTable extends PureComponent {
   render() {
@@ -13,6 +13,7 @@ class AnalyzerDownloadableTable extends PureComponent {
       downloading = false,
       downloadOptions = [],
       hideInstructions = false,
+      downloadButtons = false,
       instructionUrl = 'https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md'
     } = this.props;
 
@@ -37,20 +38,33 @@ class AnalyzerDownloadableTable extends PureComponent {
           </div>
           {!downloadDisabled && (
             <div className="download-container">
-            Download as
-              <ul>
-                {downloadOptions.map((o, i, arr) => (
-                  <li key={i}>
-                    <button type="button" onClick={o.action}>{o.name}</button>{i < arr.length - 1 ? ',' : ''}
-                  </li>
-                ))}
-                <li className="download-spinner">
-                  <Spinner
-                    isLoading={downloading}
-                    className="-transparent -tiny"
+              {downloadButtons ? (
+                <div>
+                  <span style={{marginRight: 5}}>Download result as: </span>
+                  <BtnMenu
+                    className="-theme-white -flex-inline"
+                    items={downloadOptions.map(o => ({ label: o.name, cb: o.action }))}
                   />
-                </li>
-              </ul>
+                </div>
+              ) : (
+                <React.Fragment>
+                  Download as
+                  <ul>
+                    {downloadOptions.map((o, i, arr) => (
+                      <li key={i}>
+                        <button type="button" onClick={o.action}>{o.name}</button>{i < arr.length - 1 ? ',' : ''}
+                      </li>
+                    ))}
+                    
+                    <li className="download-spinner">
+                      <Spinner
+                        isLoading={downloading}
+                        className="-transparent -tiny"
+                      />
+                    </li>
+                  </ul>
+                </React.Fragment>
+              )}
               {!hideInstructions && (
                 <p className="download-instructions">
                   <a
@@ -83,7 +97,8 @@ AnalyzerDownloadableTable.propTypes = {
   ])),
   downloading: PropTypes.bool,
   hideInstructions: PropTypes.bool,
-  instructionUrl: PropTypes.string
+  instructionUrl: PropTypes.string,
+  downloadButtons: PropTypes.bool
 };
 
 export default AnalyzerDownloadableTable;

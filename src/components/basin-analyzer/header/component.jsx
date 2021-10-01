@@ -4,11 +4,7 @@ import { array, func, string, bool } from 'prop-types';
 // components
 import CoordinatesModal from 'components/modal/coordinates';
 import ImportFileModal from 'components/modal/import';
-import ExportFileModal from 'components/modal/export';
 import Header from 'components/ui/analyzer/header';
-
-// utils
-import { logEvent } from 'utils/analytics';
 
 class BasinAnalyzerHeader extends PureComponent {
   handleMapMode() {
@@ -37,28 +33,14 @@ class BasinAnalyzerHeader extends PureComponent {
     });
   }
 
-  handleExport() {
-    const { onApplyBasinAnalysis } = this.props;
-
-    logEvent('Analysis', 'Analyze Basins', 'Start Analysis');
-    onApplyBasinAnalysis();
-    this.toggleModal(ExportFileModal, '-medium');
-  }
-
   render() {
     const {
       points,
       mapMode,
       clearAnalysis,
-      indicator,
       setAnalyzerOpen,
       analyzerOpen
     } = this.props;
-    const exportAction = () => {
-      if (indicator !== null && points.length) {
-        this.handleExport();
-      }
-    };
     return (
       <Header
         onToggleOpen={() => { setAnalyzerOpen(!analyzerOpen); }}
@@ -70,8 +52,7 @@ class BasinAnalyzerHeader extends PureComponent {
             cb: () => { this.handleMapMode(); }
           },
           { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
-          { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-          { label: 'Export file', cb: () => { exportAction(); }, disabled: !(indicator !== null && points.length) }
+          { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } }
         ]}
       />
     );
@@ -86,9 +67,7 @@ BasinAnalyzerHeader.propTypes = {
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
   toggleMobileFilters: func.isRequired,
-  clearAnalysis: func.isRequired,
-  onApplyBasinAnalysis: func.isRequired,
-  indicator: string
+  clearAnalysis: func.isRequired
 };
 
 export default BasinAnalyzerHeader;
