@@ -2,13 +2,15 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { saveAs } from 'file-saver';
 import { toastr } from 'react-redux-toastr';
-import { Spinner } from 'aqueduct-components';
+import {
+  DownloadableTable
+} from 'components/ui/analyzer';
 
 // components
 import DataTable from 'components/analyze-locations-tab/data-table';
 
 // helpers
-import { getFileName } from 'components/analyzer//helpers';
+import { getFileName } from 'components/analyzer/helpers';
 
 // services
 import { fetchCARTOQuery } from 'services/query';
@@ -23,12 +25,9 @@ class AnalysisModal extends PureComponent {
     this.state = { fileLoading: false };
   }
 
-  handleDownload(e, format) {
+  handleDownload(format) {
     const { analysis: { downloadUrl } } = this.props;
     const fileName = getFileName();
-
-    e.preventDefault();
-    e.stopPropagation();
 
     this.setState({ fileLoading: true }, () => {
       fetchCARTOQuery({ q: downloadUrl, format })
@@ -54,33 +53,19 @@ class AnalysisModal extends PureComponent {
     return (
       <div className="c-analysis-modal">
         <div className="c-info">
-          <div className="table-container">
+          <DownloadableTable
+            noExpand
+            contentWrapper={node => <React.Fragment>{node}</React.Fragment>}
+            downloadButtons
+            downloading={fileLoading}
+            downloadDisabled={!(downloadUrl && !loading)}
+            downloadOptions={[
+              { name: 'CSV', action: () => { this.handleDownload('csv'); } },
+              { name: 'GPKG', action: () => { this.handleDownload('gpkg'); } }
+            ]}
+          >
             <DataTable />
-          </div>
-          {(downloadUrl && !loading) &&
-            (<div className="download-container">
-             Download as
-              <ul>
-                <li><button type="button" onClick={(e) => { this.handleDownload(e, 'csv'); }}>CSV</button>,</li>
-                <li><button type="button" onClick={(e) => { this.handleDownload(e, 'gpkg'); }}>GPKG</button></li>
-                <li className="download-spinner">
-                  <Spinner
-                    isLoading={fileLoading}
-                    className="-transparent -tiny"
-                  />
-                </li>
-              </ul>
-              <p className="download-instructions">
-                <a
-                  href="https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Instructions
-                </a>
-              </p>
-            </div>
-          )}
+          </DownloadableTable>
         </div>
       </div>
     );

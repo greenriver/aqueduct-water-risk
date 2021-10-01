@@ -14,7 +14,12 @@ class AnalyzerDownloadableTable extends PureComponent {
       downloadOptions = [],
       hideInstructions = false,
       downloadButtons = false,
-      instructionUrl = 'https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md'
+      instructionUrl = 'https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md',
+      contentWrapper = node => (
+        <div className="analyzer-content">
+          {node}
+        </div>
+      )
     } = this.props;
 
     const instructionsNode = (
@@ -44,43 +49,45 @@ class AnalyzerDownloadableTable extends PureComponent {
             </button>
           </div>
         )}
-        <div className="analyzer-content">
-          <div className="table-container">
-            {children}
-          </div>
-          {!downloadDisabled && (
-            <React.Fragment>
-              {downloadButtons ? (
-                <div>
-                  <span style={{ marginRight: 5 }}>Download result as: </span>
-                  <BtnMenu
-                    className="-theme-white -flex-inline"
-                    items={downloadOptions.map(o => ({ label: o.name, cb: o.action }))}
-                  />
-                  {!hideInstructions && instructionsNode}
-                </div>
-              ) : (
-                <div className="download-container">
-                  Download as
-                  <ul>
-                    {downloadOptions.map((o, i, arr) => (
-                      <li key={i}>
-                        <button type="button" onClick={o.action}>{o.name}</button>{i < arr.length - 1 ? ',' : ''}
+        {contentWrapper(
+          <React.Fragment>
+            <div className="table-container">
+              {children}
+            </div>
+            {!downloadDisabled && (
+              <React.Fragment>
+                {downloadButtons ? (
+                  <div>
+                    <span style={{ marginRight: 5 }}>Download result as: </span>
+                    <BtnMenu
+                      className="-theme-white -flex-inline"
+                      items={downloadOptions.map(o => ({ label: o.name, cb: o.action }))}
+                    />
+                    {!hideInstructions && instructionsNode}
+                  </div>
+                ) : (
+                  <div className="download-container">
+                    Download as
+                    <ul>
+                      {downloadOptions.map((o, i, arr) => (
+                        <li key={i}>
+                          <button type="button" onClick={o.action}>{o.name}</button>{i < arr.length - 1 ? ',' : ''}
+                        </li>
+                      ))}
+                      <li className="download-spinner">
+                        <Spinner
+                          isLoading={downloading}
+                          className="-transparent -tiny"
+                        />
                       </li>
-                    ))}
-                    <li className="download-spinner">
-                      <Spinner
-                        isLoading={downloading}
-                        className="-transparent -tiny"
-                      />
-                    </li>
-                  </ul>
-                  {!hideInstructions && instructionsNode}
-                </div>
-              )}
-            </React.Fragment>
-          )}
-        </div>
+                    </ul>
+                    {!hideInstructions && instructionsNode}
+                  </div>
+                )}
+              </React.Fragment>
+            )}
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }
@@ -100,7 +107,8 @@ AnalyzerDownloadableTable.propTypes = {
   downloading: PropTypes.bool,
   hideInstructions: PropTypes.bool,
   instructionUrl: PropTypes.string,
-  downloadButtons: PropTypes.bool
+  downloadButtons: PropTypes.bool,
+  contentWrapper: PropTypes.func
 };
 
 export default AnalyzerDownloadableTable;
