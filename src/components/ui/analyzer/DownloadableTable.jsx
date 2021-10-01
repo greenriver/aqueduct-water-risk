@@ -17,6 +17,18 @@ class AnalyzerDownloadableTable extends PureComponent {
       instructionUrl = 'https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md'
     } = this.props;
 
+    const instructionsNode = (
+      <p className="download-instructions">
+        <a
+          href={instructionUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instructions
+        </a>
+      </p>
+    );
+
     return (
       <React.Fragment>
         {!noExpand && (
@@ -37,17 +49,18 @@ class AnalyzerDownloadableTable extends PureComponent {
             {children}
           </div>
           {!downloadDisabled && (
-            <div className="download-container">
+            <React.Fragment>
               {downloadButtons ? (
                 <div>
-                  <span style={{marginRight: 5}}>Download result as: </span>
+                  <span style={{ marginRight: 5 }}>Download result as: </span>
                   <BtnMenu
                     className="-theme-white -flex-inline"
                     items={downloadOptions.map(o => ({ label: o.name, cb: o.action }))}
                   />
+                  {!hideInstructions && instructionsNode}
                 </div>
               ) : (
-                <React.Fragment>
+                <div className="download-container">
                   Download as
                   <ul>
                     {downloadOptions.map((o, i, arr) => (
@@ -55,7 +68,6 @@ class AnalyzerDownloadableTable extends PureComponent {
                         <button type="button" onClick={o.action}>{o.name}</button>{i < arr.length - 1 ? ',' : ''}
                       </li>
                     ))}
-                    
                     <li className="download-spinner">
                       <Spinner
                         isLoading={downloading}
@@ -63,20 +75,10 @@ class AnalyzerDownloadableTable extends PureComponent {
                       />
                     </li>
                   </ul>
-                </React.Fragment>
+                  {!hideInstructions && instructionsNode}
+                </div>
               )}
-              {!hideInstructions && (
-                <p className="download-instructions">
-                  <a
-                    href={instructionUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Instructions
-                  </a>
-                </p>
-              )}
-            </div>
+            </React.Fragment>
           )}
         </div>
       </React.Fragment>

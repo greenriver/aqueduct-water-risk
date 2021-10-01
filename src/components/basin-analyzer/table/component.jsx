@@ -26,7 +26,8 @@ class BasinAnalyzerTable extends React.PureComponent {
     const {
       analysis,
       filters,
-      noExpand
+      noExpand,
+      buttons
     } = this.props;
     const { data = [] } = analysis;
 
@@ -55,6 +56,7 @@ class BasinAnalyzerTable extends React.PureComponent {
         onExpandTable={() => this.handleExport()}
         hideInstructions
         noExpand={noExpand}
+        downloadButtons={buttons}
         downloadOptions={[
           { name: 'CSV', action: () => downloadCSV() }
         ]}
@@ -80,54 +82,12 @@ class BasinAnalyzerTable extends React.PureComponent {
   }
 }
 
-// const BasinAnalyzerTable = ({ filters = {}, analysis = {}, noExpand, toggleModal = () => {} } = {}) => {
-//   const { data = [] } = analysis;
-
-//   const handleExport = () => {
-//     toggleModal(ExportFileModal, '-medium');
-//   };
-
-//   const transformed = data.map(row => (
-//     COLUMNS.reduce((acc, col) => {
-//       let field = row[col.value];
-//       if (col.render) field = col.render(filters.indicator, field);
-//       return { ...acc, [col.value]: field };
-//     }, {})
-//   ));
-
-//   const transformedColumns = COLUMNS.map(c => ({ ...c, label: typeof c.label === 'function' ? c.label(filters.indicator) : c.label }))
-
-//   return (
-//     <DownloadableTable
-//       onExpandTable={() => handleExport()}
-//       hideInstructions
-//       downloadDisabled
-//       noExpand={noExpand}
-//     >
-//       <CustomTable
-//         columns={transformedColumns}
-//         data={transformed}
-//         selected={[]}
-//         actions={{
-//           showable: false,
-//           editable: false,
-//           removable: false
-//         }}
-//         pagination={{
-//           enabled: data.length > 10,
-//           pageSize: 10,
-//           page: 0
-//         }}
-//       />
-//     </DownloadableTable>
-//   );
-// };
-
 BasinAnalyzerTable.propTypes = {
   filters: object,
   analysis: object,
   toggleModal: func.isRequired,
-  noExpand: bool
+  noExpand: bool,
+  buttons: bool
 };
 
 export default BasinAnalyzerTable;
