@@ -1,7 +1,6 @@
 import { INDICATOR_THRESHOLD_TRANSFORMERS } from 'constants/indicators';
 
 export const getExportSql = (indicator, thresholdParam, points = []) => {
-  console.log({ thresholdParam })
   const threshold = INDICATOR_THRESHOLD_TRANSFORMERS[indicator](thresholdParam) || 0;
   const rawField = indicator.replace('cat', 'raw');
   const labelField = indicator.replace('cat', 'label');

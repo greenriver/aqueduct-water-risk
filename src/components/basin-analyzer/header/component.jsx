@@ -15,8 +15,6 @@ class BasinAnalyzerHeader extends PureComponent {
     } = this.props;
     const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
-    // console.log({nextMapMode})
-
     setMapMode(nextMapMode);
     // Toggle filters on mobile so users can access the map
     if (nextMapMode === 'analysis') {

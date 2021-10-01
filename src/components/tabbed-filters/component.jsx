@@ -139,18 +139,15 @@ TabbedFilters.propTypes = {
   filters: PropTypes.object.isRequired,
   tabFilters: PropTypes.object.isRequired,
   ponderation: PropTypes.object.isRequired,
-  analysis: PropTypes.object.isRequired,
   scope: PropTypes.string.isRequired,
   advanced: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
   analyzerOpen: PropTypes.bool.isRequired,
   mapState: PropTypes.object.isRequired,
   geostore: PropTypes.any,
   setScope: PropTypes.func.isRequired,
   updateUrl: PropTypes.func.isRequired,
   getLayers: PropTypes.func.isRequired,
-  setFilters: PropTypes.func.isRequired,
-  setSidebarWidth: PropTypes.func.isRequired
+  setFilters: PropTypes.func.isRequired
 };
 
 TabbedFilters.defaultProps = { geostore: null };
