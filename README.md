@@ -29,3 +29,12 @@
 2. Open pull requests against `develop` as well.
 3. Merge branches into `develop` when they are ready to be deployed for testing.
 4. When a change is ready to be deployed to the production website, merge `develop` into `main`.
+
+
+## Aqueduct Repo Directory
+
+- [Aqueduct Water Risk Atlas](https://www.wri.org/applications/aqueduct/water-risk-atlas) - https://github.com/greenriver/aqueduct-water-risk
+- [Aqueduct Country Rankings](https://www.wri.org/applications/aqueduct/country-rankings) - https://github.com/greenriver/aqueduct-countries-ranking
+- [Aqueduct Food](https://www.wri.org/applications/aqueduct/food/#/) - https://github.com/greenriver/aqueduct-food
+- [Aqueduct Floods](https://www.wri.org/applications/aqueduct/floods/) - https://github.com/greenriver/aqueduct-flood
+- [Aqueduct Components](https://greenriver.github.io/aqueduct-components/) - https://github.com/greenriver/aqueduct-components
