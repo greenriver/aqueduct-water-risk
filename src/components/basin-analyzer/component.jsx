@@ -1,35 +1,42 @@
 import React, { PureComponent } from 'react';
-import { array, bool, func, string } from 'prop-types';
-import { Icon } from 'aqueduct-components';
+import { array, func, string, object } from 'prop-types';
+import { Spinner } from 'aqueduct-components';
 
-// components
-import BtnMenu from 'components/ui/BtnMenu';
-import CoordinatesModal from 'components/modal/coordinates';
-import ImportFileModal from 'components/modal/import';
-import ExportFileModal from 'components/modal/export';
+import {
+  Layout
+} from 'components/ui/analyzer';
+import { BASIN_INDICATORS } from 'components/map/constants';
 
 // utils
 import { logEvent } from 'utils/analytics';
 
+// components
+import DataTable from './table';
+
+
+const isValidIndicator = indicator => !!(indicator && BASIN_INDICATORS[indicator]);
 class BasinAnalyzer extends PureComponent {
-  handleMapMode() {
-    const {
-      mapMode,
-      setMapMode,
-      toggleMobileFilters
-    } = this.props;
-    const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
+  componentDidMount() {
+    this.onApplyAnalysis();
+  }
 
-    console.log({nextMapMode})
-
-    setMapMode(nextMapMode);
-    // Toggle filters on mobile so users can access the map
-    if (nextMapMode === 'analysis') {
-      toggleMobileFilters(false);
+  componentDidUpdate(prevProps) {
+    const { filters: { indicator, threshold } = {} } = this.props;
+    const { filters: { indicator: prevIndicator, threshold: prevThreshold } = {} } = prevProps;
+    if (!isValidIndicator(indicator)) return;
+    if (indicator !== prevIndicator || threshold !== prevThreshold) {
+      this.onApplyAnalysis();
     }
   }
 
-  toggleModal(children, size='-auto') {
+  onApplyAnalysis() {
+    const { onApplyBasinAnalysis } = this.props;
+
+    logEvent('Analysis', 'Analyze Locations', 'Start Analysis');
+    onApplyBasinAnalysis();
+  }
+
+  toggleModal(children, size = '-auto') {
     const { toggleModal } = this.props;
 
     toggleModal(true, {
@@ -38,48 +45,66 @@ class BasinAnalyzer extends PureComponent {
     });
   }
 
-  handleExport() {
-    const { onApplyBasinAnalysis } = this.props;
+  handleMapMode() {
+    const {
+      mapMode,
+      setMapMode,
+      toggleMobileFilters
+    } = this.props;
+    const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
-    logEvent('Analysis', 'Analyze Basins', 'Start Analysis');
-    onApplyBasinAnalysis();
-    this.toggleModal(ExportFileModal, '-medium');
+    setMapMode(nextMapMode);
+    // Toggle filters on mobile so users can access the map
+    if (nextMapMode === 'analysis') {
+      toggleMobileFilters(false);
+    }
   }
 
   render() {
     const {
       points,
-      mapMode,
-      clearAnalysis,
-      indicator
+      analysis: { data = [], loading = false } = {},
+      filters: { indicator } = {}
     } = this.props;
-    const exportAction = () => {
-      if (indicator !== null && points.length) {
-        this.handleExport();
-      }
-    };
+
+    const validData = loading || (data.length && data.every(e => 'threshold' in e));
+    const validIndicator = isValidIndicator(indicator);
+    const showTable = !!(validIndicator && points.length && validData);
+
     return (
-      <div className="l-analyzer">
-        <div className="c-analyzer-header">
-          <div className="actions-container">
-            <span className="title">Analyze</span>
-            <BtnMenu
-              className="-theme-white"
-              items={[
-                ...(points.length > 0) && [{ label: 'Clear', cb: () => { clearAnalysis(); } }],
-                {
-                  label: 'Click map',
-                  ...mapMode === 'analysis' && { active: true },
-                  cb: () => { this.handleMapMode(); }
-                },
-                { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
-                { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } },
-                { label: 'Export file', cb: () => { exportAction(); }, disabled: !(indicator !== null && points.length) }
-              ]}
-            />
+      <Layout
+        disableApply={!points.length || !validIndicator}
+        onApply={() => this.onApplyAnalysis()}
+      >
+        {showTable ? (
+          <React.Fragment>
+            {loading ? (
+              <div className="analyzer-content">
+                <Spinner
+                  isLoading={loading}
+                  className="-transparent"
+                />
+              </div>
+            ) : (
+              <DataTable />
+            )}
+          </React.Fragment>
+        ) : (
+          <div className="analyzer-content">
+            <div className="no-data-container">
+              {validIndicator ? (
+                <span className="no-data">
+                  Click on the map to select locations <br /> and then click &lsquo;Apply analysis&rsquo; button
+                </span>
+              ) : (
+                <span className="no-data">
+                  Select an indicator to continue
+                </span>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </Layout>
     );
   }
 }
@@ -90,9 +115,9 @@ BasinAnalyzer.propTypes = {
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
   toggleMobileFilters: func.isRequired,
-  clearAnalysis: func.isRequired,
   onApplyBasinAnalysis: func.isRequired,
-  indicator: string
+  analysis: object,
+  filters: object
 };
 
 export default BasinAnalyzer;

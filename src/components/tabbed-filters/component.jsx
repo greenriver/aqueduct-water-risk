@@ -12,6 +12,7 @@ import PrioritizeBasinsTab from 'components/pages/map/basins-tab';
 import CustomAccordion from 'components/ui/custom-accordion';
 import Analyzer from 'components/analyzer';
 import BasinAnalyzer from 'components/basin-analyzer';
+import BasinAnalyzerHeader from 'components/basin-analyzer/header';
 import AnalyzerHeader from 'components/analyzer/header';
 
 // utils
@@ -109,8 +110,6 @@ class TabbedFilters extends PureComponent {
       analyzerOpen
     } = this.props;
 
-    const scopeHasAccordionAnalyzer = scope !== 'basins';
-
     return (
       <Fragment>
         <SegmentedUi
@@ -124,24 +123,13 @@ class TabbedFilters extends PureComponent {
           {scope === 'future' && (<FutureTab />)}
           {scope === 'basins' && (<PrioritizeBasinsTab />)}
         </div>
-        { scopeHasAccordionAnalyzer ?
-          <CustomAccordion
-            className="l-analyzer-accordion"
-            open={analyzerOpen}
-            header={<AnalyzerHeader />}
-          >
-            <Analyzer />
-          </CustomAccordion>
-          :
-          <CustomAccordion
-            className="l-analyzer-accordion"
-            open={analyzerOpen}
-            header={<BasinAnalyzer />}
-          >
-            
-          </CustomAccordion>
-          
-        }
+        <CustomAccordion
+          className="l-analyzer-accordion"
+          open={analyzerOpen}
+          header={scope === 'basins' ? <BasinAnalyzerHeader /> : <AnalyzerHeader />}
+        >
+          {scope === 'basins' ? <BasinAnalyzer /> : <Analyzer />}
+        </CustomAccordion>
       </Fragment>
     );
   }
@@ -151,18 +139,15 @@ TabbedFilters.propTypes = {
   filters: PropTypes.object.isRequired,
   tabFilters: PropTypes.object.isRequired,
   ponderation: PropTypes.object.isRequired,
-  analysis: PropTypes.object.isRequired,
   scope: PropTypes.string.isRequired,
   advanced: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
   analyzerOpen: PropTypes.bool.isRequired,
   mapState: PropTypes.object.isRequired,
   geostore: PropTypes.any,
   setScope: PropTypes.func.isRequired,
   updateUrl: PropTypes.func.isRequired,
   getLayers: PropTypes.func.isRequired,
-  setFilters: PropTypes.func.isRequired,
-  setSidebarWidth: PropTypes.func.isRequired
+  setFilters: PropTypes.func.isRequired
 };
 
 TabbedFilters.defaultProps = { geostore: null };

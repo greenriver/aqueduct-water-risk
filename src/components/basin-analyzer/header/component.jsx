@@ -1,23 +1,20 @@
 import React, { PureComponent } from 'react';
-import { array, bool, func, string } from 'prop-types';
+import { array, func, string, bool } from 'prop-types';
 
 // components
 import CoordinatesModal from 'components/modal/coordinates';
 import ImportFileModal from 'components/modal/import';
 import Header from 'components/ui/analyzer/header';
 
-class AnalyzerHeader extends PureComponent {
+class BasinAnalyzerHeader extends PureComponent {
   handleMapMode() {
     const {
       mapMode,
-      analyzerOpen,
       setMapMode,
-      setAnalyzerOpen,
       toggleMobileFilters
     } = this.props;
     const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
-    if (!analyzerOpen) setAnalyzerOpen(true);
     setMapMode(nextMapMode);
     // Toggle filters on mobile so users can access the map
     if (nextMapMode === 'analysis') {
@@ -38,9 +35,9 @@ class AnalyzerHeader extends PureComponent {
     const {
       points,
       mapMode,
-      analyzerOpen,
+      clearAnalysis,
       setAnalyzerOpen,
-      clearAnalysis
+      analyzerOpen
     } = this.props;
     return (
       <Header
@@ -60,15 +57,15 @@ class AnalyzerHeader extends PureComponent {
   }
 }
 
-AnalyzerHeader.propTypes = {
+BasinAnalyzerHeader.propTypes = {
   points: array.isRequired,
   mapMode: string.isRequired,
   analyzerOpen: bool.isRequired,
+  setAnalyzerOpen: func.isRequired,
   setMapMode: func.isRequired,
   toggleModal: func.isRequired,
   toggleMobileFilters: func.isRequired,
-  setAnalyzerOpen: func.isRequired,
   clearAnalysis: func.isRequired
 };
 
-export default AnalyzerHeader;
+export default BasinAnalyzerHeader;

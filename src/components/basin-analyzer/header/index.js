@@ -8,19 +8,17 @@ import {
   onApplyBasinAnalysis,
   onFetchBasinAnalysis
 } from 'modules/analyze-locations-tab/actions';
-import { toggleMobileFilters } from 'modules/settings/actions';
+import { setAnalyzerOpen, toggleMobileFilters } from 'modules/settings/actions';
 
 // component
 import BasinAnalyzer from './component';
 
 export default connect(
   state => ({
-    tabFilters: state.settings.tabFilters.basins,
-    filters: state.settings.filters,
     points: state.analyzeLocations.points.list,
     mapMode: state.app.mapMode,
     scope: state.app.scope,
-    analysis: state.analyzeLocations.analysis
+    analyzerOpen: state.settings.analyzer.open
   }),
   {
     toggleModal,
@@ -28,6 +26,7 @@ export default connect(
     setMapMode,
     clearAnalysis,
     onApplyBasinAnalysis,
+    setAnalyzerOpen,
     onFetchBasinAnalysis
   }
 )(BasinAnalyzer);
