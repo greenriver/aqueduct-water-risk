@@ -1,6 +1,7 @@
 export const SCOPE_OPTIONS = [
-  { label: 'baseline', value: 'baseline' },
-  { label: 'future', value: 'future' }
+  { label: 'Baseline', value: 'baseline' },
+  { label: 'Future', value: 'future' },
+  { label: 'Prioritize Basins', value: 'basins' }
 ];
 
 export const SCENARIO_OPTIONS = [
@@ -17,7 +18,6 @@ export const SCENARIO_OPTIONS = [
     value: 'optimistic'
   }
 ];
-
 
 export default {
   SCOPE_OPTIONS,

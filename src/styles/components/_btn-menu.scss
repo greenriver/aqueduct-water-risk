@@ -3,6 +3,11 @@
   // margin: 0 (-$space-1);
 
   /* Modifiers */
+
+  &.-flex-inline {
+    display: inline-flex;
+  }
+
   &.-stacked {
     .btn-menu-item {
       flex: 1;
@@ -35,6 +40,19 @@
       }
     }
   }
+  &.-theme-secondary {
+    $base-color: palette(blue, 'secondary');
+    .btn-menu-btn {
+      background-color: $base-color;
+      border-color: $base-color;
+      color: palette(white);
+
+      &:focus,
+      &:hover {
+        background-color: rgba($base-color, .5);
+      }
+    }
+  }
 }
 
 .btn-menu-item {
@@ -60,4 +78,16 @@
   font-size: $font-size-big;
   font-weight: 500;
   transition: background-color linear $animation-time;
+  &.-disabled {
+    pointer-events: none;
+    opacity: .5;
+    cursor: not-allowed;
+  }
+  &.-shout {
+    text-transform: uppercase;
+  }
+  @include only-mobile {
+    width: 100%;
+    padding: .75rem 1rem;
+  }
 }

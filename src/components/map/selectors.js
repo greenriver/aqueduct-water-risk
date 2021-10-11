@@ -25,6 +25,7 @@ const getMapMode = state => state.app.mapMode;
 const getMap = state => state.map;
 const getBasemap = state => state.map.basemap;
 const getLayers = state => state.layers.list;
+const getScope = state => state.app.scope;
 const getParametrization = state => state.settings.filters;
 const getPonderation = state => state.settings.ponderation;
 const getPoints = state => state.analyzeLocations.points.list;
@@ -59,8 +60,8 @@ const getMarkerLayer = createSelector(
 );
 
 const getFilteredLayers = createSelector(
-  [getLayers, getMarkerLayer, getParametrization, getPonderation, getMapMode],
-  (_layers, _markerLayer, _parametrization, _ponderation, _mapMode) => {
+  [getLayers, getMarkerLayer, getParametrization, getPonderation, getMapMode, getScope],
+  (_layers, _markerLayer, _parametrization, _ponderation, _mapMode, _scope) => {
     if (!Object.keys(_layers).length) return [];
 
     const { scheme: ponderationScheme } = _ponderation;
@@ -68,6 +69,9 @@ const getFilteredLayers = createSelector(
     let layers = [];
 
     switch (true) {
+      case (_scope === 'basins'):
+        layers = _layers.threshold;
+        break;
       case (ponderationScheme === 'custom'):
         layers = _layers.custom;
         break;
@@ -97,12 +101,13 @@ const getFilteredLayers = createSelector(
 );
 
 export const getUpdatedLayers = createSelector(
-  [getFilteredLayers, getParametrization, getPonderation, getLayerUpdatedParams],
-  (_activeLayers, _parametrization, _ponderation, _updatedLayerParams) => {
+  [getFilteredLayers, getParametrization, getPonderation, getLayerUpdatedParams, getScope],
+  (_activeLayers, _parametrization, _ponderation, _updatedLayerParams, _scope) => {
     if (!_activeLayers.length) return _activeLayers;
 
     const { indicator } = _parametrization;
-    const params = getLayerParametrization(_parametrization, _ponderation);
+    if (!indicator) return [];
+    const params = getLayerParametrization(_parametrization, _ponderation, _scope);
 
     return _activeLayers.map((_activeLayer, index) => ({
       ..._activeLayer,

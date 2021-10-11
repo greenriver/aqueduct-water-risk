@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Icon } from 'aqueduct-components';
+import { array, bool, func, string } from 'prop-types';
 
 // components
-import BtnMenu from 'components/ui/BtnMenu';
 import CoordinatesModal from 'components/modal/coordinates';
 import ImportFileModal from 'components/modal/import';
+import Header from 'components/ui/analyzer/header';
 
 class AnalyzerHeader extends PureComponent {
   handleMapMode() {
@@ -13,20 +12,25 @@ class AnalyzerHeader extends PureComponent {
       mapMode,
       analyzerOpen,
       setMapMode,
-      setAnalyzerOpen
+      setAnalyzerOpen,
+      toggleMobileFilters
     } = this.props;
     const nextMapMode = mapMode === 'analysis' ? 'view' : 'analysis';
 
     if (!analyzerOpen) setAnalyzerOpen(true);
     setMapMode(nextMapMode);
+    // Toggle filters on mobile so users can access the map
+    if (nextMapMode === 'analysis') {
+      toggleMobileFilters(false);
+    }
   }
 
-  toggleModal(children) {
+  toggleModal(children, size = '-auto') {
     const { toggleModal } = this.props;
 
     toggleModal(true, {
       children,
-      size: '-auto'
+      size
     });
   }
 
@@ -38,49 +42,33 @@ class AnalyzerHeader extends PureComponent {
       setAnalyzerOpen,
       clearAnalysis
     } = this.props;
-
     return (
-      <div className="c-analyzer-header">
-        <div className="actions-container">
-          <div className="toggle-container">
-            <button
-              className="accordion-analyzer-btn"
-              onClick={() => { setAnalyzerOpen(!analyzerOpen); }}
-            >
-              <Icon
-                name="icon-arrow-up-2"
-                className="arrow-icon"
-              />
-              <span className="title">Analyze</span>
-            </button>
-          </div>
-          <BtnMenu
-            className="-theme-white"
-            items={[
-              ...(points.length > 0) && [{ label: 'Clear', cb: () => { clearAnalysis(); } }],
-              {
-                label: 'Click map',
-                ...mapMode === 'analysis' && { active: true },
-                cb: () => { this.handleMapMode(); }
-              },
-              { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
-              { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } }
-            ]}
-          />
-        </div>
-      </div>
+      <Header
+        onToggleOpen={() => { setAnalyzerOpen(!analyzerOpen); }}
+        actions={[
+          ...(points.length > 0) && [{ label: 'Clear', cb: () => { clearAnalysis(); } }],
+          {
+            label: 'Click map',
+            ...mapMode === 'analysis' && { active: true },
+            cb: () => { this.handleMapMode(); }
+          },
+          { label: 'Enter Address', cb: () => { this.toggleModal(CoordinatesModal); } },
+          { label: 'Import file', cb: () => { this.toggleModal(ImportFileModal); } }
+        ]}
+      />
     );
   }
 }
 
 AnalyzerHeader.propTypes = {
-  points: PropTypes.array.isRequired,
-  mapMode: PropTypes.string.isRequired,
-  analyzerOpen: PropTypes.bool.isRequired,
-  setMapMode: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
-  setAnalyzerOpen: PropTypes.func.isRequired,
-  clearAnalysis: PropTypes.func.isRequired
+  points: array.isRequired,
+  mapMode: string.isRequired,
+  analyzerOpen: bool.isRequired,
+  setMapMode: func.isRequired,
+  toggleModal: func.isRequired,
+  toggleMobileFilters: func.isRequired,
+  setAnalyzerOpen: func.isRequired,
+  clearAnalysis: func.isRequired
 };
 
 export default AnalyzerHeader;

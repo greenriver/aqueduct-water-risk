@@ -1,0 +1,56 @@
+.c-sidebar {
+  &.-right {
+    position: fixed;
+    @include only-mobile {
+      z-index: 10000;
+      &.-opened {
+        width: 100%;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &.-context {
+    left: auto;
+    right: 0;
+    transform: translate(calc(100% + 10px), 0);
+    width: 40%;
+    max-width: 600px;
+    min-width: 300px;
+    overflow: hidden;
+    &.-opened {
+      transform: translate(0, 0);
+    }
+
+    .btn-toggle {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: auto;
+      background: none;
+      .c-icon {
+        fill: palette(blue, 'secondary');
+        &:hover {
+          fill: palette(blue, 'primary');
+        }
+      }
+    }
+
+    .c-table {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      background: none;
+      tr, td {
+        border: 1px solid #CCC;
+      }
+      .table tbody tr:nth-child(even),
+      .table tbody tr:nth-child(odd) {
+        background: none
+      }
+    }
+  }
+}
+
+.c-sidebar__content {
+  overflow: auto;
+}

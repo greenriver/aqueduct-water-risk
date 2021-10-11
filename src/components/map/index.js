@@ -53,6 +53,7 @@ export default connect(
     layers: getUpdatedLayers(state),
     layerGroup: getLayerGroup(state),
     popup: state.map.popup,
+    filters: state.settings.filters,
     analysisPopupColumns: getColumns(state),
     loading: state.map.loading,
     analysisData: state.analyzeLocations.analysis.data,

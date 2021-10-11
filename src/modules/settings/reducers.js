@@ -8,6 +8,13 @@ export default {
       ...payload
     }
   }),
+  [actions.setTabFilters]: (state, { payload }) => ({
+    ...state,
+    tabFilters: {
+      ...state.tabFilters,
+      ...payload
+    }
+  }),
   [actions.setPonderation]: (state, { payload }) => ({
     ...state,
     ponderation: {
@@ -22,5 +29,9 @@ export default {
   [actions.setAnalyzerOpen]: (state, { payload }) => ({
     ...state,
     analyzer: { open: payload }
+  }),
+  [actions.toggleMobileFilters]: (state, { payload }) => ({
+    ...state,
+    mobileFilters: { open: payload }
   })
 };

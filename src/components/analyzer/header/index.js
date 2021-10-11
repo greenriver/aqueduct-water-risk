@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // actions
 import { toggleModal } from 'aqueduct-components';
 import { setMapMode } from 'modules/app/actions';
-import { setAnalyzerOpen } from 'modules/settings/actions';
+import { setAnalyzerOpen, toggleMobileFilters } from 'modules/settings/actions';
 import { clearAnalysis } from 'modules/analyze-locations-tab/actions';
 
 // component
@@ -19,6 +19,7 @@ export default connect(
     toggleModal,
     clearAnalysis,
     setMapMode,
-    setAnalyzerOpen
+    setAnalyzerOpen,
+    toggleMobileFilters
   }
 )(AnalyzerHeader);

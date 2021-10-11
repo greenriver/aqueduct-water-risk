@@ -25,4 +25,10 @@
       }
     }
   }
+
+  @include only-mobile {
+    left: 1.5rem;
+    width: auto;
+    bottom: 4.5rem;
+  }
 }

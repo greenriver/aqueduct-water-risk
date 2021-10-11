@@ -1,14 +1,17 @@
 import { createAction, createThunkAction } from 'redux-tools';
 import compact from 'lodash/compact';
+import isNil from 'lodash/isNil'
 
 // services
 import { fetchGeostore, saveGeostore } from 'services/geostore';
 import { fetchAnalysis } from 'services/analysis';
+import { fetchQuery } from 'services/query';
 
 // utils
 import { parseWeights } from 'utils/weights';
 import { getAnalysisType, filterData } from 'utils/analysis';
 import { logEvent } from 'utils/analytics';
+import { getExportSql } from 'utils/export';
 
 // constants
 import { FUTURE_LAYERS_GROUPS } from 'constants/analysis';
@@ -30,6 +33,31 @@ export const setGeostore = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE');
 export const setGeostoreLocations = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-LOCATIONS');
 export const setGeostoreLoading = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-LOADING');
 export const setGeostoreError = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-ERROR');
+
+export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-BASIN-ANALYSIS', () =>
+  (dispatch, getState) => {
+    const {
+      analyzeLocations,
+      settings: {
+        filters: { threshold: thresholdParam, indicator }
+      }
+    } = getState();
+    const {
+      points: { list: pointsList },
+      geostore: { locations }
+    } = analyzeLocations;
+    const mergedLocations = locations.map((l, i) => ({ ...l, ...pointsList[i] }));
+    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, mergedLocations) })
+    .then(({ rows = [] }) => {
+      logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
+      dispatch(setAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
+      dispatch(setAnalysisLoading(false));
+    })
+    .catch((err) => {
+      dispatch(setAnalysisError(err));
+      dispatch(setAnalysisLoading(false));
+    });
+  });
 
 export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-ANALYSIS', () =>
   (dispatch, getState) => {
@@ -59,9 +87,15 @@ export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-A
       year,
       scenario,
       change_type: projection === 'absolute' ? 'future_value' : 'change_from_baseline',
-      indicator: analysis_type === 'projected' ? FUTURE_LAYERS_GROUPS[indicator] : indicator,
       wscheme: `'[${parseWeights(ponderation)}]'`
     };
+
+
+    let _indicator = indicator;
+    if (analysis_type === 'projected' && indicator) {
+      _indicator = FUTURE_LAYERS_GROUPS[indicator];
+    }
+    params.indicator = _indicator || '""';
 
     dispatch(setAnalysisError(null));
 
@@ -204,6 +238,22 @@ export const onUpdateLocation = createThunkAction('ANALYZE-LOCATIONS-TAB__UPDATE
     }
   });
 
+export const onApplyBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__APPLY-BASIN-ANALYSIS', () =>
+  (dispatch, getState) => {
+    const { analyzeLocations: {
+      points: { list },
+      geostore: { locations }
+    } } = getState();
+
+    dispatch(setAnalysisLoading(true));
+
+    saveGeostore(list, { locations })
+      .then(({ id }) => {
+        dispatch(setGeostore(id));
+        dispatch(onFetchBasinAnalysis());
+      });
+  });
+
 export const onApplyAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__APPLY-ANALYSIS', () =>
   (dispatch, getState) => {
     const { analyzeLocations: {
@@ -238,6 +288,7 @@ export default {
   onAddPoint,
   onRemovePoint,
   onApplyAnalysis,
+  onApplyBasinAnalysis,
   onUpdateLocation,
   onAddLocation,
   onAddUnknownLocation,

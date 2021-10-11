@@ -637,6 +637,15 @@ export const INDICATOR_SCHEME_ORDER = [
   'ucw_cat', 'cep_cat', 'udw_cat', 'usa_cat', 'rri_cat'
 ];
 
+export const INDICATOR_THRESHOLD_TRANSFORMERS = {
+  bws_cat: threshold => parseFloat(threshold) ? parseFloat(threshold) / 100 : 0,
+  bwd_cat: threshold => parseFloat(threshold) ? parseFloat(threshold) / 100 : 0,
+  gtd_cat: threshold => parseFloat(threshold) || 0,
+  cep_cat: threshold => parseFloat(threshold) || 0,
+  udw_cat: threshold => parseFloat(threshold) ? parseFloat(threshold) / 100 : 0,
+  usa_cat: threshold => parseFloat(threshold) ? parseFloat(threshold) / 100 : 0
+};
+
 export const EXCLUSIVE_MONTHLY_INDICATORS = ['bws_cat', 'bwd_cat', 'iav_cat'];
 
 export const DEFAULT_FUTURE_INDICATOR = {

@@ -1,34 +1,17 @@
 import { connect } from 'react-redux';
 
 // actions
-import { getLayers } from 'modules/layers/actions';
-import { setScope, updateUrl, setSidebarWidth } from 'modules/app/actions';
-import { setSelectedPoints, setAnalysis } from 'modules/analyze-locations-tab/actions';
-import { setFilters, setAnalyzerOpen } from 'modules/settings/actions';
+import { setSidebarWidth } from 'modules/app/actions';
 
 // component
 import MapPage from './component';
 
 export default connect(
   state => ({
-    scope: state.app.scope,
-    advanced: state.app.advanced,
-    mapState: state.map,
     loading: state.layers.loading || state.map.loading,
-    filters: state.settings.filters,
-    ponderation: state.settings.ponderation,
-    geostore: state.analyzeLocations.geostore.id,
     analysis: state.analyzeLocations.analysis,
-    analyzerOpen: state.settings.analyzer.open
+    analyzerOpen: state.settings.analyzer.open,
+    scope: state.app.scope
   }),
-  {
-    updateUrl,
-    setScope,
-    setSidebarWidth,
-    setSelectedPoints,
-    setAnalysis,
-    getLayers,
-    setFilters,
-    setAnalyzerOpen
-  }
+  { setSidebarWidth }
 )(MapPage);

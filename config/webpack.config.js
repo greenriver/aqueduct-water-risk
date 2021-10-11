@@ -30,7 +30,7 @@ const config = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        include: path.join(rootPath, 'src')
       },
       {
         test: /\.css$/,
