@@ -642,6 +642,7 @@ export const BASIN_INDICATORS = {
 
 export const HYDRO_LAYER = 'c3844335-db59-4a42-94fa-77ff47adc731';
 export const AQUIFER_LAYER = '695a26a0-92d3-4a5f-98e5-1ebc4d55ba27';
+export const SUPPLY_CHAIN_LAYER = 'ffc878aa-efb1-4258-bd40-2cf9fbfb6ddd';
 
 export default {
   MAP_OPTIONS,
@@ -649,5 +650,6 @@ export default {
   LABEL_LAYER_CONFIG,
   LEGENDS,
   HYDRO_LAYER,
-  AQUIFER_LAYER
+  AQUIFER_LAYER,
+  SUPPLY_CHAIN_LAYER
 };

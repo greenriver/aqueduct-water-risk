@@ -223,28 +223,26 @@ class DesktopMap extends PureComponent {
                 plugin={PluginLeaflet}
                 onReady={() => { if (loading) setLoading(false); }}
               >
-                {layers.map((l, i) => {
-                  return (
-                    <Layer
-                      {...l}
-                      key={l.id}
-                      opacity={l.opacity}
-                      zIndex={1000 - i}
-                      {...l.params && { params: l.params }}
-                      {...l.sqlParams && { sqlParams: l.sqlParams }}
-                      {...l.decodeParams && { decodeParams: l.decodeParams }}
-                      {...l.interactionConfig && {
-                        interactivity: ['carto', 'cartodb'].includes(l.provider)
-                          ? (l.interactionConfig.output || []).map(o => o.column)
-                          : true
-                      }}
-                      events={{
-                        ...mapMode === 'analysis' && { click: (e) => { this.handlePoint(e, _map); } },
-                        ...mapMode === 'view' && { click: (e) => { this.handleClickMap(e); } }
-                      }}
-                    />
-                  );
-                }).filter(e => e)}
+                {layers.map((l, i) => (
+                  <Layer
+                    {...l}
+                    key={l.id}
+                    opacity={l.opacity}
+                    zIndex={1000 - i}
+                    {...l.params && { params: l.params }}
+                    {...l.sqlParams && { sqlParams: l.sqlParams }}
+                    {...l.decodeParams && { decodeParams: l.decodeParams }}
+                    {...l.interactionConfig && {
+                      interactivity: ['carto', 'cartodb'].includes(l.provider)
+                        ? (l.interactionConfig.output || []).map(o => o.column)
+                        : true
+                    }}
+                    events={{
+                      ...mapMode === 'analysis' && { click: (e) => { this.handlePoint(e, _map); } },
+                      ...mapMode === 'view' && { click: (e) => { this.handleClickMap(e); } }
+                    }}
+                  />
+                )).filter(e => e)}
               </LayerManager>
 
               <MapControls>
