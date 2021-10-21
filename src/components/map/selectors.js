@@ -17,8 +17,7 @@ import {
   BASEMAPS,
   MARKER_LAYER,
   HYDRO_LAYER,
-  AQUIFER_LAYER,
-  SUPPLY_CHAIN_LAYER
+  AQUIFER_LAYER
 } from './constants';
 
 // states
@@ -133,7 +132,7 @@ export const getLayerGroup = createSelector(
   _layers => ([{
     dataset: 'random_id',
     visibility: true,
-    layers: _layers.filter(_layer => ![HYDRO_LAYER, AQUIFER_LAYER, SUPPLY_CHAIN_LAYER].includes(_layer.id) && !_layer.isMarkerLayer)
+    layers: _layers.filter(_layer => ![HYDRO_LAYER, AQUIFER_LAYER].includes(_layer.id) && !_layer.isMarkerLayer)
   }])
 );
 
