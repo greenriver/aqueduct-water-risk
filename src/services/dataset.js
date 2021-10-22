@@ -11,7 +11,7 @@ import { WRIAPI } from 'utils/axios';
  */
 
 export const fetchLayersfromDataset = (id, params = {}) =>
-  WRIAPI.get(`/dataset/${id}/layer`, { params })
+  WRIAPI.get(`/dataset/${id}/layer?application=aqueduct-water-risk`, { params })
     .then((response) => {
       const { status, statusText, data } = response;
       if (status >= 400) throw new Error(statusText);

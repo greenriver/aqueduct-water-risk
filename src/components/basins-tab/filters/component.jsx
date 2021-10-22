@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { func, object, string } from 'prop-types';
 
-import { CustomSelect, InfoModal } from 'aqueduct-components';
+import { CustomSelect, InfoModal, ThresholdSlider } from 'aqueduct-components';
 
 // constants
 import { BASIN_MODAL_PROPS, WATER_RISK_PROPS } from 'constants/filters';
@@ -12,7 +12,6 @@ import { debounce, isNil } from 'utils/general';
 
 import ContentModal from '../../ui/modal/content';
 import TooltipIcon from '../../ui/TooltipIcon';
-import ThresholdSlider from './ThresholdSlider';
 
 class Filters extends Component {
   constructor(props) {
@@ -126,6 +125,7 @@ class Filters extends Component {
     const threshold = this.getFilter('threshold');
 
     const indicators = indicatorIds.map(key => ({ label: BASIN_INDICATORS[key].name, value: key }));
+    const currentIndicator = BASIN_INDICATORS[indicator];
 
     return (
       <div>
@@ -165,9 +165,12 @@ class Filters extends Component {
                       </div>
                     </div>
                     <ThresholdSlider
-                      indicatorId={indicator}
                       threshold={parseFloat(threshold)}
-                      handleChange={(value) => { this.handleSliderChange(value); debouncedApply(); }}
+                      onChange={(value) => { this.handleSliderChange(value); debouncedApply(); }}
+                      values={currentIndicator.rangeValues}
+                      defaultValue={currentIndicator.defaultValue}
+                      unit={currentIndicator.unit}
+                      ranges={currentIndicator.items}
                     />
                   </div>
                 </div>
