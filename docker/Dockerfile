@@ -1,5 +1,5 @@
 ARG NODE_VERSION
-FROM node:$NODE_VERSION-jessie
+FROM node:$NODE_VERSION-stretch
 
 # Add Yarn to the sources list
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \

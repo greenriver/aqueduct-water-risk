@@ -164,7 +164,11 @@ class DesktopMap extends PureComponent {
     const { popup: { data: currentData }, setPopupLocation, setPopupData } = this.props;
     const { latlng, data } = e;
     setPopupLocation(latlng);
-    setPopupData({ ...currentData, ...data && data });
+    if (!currentData.counter) {
+      setPopupData({ ...data, counter: 2 });
+    } else {
+      setPopupData({ ...currentData, ...data, counter: currentData.counter - 1 });
+    }
   }
 
   updateMap(event, map) {

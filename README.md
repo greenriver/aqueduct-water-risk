@@ -70,3 +70,8 @@ Once you've finished making whatever changes you need to aqueduct-components, ma
 - [Aqueduct Food](https://www.wri.org/applications/aqueduct/food/#/) - https://github.com/greenriver/aqueduct-food
 - [Aqueduct Floods](https://www.wri.org/applications/aqueduct/floods/) - https://github.com/greenriver/aqueduct-flood
 - [Aqueduct Components](https://greenriver.github.io/aqueduct-components/) - https://github.com/greenriver/aqueduct-components
+
+
+cp -a dist/. ../wriflagship/web/applications/aqueduct/water-risk-atlas/
+
+https://api.resourcewatch.org/dataset/e66d3f7b-6919-4a37-a3aa-74d7ba37ec0b/layer?application=aqueduct-water-risk
