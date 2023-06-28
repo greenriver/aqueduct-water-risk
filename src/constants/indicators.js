@@ -1,3 +1,24 @@
+export const proyectedChangeWaterStress = 'ff7f5739-b2ef-4930-a7ab-7205a72a7dc3';
+export const proyectedChangeSeasonalVariability = '870edc4d-8112-4e3f-a823-3f6d0f02bf79';
+export const proyectedChangeWaterSupply = '9a59e767-c50a-4f05-9b71-6104acaa4108';
+export const proyectedChangeWaterDemand = 'c7c4d3b7-b6f6-46dc-bb03-311cc2a5557d';
+
+export const absoluteWaterStress = 'a7c3ffe1-aa0e-46ed-b947-d3cbafa2a5d1';
+export const absoluteSeasonalVariability = '3ad0a9aa-36e7-476b-9f78-113f1d76144a';
+export const absoluteWaterSupply = '4bbc7f03-c5fd-46d6-8212-318f3f3d85a3';
+export const absoluteWaterDemand = '0157ee28-48a2-43e7-8d68-b0f1d4a39bb1';
+
+
+// export const proyectedChangeWaterStress = '24211811-25fb-4e02-915d-b96f9a1aa43f';
+// export const proyectedChangeSeasonalVariability = '78fd9889-3514-4113-82d1-f5534e70b80d';
+// export const proyectedChangeWaterSupply = 'f8009540-f1a8-49a9-8950-b8cff9f0bb9c';
+// export const proyectedChangeWaterDemand = 'e50bb8a3-237b-44cf-ba5b-5cc0943ae141';
+
+// export const absoluteWaterStress = '1b4f2592-09fd-4ac4-afcd-5a0a9a63617b';
+// export const absoluteSeasonalVariability = '292105a6-5e4a-4bc2-8b60-41ba86564504';
+// export const absoluteWaterSupply = '13a99bb7-34f1-4aab-bd86-f6b7b4ffd30b';
+// export const absoluteWaterDemand = '2c41af51-4ea0-4e00-a7ab-30d7268c39ad';
+
 export const INDICATORS = [
   {
     id: 'w_awr_def_tot_cat',
@@ -91,16 +112,6 @@ export const INDICATORS = [
   }
 ];
 
-const proyectedChangeWaterStress = '24211811-25fb-4e02-915d-b96f9a1aa43f';
-const proyectedChangeSeasonalVariability = '78fd9889-3514-4113-82d1-f5534e70b80d';
-const proyectedChangeWaterSupply = 'f8009540-f1a8-49a9-8950-b8cff9f0bb9c';
-const proyectedChangeWaterDemand = 'e50bb8a3-237b-44cf-ba5b-5cc0943ae141';
-
-const absoluteWaterStress = '1b4f2592-09fd-4ac4-afcd-5a0a9a63617b';
-const absoluteSeasonalVariability = '292105a6-5e4a-4bc2-8b60-41ba86564504';
-const absoluteWaterSupply = '13a99bb7-34f1-4aab-bd86-f6b7b4ffd30b';
-const absoluteWaterDemand = '2c41af51-4ea0-4e00-a7ab-30d7268c39ad';
-
 export const FUTURE_INDICATORS = {
   bs: [
     // projected change in water stress
@@ -157,16 +168,16 @@ export const SCENARIO_DESCRIPTIONS = {
 // "equivalence" of future indicators through their projection
 export const FUTURE_INDICATORS_SWAP = {
   bs: {
-    absoluteWaterStress: proyectedChangeWaterStress,
-    absoluteSeasonalVariability: proyectedChangeSeasonalVariability,
-    absoluteWaterSupply: proyectedChangeWaterSupply,
-    absoluteWaterDemand: proyectedChangeWaterDemand
+    [absoluteWaterStress]: proyectedChangeWaterStress,
+    [absoluteSeasonalVariability]: proyectedChangeSeasonalVariability,
+    [absoluteWaterSupply]: proyectedChangeWaterSupply,
+    [absoluteWaterDemand]: proyectedChangeWaterDemand
   },
   absolute: {
-    proyectedChangeWaterStress: absoluteWaterStress,
-    proyectedStressSeasonalVariability: absoluteSeasonalVariability,
-    proyectedChangeWaterSupply: absoluteWaterSupply,
-    proyectedChangeWaterDemand: absoluteWaterDemand
+    [proyectedChangeWaterStress]: absoluteWaterStress,
+    [proyectedChangeSeasonalVariability]: absoluteSeasonalVariability,
+    [proyectedChangeWaterSupply]: absoluteWaterSupply,
+    [proyectedChangeWaterDemand]: absoluteWaterDemand
   }
 };
 
@@ -192,14 +203,14 @@ export const INDICATOR_NAMES_RELATION = {
   usa_cat: 'Unimproved/No Sanitation',
   rri_cat: 'Peak RepRisk Country ESG Risk Index',
   // future
-  proyectedChangeWaterStress: 'Water Stress',
-  proyectedStressSeasonalVariability: 'Seasonal Variability',
-  proyectedChangeWaterSupply: 'Water Supply',
-  proyectedChangeWaterDemand: 'Water Demand',
-  absoluteWaterStress: 'Water Stress',
-  absoluteSeasonalVariability: 'Seasonal Variability',
-  absoluteWaterSupply: 'Water Supply',
-  absoluteWaterDemand: 'Water Demand'
+  [proyectedChangeWaterStress]: 'Water Stress',
+  [proyectedChangeSeasonalVariability]: 'Seasonal Variability',
+  [proyectedChangeWaterSupply]: 'Water Supply',
+  [proyectedChangeWaterDemand]: 'Water Demand',
+  [absoluteWaterStress]: 'Water Stress',
+  [absoluteSeasonalVariability]: 'Seasonal Variability',
+  [absoluteWaterSupply]: 'Water Supply',
+  [absoluteWaterDemand]: 'Water Demand'
 };
 
 export const INDICATOR_DESCRIPTIONS = {
@@ -465,7 +476,7 @@ export const INDICATOR_DESCRIPTIONS = {
     }]
   },
   // future
-  proyectedChangeWaterStress: () => ({
+  [proyectedChangeWaterStress]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterStress],
     description: `Water stress is an indicator of competition for water resources and is defined
       informally as the ratio of demand for water by human society divided by available water.`,
@@ -474,7 +485,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  proyectedStressSeasonalVariability: () => ({
+  [proyectedChangeSeasonalVariability]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeSeasonalVariability],
     description: `Seasonal variability (SV) is an indicator of the variability between months of the year.
       Increasing SV may indicate wetter wet months and drier dry months, and higher likelihood of droughts or wet periods.
@@ -486,7 +497,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  proyectedChangeWaterSupply: () => ({
+  [proyectedChangeWaterSupply]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterSupply],
     description: `Total blue water (renewable surface water) was our indicator of water supply.
       Projected change in total blue water is equal to the 21-year mean around the target year divided by the baseline period of 1950–2010.`,
@@ -495,7 +506,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  proyectedChangeWaterDemand: () => ({
+  [proyectedChangeWaterDemand]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterDemand],
     description: `Water demand was measured as water withdrawals. Projected change in water withdrawals is equal to the summarized
     withdrawals for the target year, divided by the baseline year, 2010. Since irrigation consumptive use varies based on climate,
@@ -507,7 +518,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  absoluteWaterStress: () => ({
+  [absoluteWaterStress]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteWaterStress],
     description: `Water stress is an indicator of competition for water resources and is defined informally
       as the ratio of demand for water by human society divided by available water.`,
@@ -516,7 +527,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  absoluteSeasonalVariability: () => ({
+  [absoluteSeasonalVariability]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteSeasonalVariability],
     description: `Seasonal variability (SV) is an indicator of the variability between months of the year.
       Increasing SV may indicate wetter wet months and drier dry months, and higher likelihood of droughts or wet periods.
@@ -528,7 +539,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  absoluteWaterSupply: () => ({
+  [absoluteWaterSupply]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteWaterSupply],
     description: `Total blue water (renewable surface water) was our indicator of water supply.
       Projected change in total blue water is equal to the 21-year mean around the target year divided by the baseline period of 1950–2010.`,
@@ -537,7 +548,7 @@ export const INDICATOR_DESCRIPTIONS = {
       link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
     }]
   }),
-  absoluteWaterDemand: () => ({
+  [absoluteWaterDemand]: () => ({
     name: INDICATOR_NAMES_RELATION.rri_cat,
     description: `Water demand was measured as water withdrawals. Projected change in water withdrawals is equal to the summarized
     withdrawals for the target year, divided by the baseline year, 2010. Since irrigation consumptive use varies based on climate,
