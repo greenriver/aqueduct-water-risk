@@ -1,8 +1,9 @@
-import { APP_DEFINITIONS } from "aqueduct-components";
+import { APP_DEFINITIONS } from 'aqueduct-components';
 
 export const TIMEFRAME_OPTIONS = [
   { value: '2030', label: '2030' },
-  { value: '2040', label: '2040' }
+  { value: '2050', label: '2050' },
+  { value: '2080', label: '2080' }
 ];
 
 export const timeScaleOptions = [

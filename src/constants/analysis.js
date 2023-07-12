@@ -1,4 +1,4 @@
-import { absoluteSeasonalVariability, absoluteWaterDemand, absoluteWaterStress, absoluteWaterSupply, proyectedChangeSeasonalVariability, proyectedChangeWaterDemand, proyectedChangeWaterStress, proyectedChangeWaterSupply } from './indicators';
+import { absoluteInterannualVariability, absoluteSeasonalVariability, absoluteWaterDemand, absoluteWaterStress, absoluteWaterSupply, proyectedChangeInterannualVariability, proyectedChangeSeasonalVariability, proyectedChangeWaterDemand, proyectedChangeWaterStress, proyectedChangeWaterSupply } from './indicators';
 
 export const TABLE_INDICATOR_VALUES = {
   w_awr_def_tot_cat: 'w_awr_def_tot_label',
@@ -15,7 +15,9 @@ export const FUTURE_LAYERS_GROUPS = {
   [proyectedChangeWaterSupply]: 'water_supply',
   [absoluteWaterSupply]: 'water_supply',
   [proyectedChangeWaterDemand]: 'water_demand',
-  [absoluteWaterDemand]: 'water_demand'
+  [absoluteWaterDemand]: 'water_demand',
+  [proyectedChangeInterannualVariability]: 'interannual_variability',
+  [absoluteInterannualVariability]: 'interannual_variability'
 };
 
 export default {
