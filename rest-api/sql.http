@@ -1,0 +1,41 @@
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT basinid, label FROM water_risk_indicators_projections WHERE year = 2030 and type = 'future_value' and indicator = 'water_demand' and scenario = 'pessimistic') SELECT s.cartodb_id, s.basinid, s.the_geom, s.the_geom_webmercator, r.label FROM aqueduct_projections_20150309 s  LEFT JOIN r on s.basinid=r.basinid WHERE s.the_geom is not null and r.label is not null
+
+
+### new data
+# GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'water_stress' and scenario = 'pessimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM aqueduct_projections_20150309 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'water_stress' and scenario = 'pessimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+
+
+### this is r
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'water_stress' and scenario = 'pessimistic'
+
+### water supply
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'water_supply' and scenario = 'pessimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+
+
+### Interannual variability indicator
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'interannual_variability' and scenario = 'pessimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'interannual_variability' and scenario = 'optimistic'
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'interannual_variability' and scenario = 'optimistic' GROUP BY label
+### Interannual variability indicator change from baseline
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'change_from_baseline' and indicator = 'interannual_variability' and scenario = 'pessimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'change_from_baseline' and indicator = 'interannual_variability' and scenario = 'pessimistic' GROUP BY label
+
+
+
+### absolute
+with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'interannual_variability' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+
+
+### change
+with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'change_from_baseline' and indicator = 'interannual_variability' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+
+
+
+
+### Water stress change
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'change_from_baseline' and indicator = 'water_stress' and scenario = 'optimistic' GROUP BY label
+
+
+### Seasonal variability
+GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'seasonal_variability' and scenario = 'optimistic' GROUP BY label

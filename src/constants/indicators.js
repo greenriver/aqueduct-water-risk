@@ -1,12 +1,25 @@
+// export const proyectedChangeWaterStress = 'ff7f5739-b2ef-4930-a7ab-7205a72a7dc3';
+// export const proyectedChangeSeasonalVariability = '870edc4d-8112-4e3f-a823-3f6d0f02bf79';
+// export const proyectedChangeWaterSupply = '9a59e767-c50a-4f05-9b71-6104acaa4108';
+// export const proyectedChangeWaterDemand = 'c7c4d3b7-b6f6-46dc-bb03-311cc2a5557d';
+
+// export const absoluteWaterStress = 'a7c3ffe1-aa0e-46ed-b947-d3cbafa2a5d1';
+// export const absoluteSeasonalVariability = '3ad0a9aa-36e7-476b-9f78-113f1d76144a';
+// export const absoluteWaterSupply = '4bbc7f03-c5fd-46d6-8212-318f3f3d85a3';
+// export const absoluteWaterDemand = '0157ee28-48a2-43e7-8d68-b0f1d4a39bb1';
+
+
 export const proyectedChangeWaterStress = '24211811-25fb-4e02-915d-b96f9a1aa43f';
 export const proyectedChangeSeasonalVariability = '78fd9889-3514-4113-82d1-f5534e70b80d';
 export const proyectedChangeWaterSupply = 'f8009540-f1a8-49a9-8950-b8cff9f0bb9c';
 export const proyectedChangeWaterDemand = 'e50bb8a3-237b-44cf-ba5b-5cc0943ae141';
+export const proyectedChangeInterannualVariability = '5000786e-35f4-401a-9304-595c374441ea';
 
 export const absoluteWaterStress = '1b4f2592-09fd-4ac4-afcd-5a0a9a63617b';
-export const absoluteSeasonalVariability = '292105a6-5e4a-4bc2-8b60-41ba86564504';
+export const absoluteSeasonalVariability = '70198f5e-3967-4bf9-b8a5-24d3b7e20561';
 export const absoluteWaterSupply = '13a99bb7-34f1-4aab-bd86-f6b7b4ffd30b';
 export const absoluteWaterDemand = '2c41af51-4ea0-4e00-a7ab-30d7268c39ad';
+export const absoluteInterannualVariability = 'b7e4a4d3-7a9a-4683-ba01-9a806877e072';
 
 export const INDICATORS = [
   {
@@ -122,6 +135,11 @@ export const FUTURE_INDICATORS = {
     {
       id: proyectedChangeWaterDemand,
       name: 'Water Demand'
+    },
+    // projected change Interannual Variability
+    {
+      id: proyectedChangeInterannualVariability,
+      name: 'Interannual variability'
     }
   ],
   absolute: [
@@ -144,6 +162,11 @@ export const FUTURE_INDICATORS = {
     {
       id: absoluteWaterDemand,
       name: 'Water Demand'
+    },
+    // proyected Interannual Variability
+    {
+      id: absoluteInterannualVariability,
+      name: 'Interannual variability'
     }
   ]
 };
@@ -160,13 +183,15 @@ export const FUTURE_INDICATORS_SWAP = {
     [absoluteWaterStress]: proyectedChangeWaterStress,
     [absoluteSeasonalVariability]: proyectedChangeSeasonalVariability,
     [absoluteWaterSupply]: proyectedChangeWaterSupply,
-    [absoluteWaterDemand]: proyectedChangeWaterDemand
+    [absoluteWaterDemand]: proyectedChangeWaterDemand,
+    [absoluteInterannualVariability]: proyectedChangeInterannualVariability
   },
   absolute: {
     [proyectedChangeWaterStress]: absoluteWaterStress,
     [proyectedChangeSeasonalVariability]: absoluteSeasonalVariability,
     [proyectedChangeWaterSupply]: absoluteWaterSupply,
-    [proyectedChangeWaterDemand]: absoluteWaterDemand
+    [proyectedChangeWaterDemand]: absoluteWaterDemand,
+    [proyectedChangeInterannualVariability]: absoluteInterannualVariability
   }
 };
 
@@ -196,10 +221,12 @@ export const INDICATOR_NAMES_RELATION = {
   [proyectedChangeSeasonalVariability]: 'Seasonal Variability',
   [proyectedChangeWaterSupply]: 'Water Supply',
   [proyectedChangeWaterDemand]: 'Water Demand',
+  [proyectedChangeInterannualVariability]: 'Interannual Variability',
   [absoluteWaterStress]: 'Water Stress',
   [absoluteSeasonalVariability]: 'Seasonal Variability',
   [absoluteWaterSupply]: 'Water Supply',
-  [absoluteWaterDemand]: 'Water Demand'
+  [absoluteWaterDemand]: 'Water Demand',
+  [absoluteInterannualVariability]: 'Interannual Variability'
 };
 
 export const INDICATOR_DESCRIPTIONS = {
