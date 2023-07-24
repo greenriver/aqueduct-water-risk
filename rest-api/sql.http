@@ -39,6 +39,7 @@ GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM w
 
 ### Seasonal variability
 GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'seasonal_variability' and scenario = 'optimistic' GROUP BY label
+GET https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'interannual_variability' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
 
 ### Water depletion
 GET https://wri-rw.carto.com/api/v2/sql?q=SELECT DISTINCT label, COUNT(*) FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'water_depletion' and scenario = 'optimistic' GROUP BY label
@@ -55,3 +56,7 @@ with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WH
 
 with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'seasonal_variability' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
 https://wri-rw.carto.com/api/v2/sql?q=with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = 2030 and type = 'future_value' and indicator = 'seasonal_variability' and scenario = 'optimistic') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
+
+
+
+with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'seasonal_variability' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null
