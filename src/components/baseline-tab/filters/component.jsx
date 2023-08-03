@@ -13,7 +13,7 @@ import {
 import {
   timeScaleOptions,
   MONTH_OPTIONS,
-  TIMEFRAME_MODAL_DESCRIPTION
+  TEMPORAL_RESOLUTION_MODAL_DESCRIPTION
 } from 'constants/filters';
 
 class Filters extends PureComponent {
@@ -23,7 +23,7 @@ class Filters extends PureComponent {
     if (slug === 'temporal-resolution') {
       return toggleModal(true, {
         children: InfoModal,
-        childrenProps: { info: TIMEFRAME_MODAL_DESCRIPTION }
+        childrenProps: { info: TEMPORAL_RESOLUTION_MODAL_DESCRIPTION }
       });
     }
 

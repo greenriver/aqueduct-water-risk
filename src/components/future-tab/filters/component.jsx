@@ -13,7 +13,8 @@ import { SCENARIO_OPTIONS } from 'constants/app';
 import {
   projectionOptions,
   SCENARIO_MODAL_DESCRIPTION,
-  TIMEFRAME_OPTIONS
+  TIMEFRAME_OPTIONS,
+  TIMEFRAME_MODAL_DESCRIPTION
 } from 'constants/filters';
 import { FUTURE_INDICATORS_SWAP } from 'constants/indicators';
 
@@ -25,6 +26,13 @@ class Filters extends PureComponent {
       return toggleModal(true, {
         children: InfoModal,
         childrenProps: { info: SCENARIO_MODAL_DESCRIPTION }
+      });
+    }
+
+    if (slug === 'timeframe') {
+      return toggleModal(true, {
+        children: InfoModal,
+        childrenProps: { info: TIMEFRAME_MODAL_DESCRIPTION }
       });
     }
 
@@ -61,6 +69,16 @@ class Filters extends PureComponent {
               <div className="c-filters-item">
                 <div className="filter-item-header">
                   <span className="title">Timeframe</span>
+                  <button
+                    type="button"
+                    className="icon-container"
+                    onClick={() => this.onClickInfoFilters('timeframe')}
+                  >
+                    <Icon
+                      name="icon-question"
+                      className="title-icon"
+                    />
+                  </button>
                 </div>
                 <Timeline
                   items={TIMEFRAME_OPTIONS}

@@ -253,7 +253,7 @@ export const INDICATOR_DESCRIPTIONS = {
     indicate higher water risk.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   w_awr_def_qan_cat: {
@@ -262,7 +262,7 @@ export const INDICATOR_DESCRIPTIONS = {
     by aggregating all selected indicators from the Physical Risk Quantity category. Higher values indicate higher water quantity risks.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   w_awr_def_qal_cat: {
@@ -271,7 +271,7 @@ export const INDICATOR_DESCRIPTIONS = {
     by aggregating all selected indicators from the Physical Risk Quality category. Higher values indicate higher water quality risks.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   w_awr_def_rrr_cat: {
@@ -281,40 +281,33 @@ export const INDICATOR_DESCRIPTIONS = {
     reputational water risks.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   // Water Quantity Risk
   bws_cat: {
     name: INDICATOR_NAMES_RELATION.bws_cat,
-    description: `Baseline water stress measures the ratio of total water
-    withdrawals to available renewable surface and groundwater supplies. Water withdrawals include domestic,
-    industrial, irrigation, and livestock consumptive and
-    nonconsumptive uses. Available renewable water supplies include the impact of upstream consumptive water
-    users and large dams on downstream water availability.
-    Higher values indicate more competition among
-    users.`,
+    description: `Baseline water stress measures the ratio of total water demand to available renewable surface
+     and groundwater supplies. Water demand include domestic, industrial, irrigation, and livestock uses. 
+     Available renewable water supplies include the impact of upstream consumptive water users and large dams
+     on downstream water availability. Higher values indicate more competition among users.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   bwd_cat: {
     name: INDICATOR_NAMES_RELATION.bwd_cat,
-    description: `Baseline water depletion measures the ratio of total water
-    consumption to available renewable water supplies.
-    Total water consumption includes domestic, industrial,
-    irrigation, and livestock consumptive uses. Available
-    renewable water supplies include the impact of upstream
-    consumptive water users and large dams on downstream
-    water availability. Higher values indicate larger
-    impact on the local water supply and decreased
-    water availability for downstream users. Baseline water depletion is similar to baseline water
-    stress; however, instead of looking at total water withdrawal (consumptive plus nonconsumptive), baseline
-    water depletion is calculated using consumptive withdrawal only. `,
+    description: `Baseline water depletion measures the ratio of total water consumption to available renewable 
+    water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock 
+    consumptive uses. Available renewable water supplies include the impact of upstream consumptive water 
+    users and large dams on downstream water availability. Higher values indicate larger impact on the local 
+    water supply and decreased water availability for downstream users. Baseline water depletion is similar to 
+    baseline water stress; however, instead of looking at total water demand (consumptive plus nonconsumptive), 
+    baseline water depletion is calculated using consumptive withdrawal only`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   gtd_cat: {
@@ -327,7 +320,7 @@ export const INDICATOR_DESCRIPTIONS = {
     withdrawals.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   iav_cat: {
@@ -336,7 +329,7 @@ export const INDICATOR_DESCRIPTIONS = {
     renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year. `,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   sev_cat: {
@@ -347,7 +340,7 @@ export const INDICATOR_DESCRIPTIONS = {
     values indicate wider variations of available supply within a year.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   drr_cat: {
@@ -357,7 +350,7 @@ export const INDICATOR_DESCRIPTIONS = {
     Higher values indicate higher risk of drought.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   rfr_cat: {
@@ -377,7 +370,7 @@ export const INDICATOR_DESCRIPTIONS = {
     by Riverine floods on average.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   cfr_cat: {
@@ -397,7 +390,7 @@ export const INDICATOR_DESCRIPTIONS = {
     to be impacted by coastal floods on average.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   // Water Quality Risk
@@ -421,7 +414,7 @@ export const INDICATOR_DESCRIPTIONS = {
     without treatment.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   cep_cat: {
@@ -445,7 +438,7 @@ export const INDICATOR_DESCRIPTIONS = {
     downstream.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   // Regulatory and Reputational
@@ -461,7 +454,7 @@ export const INDICATOR_DESCRIPTIONS = {
     water supplies.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   usa_cat: {
@@ -478,7 +471,7 @@ export const INDICATOR_DESCRIPTIONS = {
     improved sanitation services.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   rri_cat: {
@@ -504,92 +497,104 @@ export const INDICATOR_DESCRIPTIONS = {
     exposure.`,
     sources: [{
       name: 'WRI Aqueduct 2019',
-      link: 'https://www.wri.org/publication/aqueduct-30'
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
   // future
   [proyectedChangeWaterStress]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterStress],
-    description: `Water stress is an indicator of competition for water resources and is defined
-      informally as the ratio of demand for water by human society divided by available water.`,
+    description: 'Water stress is an indicator of competition for water resources and is defined informally as the ratio of demand for water by human society divided by available water.',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [proyectedChangeSeasonalVariability]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeSeasonalVariability],
-    description: `Seasonal variability (SV) is an indicator of the variability between months of the year.
-      Increasing SV may indicate wetter wet months and drier dry months, and higher likelihood of droughts or wet periods.
-      We used the within-year coefficient of variance between monthly total blue water as our indicator of seasonal variability of water supply.
-      We calculated the coefficient of variance between months for each year, then estimated projected change in seasonal variability
-      as the 21-year mean around the target year over the baseline period mean.`,
+    description: 'Seasonal variability measures the average within-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations of available supply within a year.',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [proyectedChangeWaterSupply]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterSupply],
-    description: `Total blue water (renewable surface water) was our indicator of water supply.
-      Projected change in total blue water is equal to the 21-year mean around the target year divided by the baseline period of 1950–2010.`,
+    description: 'Available blue water—the total amount of renewable freshwater available to a sub-basin with upstream consumption removed—includes surface flow, interflow, and groundwater recharge. Available blue water is displayed as a flux (cm/year).',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [proyectedChangeWaterDemand]: () => ({
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterDemand],
-    description: `Water demand was measured as water withdrawals. Projected change in water withdrawals is equal to the summarized
-    withdrawals for the target year, divided by the baseline year, 2010. Since irrigation consumptive use varies based on climate,
-    we generated unique estimates of consumptive and non-consumptive agricultural withdrawal for each year.
-    Estimates for consumptive and non-consumptive agricultural withdrawal for each ensemble member, scenario,
-    and target year are the mean of the 21-year window around the target year.`,
+    description: 'Gross demand is the maximum potential water required to meet sectoral demands. Sectoral water demand includes: domestic, industrial, irrigation, and livestock. Demand is displayed as a flux (cm/year).',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
+    }]
+  }),
+  [proyectedChangeInterannualVariability]: () => ({
+    name: INDICATOR_NAMES_RELATION[proyectedChangeInterannualVariability],
+    description: 'Interannual variability measures the average between-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year.',
+    sources: [{
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
+    }]
+  }),
+  [proyectedChangeWaterDepletion]: () => ({
+    name: INDICATOR_NAMES_RELATION[proyectedChangeWaterDepletion],
+    description: 'Water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Water depletion is similar to water stress; however, instead of looking at total water demand, water depletion is calculated using consumptive withdrawal only.',
+    sources: [{
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [absoluteWaterStress]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteWaterStress],
-    description: `Water stress is an indicator of competition for water resources and is defined informally
-      as the ratio of demand for water by human society divided by available water.`,
+    description: 'Water stress is an indicator of competition for water resources and is defined informally as the ratio of demand for water by human society divided by available water.',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [absoluteSeasonalVariability]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteSeasonalVariability],
-    description: `Seasonal variability (SV) is an indicator of the variability between months of the year.
-      Increasing SV may indicate wetter wet months and drier dry months, and higher likelihood of droughts or wet periods.
-      We used the within-year coefficient of variance between monthly total blue water as our indicator of seasonal variability of water supply.
-      We calculated the coefficient of variance between months for each year, then estimated projected change in seasonal variability
-      as the 21-year mean around the target year over the baseline period mean.`,
+    description: 'Seasonal variability measures the average within-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations of available supply within a year.',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [absoluteWaterSupply]: () => ({
     name: INDICATOR_NAMES_RELATION[absoluteWaterSupply],
-    description: `Total blue water (renewable surface water) was our indicator of water supply.
-      Projected change in total blue water is equal to the 21-year mean around the target year divided by the baseline period of 1950–2010.`,
+    description: 'Available blue water—the total amount of renewable freshwater available to a sub-basin with upstream consumption removed—includes surface flow, interflow, and groundwater recharge. Available blue water is displayed as a flux (cm/year).',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   }),
   [absoluteWaterDemand]: () => ({
-    name: INDICATOR_NAMES_RELATION.rri_cat,
-    description: `Water demand was measured as water withdrawals. Projected change in water withdrawals is equal to the summarized
-    withdrawals for the target year, divided by the baseline year, 2010. Since irrigation consumptive use varies based on climate,
-    we generated unique estimates of consumptive and non-consumptive agricultural withdrawal for each year.
-    Estimates for consumptive and non-consumptive agricultural withdrawal for each ensemble member, scenario,
-    and target year are the mean of the 21-year window around the target year.`,
+    name: INDICATOR_NAMES_RELATION[absoluteWaterDemand],
+    description: 'Gross demand is the maximum potential water required to meet sectoral demands. Sectoral water demand includes: domestic, industrial, irrigation, and livestock. Demand is displayed as a flux (cm/year).',
     sources: [{
-      name: 'WRI Aqueduct 2015',
-      link: 'https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using'
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
+    }]
+  }),
+  [absoluteInterannualVariability]: () => ({
+    name: INDICATOR_NAMES_RELATION[absoluteInterannualVariability],
+    description: 'Interannual variability measures the average between-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year.',
+    sources: [{
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
+    }]
+  }),
+  [absoluteWaterDepletion]: () => ({
+    name: INDICATOR_NAMES_RELATION[absoluteWaterDepletion],
+    description: 'Water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Water depletion is similar to water stress; however, instead of looking at total water demand, water depletion is calculated using consumptive withdrawal only.',
+    sources: [{
+      name: 'Aqueduct 4.0',
+      link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   })
 };
