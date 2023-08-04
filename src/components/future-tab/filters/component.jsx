@@ -14,7 +14,8 @@ import {
   projectionOptions,
   SCENARIO_MODAL_DESCRIPTION,
   TIMEFRAME_OPTIONS,
-  TIMEFRAME_MODAL_DESCRIPTION
+  TIMEFRAME_MODAL_DESCRIPTION,
+  UNITOFMESUREMENT_MODAL_DESCRIPTION
 } from 'constants/filters';
 import { FUTURE_INDICATORS_SWAP } from 'constants/indicators';
 
@@ -33,6 +34,13 @@ class Filters extends PureComponent {
       return toggleModal(true, {
         children: InfoModal,
         childrenProps: { info: TIMEFRAME_MODAL_DESCRIPTION }
+      });
+    }
+
+    if (slug === 'unit-of-mesurement') {
+      return toggleModal(true, {
+        children: InfoModal,
+        childrenProps: { info: UNITOFMESUREMENT_MODAL_DESCRIPTION }
       });
     }
 
@@ -128,12 +136,22 @@ class Filters extends PureComponent {
               <div className="c-filters-item">
                 <div className="filter-item-header">
                   <span className="title">Unit of Measurement</span>
+                  <button
+                    type="button"
+                    className="icon-container"
+                    onClick={() => this.onClickInfoFilters('unit-of-mesurement')}
+                  >
+                    <Icon
+                      name="icon-question"
+                      className="title-icon"
+                    />
+                  </button>
                 </div>
                 <div className="time-scale-container">
                   <RadioGroup
                     name="time-scale"
                     className="-inline"
-                    items={projectionOptions}
+                    items={projectionOptions.filter(o => o.label !== 'Change from baseline')}
                     selected={projection}
                     onChange={({ value }) => { this.onSelectProjection(value); }}
                   />

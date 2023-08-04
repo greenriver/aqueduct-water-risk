@@ -33,8 +33,8 @@ export const projectionOptions = [
 
 export const TIMEFRAME_MODAL_DESCRIPTION = {
   title: 'Timeframe',
-  description: `Each year represents the long-term trend over a 30 year period.
-
+  instructions: 'Each year represents the long-term trend over a 30 year period.',
+  description: `
   <p>2030: 2015-2045</p>
   
   <p>2050: 2035-2065</p>
@@ -45,6 +45,7 @@ export const TIMEFRAME_MODAL_DESCRIPTION = {
 
 export const SCENARIO_MODAL_DESCRIPTION = {
   title: 'Scenarios',
+  instructions: 'Select the scenario you want to check for each year and indicator',
   description: `<p>Optimistic:</p>
   <p>The "optimistic" scenario (SSP1 RCP2.6) represents a future that limits the rise in average global surface temperatures by 2100 to 1.3°C to 2.4°C compared to preindustrial levels (1850-1900). SSP1 is characterized by sustainable socioeconomic growth: stringent environmental regulations and effective institutions, rapid technological change and improved water use efficiencies, and low population growth.</p>
 
@@ -56,6 +57,22 @@ export const SCENARIO_MODAL_DESCRIPTION = {
   
   <p>GLOBAL CIRCULATION MODELS</p>
   <p>For each scenario, we ran five GCMs to account for the uncertainty in climate models: GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MRI-ESM2-0, and UKESM1-0-LL. They were chosen because they represent a span of temperature-precipitation variations (e.g., wet-cold). We display the median of the 5 GCMs for each scenario.</p>`,
+  source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
+};
+
+export const UNITOFMESUREMENT_MODAL_DESCRIPTION = {
+  title: 'Unit of mesurement',
+  instructions: 'Review the details that are associated with this measurement.',
+  description: `
+  <p>ABSOLUTE VALUE</p>
+  <p>The Absolute value shows the projected score or volume at the selected timeframe. It represents the median of the 5 global climate models run under the scenario of choice.</p>
+  
+  <p>GLOBAL CIRCULATION MODELS</p>
+  <p>For each scenario, we ran five GCMs to account for the uncertainty in climate models: GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MRI-ESM2-0, and UKESM1-0-LL. They were chosen because they represent a span of temperature-precipitation variations (e.g., wet-cold).</p>
+  
+  <p>COMING SOON:</p>
+  <p>Aqueduct will soon include “Change from baseline” and “Uncertainty” terms. Change from baseline will show the relative change expected in the future year compared to the 2019 baseline. Uncertainty will show the level of alignment among the 5 global climate models.</p>
+  `,
   source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
 };
 
@@ -89,5 +106,6 @@ export default {
   SCENARIO_MODAL_DESCRIPTION,
   TEMPORAL_RESOLUTION_MODAL_DESCRIPTION,
   TIMEFRAME_MODAL_DESCRIPTION,
+  UNITOFMESUREMENT_MODAL_DESCRIPTION,
   BASIN_MODAL_PROPS
 };
