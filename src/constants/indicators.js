@@ -252,7 +252,7 @@ export const INDICATOR_DESCRIPTIONS = {
     from the Physical Quantity, Quality and Regulatory & Reputational Risk categories. Higher values
     indicate higher water risk.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -261,7 +261,7 @@ export const INDICATOR_DESCRIPTIONS = {
     description: `Physical risks quantity measures risk related to too little or too much water,
     by aggregating all selected indicators from the Physical Risk Quantity category. Higher values indicate higher water quantity risks.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -270,7 +270,7 @@ export const INDICATOR_DESCRIPTIONS = {
     description: `Physical risks quality measures risk related to water that is unfit for use,
     by aggregating all selected indicators from the Physical Risk Quality category. Higher values indicate higher water quality risks.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -280,7 +280,7 @@ export const INDICATOR_DESCRIPTIONS = {
     as well as conflicts with the public regarding water issues. Higher values indicate higher regulatory and
     reputational water risks.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -292,7 +292,7 @@ export const INDICATOR_DESCRIPTIONS = {
      Available renewable water supplies include the impact of upstream consumptive water users and large dams
      on downstream water availability. Higher values indicate more competition among users.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -306,7 +306,7 @@ export const INDICATOR_DESCRIPTIONS = {
     baseline water stress; however, instead of looking at total water demand (consumptive plus nonconsumptive), 
     baseline water depletion is calculated using consumptive withdrawal only`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -319,7 +319,7 @@ export const INDICATOR_DESCRIPTIONS = {
     higher levels of unsustainable groundwater
     withdrawals.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -328,7 +328,7 @@ export const INDICATOR_DESCRIPTIONS = {
     description: `Interannual variability measures the average betweenyear variability of available water supply, including both
     renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year. `,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -339,7 +339,7 @@ export const INDICATOR_DESCRIPTIONS = {
     renewable surface and groundwater supplies. Higher
     values indicate wider variations of available supply within a year.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -349,7 +349,7 @@ export const INDICATOR_DESCRIPTIONS = {
     occur, the population and assets exposed, and the vulnerability of the population and assets to adverse effects.
     Higher values indicate higher risk of drought.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -369,7 +369,7 @@ export const INDICATOR_DESCRIPTIONS = {
     years to produce the “expected annual affected population.” Higher values indicate that a greater proportion of the population is expected to be impacted
     by Riverine floods on average.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -389,7 +389,7 @@ export const INDICATOR_DESCRIPTIONS = {
     greater proportion of the population is expected
     to be impacted by coastal floods on average.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -413,7 +413,7 @@ export const INDICATOR_DESCRIPTIONS = {
     little treatment. Higher values indicate higher percentages of point source wastewater discharged
     without treatment.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -437,7 +437,7 @@ export const INDICATOR_DESCRIPTIONS = {
     growth and eutrophication in coastal waters
     downstream.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -453,7 +453,7 @@ export const INDICATOR_DESCRIPTIONS = {
     where people have less access to safe drinking
     water supplies.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -470,7 +470,7 @@ export const INDICATOR_DESCRIPTIONS = {
     indicate areas where people have less access to
     improved sanitation services.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
@@ -496,7 +496,7 @@ export const INDICATOR_DESCRIPTIONS = {
     years. The higher the value, the higher the risk
     exposure.`,
     sources: [{
-      name: 'WRI Aqueduct 2019',
+      name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
   },
