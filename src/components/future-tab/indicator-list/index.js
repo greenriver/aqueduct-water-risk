@@ -22,10 +22,10 @@ export default connect(
   }),
   dispatch => ({
     setFilters: (filter) => { dispatch(setFilters(filter)); },
-    openModal: (indicator, scenario) => {
+    openModal: (indicator) => {
       dispatch(toggleModal(true, {
         children: IndicatorModal,
-        childrenProps: { info: INDICATOR_DESCRIPTIONS[indicator](scenario) }
+        childrenProps: { info: INDICATOR_DESCRIPTIONS[indicator] }
       }));
     }
   })

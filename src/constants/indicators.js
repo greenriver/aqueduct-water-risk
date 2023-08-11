@@ -501,102 +501,102 @@ export const INDICATOR_DESCRIPTIONS = {
     }]
   },
   // future
-  [proyectedChangeWaterStress]: () => ({
+  [proyectedChangeWaterStress]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterStress],
     description: 'Water stress is an indicator of competition for water resources and is defined informally as the ratio of demand for water by human society divided by available water.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [proyectedChangeSeasonalVariability]: () => ({
+  },
+  [proyectedChangeSeasonalVariability]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeSeasonalVariability],
     description: 'Seasonal variability measures the average within-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations of available supply within a year.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [proyectedChangeWaterSupply]: () => ({
+  },
+  [proyectedChangeWaterSupply]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterSupply],
     description: 'Available blue water—the total amount of renewable freshwater available to a sub-basin with upstream consumption removed—includes surface flow, interflow, and groundwater recharge. Available blue water is displayed as a flux (cm/year).',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [proyectedChangeWaterDemand]: () => ({
+  },
+  [proyectedChangeWaterDemand]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterDemand],
     description: 'Gross demand is the maximum potential water required to meet sectoral demands. Sectoral water demand includes: domestic, industrial, irrigation, and livestock. Demand is displayed as a flux (cm/year).',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [proyectedChangeInterannualVariability]: () => ({
+  },
+  [proyectedChangeInterannualVariability]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeInterannualVariability],
     description: 'Interannual variability measures the average between-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [proyectedChangeWaterDepletion]: () => ({
+  },
+  [proyectedChangeWaterDepletion]: {
     name: INDICATOR_NAMES_RELATION[proyectedChangeWaterDepletion],
     description: 'Water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Water depletion is similar to water stress; however, instead of looking at total water demand, water depletion is calculated using consumptive withdrawal only.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteWaterStress]: () => ({
+  },
+  [absoluteWaterStress]: {
     name: INDICATOR_NAMES_RELATION[absoluteWaterStress],
     description: 'Water stress is an indicator of competition for water resources and is defined informally as the ratio of demand for water by human society divided by available water.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteSeasonalVariability]: () => ({
+  },
+  [absoluteSeasonalVariability]: {
     name: INDICATOR_NAMES_RELATION[absoluteSeasonalVariability],
     description: 'Seasonal variability measures the average within-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations of available supply within a year.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteWaterSupply]: () => ({
+  },
+  [absoluteWaterSupply]: {
     name: INDICATOR_NAMES_RELATION[absoluteWaterSupply],
     description: 'Available blue water—the total amount of renewable freshwater available to a sub-basin with upstream consumption removed—includes surface flow, interflow, and groundwater recharge. Available blue water is displayed as a flux (cm/year).',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteWaterDemand]: () => ({
+  },
+  [absoluteWaterDemand]: {
     name: INDICATOR_NAMES_RELATION[absoluteWaterDemand],
     description: 'Gross demand is the maximum potential water required to meet sectoral demands. Sectoral water demand includes: domestic, industrial, irrigation, and livestock. Demand is displayed as a flux (cm/year).',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteInterannualVariability]: () => ({
+  },
+  [absoluteInterannualVariability]: {
     name: INDICATOR_NAMES_RELATION[absoluteInterannualVariability],
     description: 'Interannual variability measures the average between-year variability of available water supply, including both renewable surface and groundwater supplies. Higher values indicate wider variations in available supply from year to year.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  }),
-  [absoluteWaterDepletion]: () => ({
+  },
+  [absoluteWaterDepletion]: {
     name: INDICATOR_NAMES_RELATION[absoluteWaterDepletion],
     description: 'Water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Water depletion is similar to water stress; however, instead of looking at total water demand, water depletion is calculated using consumptive withdrawal only.',
     sources: [{
       name: 'Aqueduct 4.0',
       link: 'https://doi.org/10.46830/writn.23.00061'
     }]
-  })
+  }
 };
 
 // relates children layers with its parent in a straight way
