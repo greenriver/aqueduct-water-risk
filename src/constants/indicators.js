@@ -673,7 +673,7 @@ export const INDICATOR_COLUMNS = {
   usa_cat: [{ label: 'Unimproved/no sanitation', value: 'usa_label' }],
   rri_cat: [{ label: 'Peak RepRisk country ESG risk index', value: 'rri_label' }],
   projected_change: [
-    { label: 'Projected Change In {{indicator}} ({{projection}} To {{year}} {{scenario}} )', value: 'label' }
+    { label: 'Projected {{indicator}} ({{projection}} To {{year}} {{scenario}} )', value: 'label' }
   ],
   // monthly exclusive
   monthly: {
