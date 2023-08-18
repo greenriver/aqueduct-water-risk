@@ -23,6 +23,7 @@ import isEqual from 'lodash/isEqual';
 
 // utils
 import { logEvent } from 'utils/analytics';
+import { normalizeLng } from '../../utils/layers';
 
 // components
 import BasemapControl from './basemap-control';
@@ -88,7 +89,8 @@ class DesktopMap extends PureComponent {
 
     if (layer) {
       const { editing: { _marker: { _latlng } } } = layer;
-      const { lat, lng } = _latlng;
+      const { lat } = _latlng;
+      const lng = normalizeLng(_latlng.lng);
       const indexFromData = analysisData.findIndex(({ longitude, latitude }) => {
         return isEqual({ lat: latitude, lng: longitude }, ({ lat, lng }));
       });
