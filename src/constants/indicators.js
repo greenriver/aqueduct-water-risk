@@ -660,8 +660,8 @@ export const INDICATOR_COLUMNS = {
     { label: 'Untreated Connected Water', value: 'ucw_label' },
     { label: 'Coastal Eutrophication Potential', value: 'cep_label' }
   ],
-  ucw_cat: [{ label: 'Drought Risk', value: 'ucw_label' }],
-  cep_cat: [{ label: 'Riverine flood risk Stress', value: 'cep_label' }],
+  ucw_cat: [{ label: 'Untreated Connected Water', value: 'ucw_label' }],
+  cep_cat: [{ label: 'Coastal Eutrophication Potential', value: 'cep_label' }],
   // Regulatory and Reputational
   w_awr_def_rrr_cat: [
     { label: 'Regulatory and Reputational Risk', value: 'w_awr_def_rrr_label' },
