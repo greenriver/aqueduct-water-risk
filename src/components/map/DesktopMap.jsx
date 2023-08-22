@@ -107,7 +107,7 @@ class DesktopMap extends PureComponent {
         setSelectedData([indexFromData]);
       }
     } else {
-      onAddPoint({ lat: latlng.lat, lng: latlng.lng });
+      onAddPoint({ lat: latlng.lat, lng: normalizeLng(latlng.lng) });
       onAddUnknownLocation();
     }
   }
