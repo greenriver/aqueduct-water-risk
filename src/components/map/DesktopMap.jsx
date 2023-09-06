@@ -211,6 +211,7 @@ class DesktopMap extends PureComponent {
     const { zoom, minZoom, maxZoom } = map;
     const mapEvents = { moveend: (e, _map) => { this.updateMap(e, _map); } };
     const mapClass = classnames('c-map', ({ '-analysis ': mapMode === 'analysis' }));
+    const bounds = { bbox: [-79.15055847, 18.9098587, 0, 72.6875] }
 
     return (
       <div className="l-map">
@@ -218,6 +219,7 @@ class DesktopMap extends PureComponent {
           mapOptions={map}
           events={mapEvents}
           basemap={basemap}
+          bounds={bounds}
           customClass={mapClass}
           onReady={(_map) => { this.map = _map; }}
           {...boundaries && { label: LABEL_LAYER_CONFIG }}
