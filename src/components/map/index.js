@@ -9,7 +9,8 @@ import {
   setPopupLocation,
   setPopupData,
   setLoading,
-  setBoundaries
+  setBoundaries,
+  setBounds
 } from 'modules/map/actions';
 import {
   onAddPoint,
@@ -48,6 +49,7 @@ export default connect(
     mapMode: state.app.mapMode,
     indicator: state.settings.filters.indicator,
     map: parseMapState(state),
+    bounds: state.map.bounds,
     boundaries: state.map.boundaries,
     basemap: parseBasemap(state),
     layers: getUpdatedLayers(state),
@@ -85,6 +87,7 @@ export default connect(
     onAddUnknownLocation: () => { dispatch(onAddUnknownLocation()); },
     onUpdateLocation: (location, index) => { dispatch(onUpdateLocation(location, index)); },
     setAnalyzerOpen: () => { dispatch(setAnalyzerOpen()); },
-    setBoundaries: (boundaries) => { dispatch(setBoundaries(boundaries)); }
+    setBoundaries: (boundaries) => { dispatch(setBoundaries(boundaries)); },
+    setBounds: (bounds) => { dispatch(setBounds(bounds)); }
   })
 )(MapComponent);

@@ -84,7 +84,8 @@ class DesktopMap extends PureComponent {
       onAddUnknownLocation,
       points,
       analysisData,
-      setSelectedData
+      setSelectedData,
+      setBounds
     } = this.props;
 
     if (layer) {
@@ -107,7 +108,11 @@ class DesktopMap extends PureComponent {
         setSelectedData([indexFromData]);
       }
     } else {
-      onAddPoint({ lat: latlng.lat, lng: normalizeLng(latlng.lng) });
+      const normalizedLng = normalizeLng(latlng.lng);
+      onAddPoint({ lat: latlng.lat, lng: normalizedLng });
+      if (latlng.lng > 180 || latlng.lng < -180) {
+        setBounds({ bbox: [(normalizedLng - 30), (latlng.lat + 10), (normalizedLng + 30), (latlng.lat - 10)] });
+      }
       onAddUnknownLocation();
     }
   }
@@ -196,6 +201,7 @@ class DesktopMap extends PureComponent {
       basemap,
       layers,
       loading,
+      bounds,
       indicator,
       mapMode,
       setMapParams,
@@ -211,7 +217,6 @@ class DesktopMap extends PureComponent {
     const { zoom, minZoom, maxZoom } = map;
     const mapEvents = { moveend: (e, _map) => { this.updateMap(e, _map); } };
     const mapClass = classnames('c-map', ({ '-analysis ': mapMode === 'analysis' }));
-    const bounds = { bbox: [-79.15055847, 18.9098587, 0, 72.6875] }
 
     return (
       <div className="l-map">
@@ -338,6 +343,8 @@ DesktopMap.propTypes = {
   layerGroup: PropTypes.array.isRequired,
   indicator: PropTypes.string,
   boundaries: PropTypes.bool.isRequired,
+  bounds: PropTypes.object.isRequired,
+  setBounds: PropTypes.func.isRequired,
   popup: PropTypes.object.isRequired,
   analysisPopupColumns: PropTypes.array.isRequired,
   mapMode: PropTypes.string.isRequired,
