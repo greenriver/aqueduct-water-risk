@@ -79,6 +79,7 @@ class ImportTabAddresses extends PureComponent {
         toastr.info('Searching for addresses, this might take a few minutes', { title: 'Analysis' });
         fetchGeocoding(formData)
           .then((locatedAddresses) => {
+            if (!locatedAddresses) throw Error('Some addresses in your file could not be found,  Please copy the addresses directly from Google Maps and make sure the document follows the same structure as the example provided above');
             // checks if there are no errors in the importation
             const errors = locatedAddresses.filter(address => !address.match);
 
