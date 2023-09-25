@@ -12,7 +12,6 @@ import { initGA, logPageView } from 'utils/analytics';
 
 // app styles
 import 'styles/index.scss';
-import NewUpdatesModal from '../new-updates';
 
 class App extends PureComponent {
 
@@ -35,7 +34,6 @@ class App extends PureComponent {
           appRoute="https://wri.org/aqueduct"
         />
         <main role="main" className="l-main l-content">
-          <NewUpdatesModal />
           {this.props.children}
           <AsideContext />
         </main>
