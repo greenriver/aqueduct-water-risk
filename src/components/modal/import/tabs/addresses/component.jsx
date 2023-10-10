@@ -9,6 +9,9 @@ import { fetchGeocoding } from 'services/geocoding';
 // components
 import { Spinner } from 'aqueduct-components';
 
+const errorMessage = 'Some addresses in your file could not be found, Please copy the addresses directly from Google Maps and make sure the document follows the same structure as the example provided above';
+
+
 class ImportTabAddresses extends PureComponent {
   constructor(props) {
     super(props);
@@ -79,7 +82,7 @@ class ImportTabAddresses extends PureComponent {
         toastr.info('Searching for addresses, this might take a few minutes', { title: 'Analysis' });
         fetchGeocoding(formData)
           .then((locatedAddresses) => {
-            if (!locatedAddresses) throw Error('Some addresses in your file could not be found,  Please copy the addresses directly from Google Maps and make sure the document follows the same structure as the example provided above');
+            if (!locatedAddresses) throw Error(errorMessage);
             // checks if there are no errors in the importation
             const errors = locatedAddresses.filter(address => !address.match);
 
@@ -89,7 +92,7 @@ class ImportTabAddresses extends PureComponent {
             // error flow
             if (errors.length) {
               this.setState({
-                errors,
+                errors: errorMessage,
                 loading: false
               });
             } else {
@@ -119,10 +122,18 @@ class ImportTabAddresses extends PureComponent {
           })
           .catch((error) => {
             console.error(error);
-            this.setState({
-              loading: false,
-              errors: error.message
-            });
+
+            if (error.request && error.request.status === 500) {
+              this.setState({
+                loading: false,
+                errors: errorMessage
+              });
+            } else {
+              this.setState({
+                loading: false,
+                errors: error.message
+              });
+            }
           });
       }
     );
