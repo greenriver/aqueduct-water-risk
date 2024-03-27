@@ -1,0 +1,105 @@
+@host = https://api.resourcewatch.org/v1
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzcwOTBiZTU5MTU5NmYyN2MxOThjYSIsInJvbGUiOiJBRE1JTiIsInByb3ZpZGVyIjoibG9jYWwiLCJlbWFpbCI6IkNhcmxvcy5EZWxSZWFsLjVAd3JpY29uc3VsdGFudC5vcmciLCJleHRyYVVzZXJEYXRhIjp7ImFwcHMiOlsicnciLCJhcXVlZHVjdCIsImFxdWVkdWN0LXdhdGVyLXJpc2siXX0sImNyZWF0ZWRBdCI6MTY4Njc3NTUyNTAyNSwicGhvdG8iOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vd3JpLWFwaS1iYWNrdXBzL3Jlc291cmNld2F0Y2gvc3RhZ2luZy9wcm9maWxlcy9hdmF0YXJzLzAwMC8wMDAvMjU4L29yaWdpbmFsL2RhdGE_MTY3NDA2ODA0NyIsIm5hbWUiOiJDYXJsb3MgRGVsIFJlYWwiLCJpYXQiOjE2ODY3NzU1MjV9.3J7HR6Et_5wmJbbfjnh_7ZvrClzIsRAdwaqMJEMmOuM
+
+
+PATCH {{host}}/dataset/5152c286-53c1-4583-9519-816a6e41889d/layer/d98ed153-b1d4-4793-bf4c-44cecbd63e53
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+   "name": "Annual indicator layer",
+   "slug": "Annual-indicator-layer",
+   "dataset": "5152c286-53c1-4583-9519-816a6e41889d",
+   "description": "",
+   "application": [
+      "aqueduct-water-risk"
+   ],
+   "iso": [],
+   "provider": "cartodb",
+   "userId": "5b60606f5a4e04a7f54ff857",
+   "default": false,
+   "protected": false,
+   "published": true,
+   "thumbnailUrl": "https://s3.amazonaws.com/wri-api-backups/resourcewatch/prod/thumbnails/d98ed153-b1d4-4793-bf4c-44cecbd63e53-1687458285119.png",
+   "env": "production",
+   "layerConfig": {
+      "account": "wri-rw",
+      "body": {
+      "layers": [
+         {
+            "type": "cartodb",
+            "options": {
+            "sql": "SELECT s.aq30_id as cartodb_id, coalesce(NULLIF({{label}},''), 'No Data') as label, r.the_geom, r.the_geom_webmercator, (CASE WHEN {{label}} = 'Insignificant Trend' THEN -1 ELSE coalesce({{indicator}}, -9999)END) as water_risk FROM water_risk_indicators_annual_aqueduct40 s LEFT JOIN y2018m12d06_rh_master_shape_v01 r on s.aq30_id=r.aq30_id WHERE s.pfaf_id != -9999 and s.gid_1 != '-9999' and r.aqid != -9999 and {{value}} >= {{threshold}} ORDER BY s.aq30_id",
+            "cartocss": "#water_risk_indicators_annual [water_risk=4] { polygon-fill:#990000; line-color:#990000 } #water_risk_indicators_annual [water_risk=3] { polygon-fill:  #FF1900; line-color:  #FF1900 } #water_risk_indicators_annual [water_risk=2] { polygon-fill: #FF9900; line-color: #FF9900 } #water_risk_indicators_annual [water_risk=1] { polygon-fill: #FFE600; line-color:  #FFE600 } #water_risk_indicators_annual [water_risk=0] { polygon-fill: #FFFF99; line-color:  #FFFF99 } #water_risk_indicators_annual [water_risk=-1] { polygon-fill: #808080; line-color:  #808080 } #water_risk_indicators_annual [water_risk<-1] { polygon-fill: #4E4E4E; line-color:  #4E4E4E }",
+            "cartocss_version": "2.3.0"
+            }
+         }
+      ]
+      },
+      "params_config": [
+      {
+         "key": "indicator",
+         "required": true
+      },
+      {
+         "key": "label",
+         "required": true
+      },
+      {
+         "key": "value",
+         "required": true
+      },
+      {
+         "key": "threshold",
+         "required": false,
+         "default": 0
+      }
+      ],
+      "sql_config": []
+   },
+   "legendConfig": {
+      "items": [
+      {
+         "color": "#990000",
+         "name": "Extremely high"
+      },
+      {
+         "color": "#FF1900",
+         "name": "High"
+      },
+      {
+         "color": "#FF9900",
+         "name": "Medium to high"
+      },
+      {
+         "color": "#FFE600",
+         "name": "Low to medium"
+      },
+      {
+         "color": "#FFFF99",
+         "name": "Low"
+      },
+      {
+         "color": "#808080",
+         "name": "Arid & low water use"
+      },
+      {
+         "color": "#4E4E4E",
+         "name": "No data "
+      }
+      ],
+      "type": "choropleth"
+   },
+   "interactionConfig": {
+      "output": [
+      {
+         "column": "label",
+         "format": null,
+         "prefix": "",
+         "property": "Category",
+         "suffix": "",
+         "type": "string"
+      }
+      ]
+   }
+}
