@@ -22,7 +22,43 @@ $max-height-analyzer: 445px;
   flex-direction: column;
   flex: 1;
   position: relative;
-  overflow: hidden;
+}
+
+.updates-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 501;
+  max-width: 260px;
+  background-color: palette(blue, primary);
+  padding: 1.5rem;
+  color: white;
+  p {
+    font-size: small;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+  .button-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    font-size: small;
+    margin: auto;
+    width: 100%;
+  }
 }
 
 /* Sidebar */

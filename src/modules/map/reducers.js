@@ -5,6 +5,7 @@ export default {
   [actions.setBasemap]: (state, { payload }) => ({ ...state, basemap: payload }),
   [actions.setLoading]: (state, { payload }) => ({ ...state, loading: payload }),
   [actions.setBoundaries]: (state, { payload }) => ({ ...state, boundaries: payload }),
+  [actions.setBounds]: (state, { payload }) => ({ ...state, bounds: payload }),
   [actions.setLayerParametrization]: (state, { payload }) => ({
     ...state,
     layerParametrization: {

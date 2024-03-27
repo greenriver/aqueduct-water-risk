@@ -7,6 +7,7 @@ export const setLayerParametrization = createAction('MAP__SET-LAYER-PARAMETRIZAT
 export const setPopupLocation = createAction('MAP__SET-POPUP-LOCATION');
 export const setPopupData = createAction('MAP__SET-POPUP-DATA');
 export const setBoundaries = createAction('MAP__SET-BOUNDARIES');
+export const setBounds = createAction('MAP__SET-BOUNDS');
 
 export default {
   setLoading,
@@ -14,5 +15,6 @@ export default {
   setBasemap,
   setLayerParametrization,
   setPopupLocation,
-  setPopupData
+  setPopupData,
+  setBounds
 };

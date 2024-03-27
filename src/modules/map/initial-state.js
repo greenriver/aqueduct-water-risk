@@ -13,5 +13,6 @@ export default {
     latlng: null,
     data: {}
   },
-  boundaries: true
+  boundaries: true,
+  bounds: {}
 };

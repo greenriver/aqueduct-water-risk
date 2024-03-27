@@ -23,6 +23,7 @@ import isEqual from 'lodash/isEqual';
 
 // utils
 import { logEvent } from 'utils/analytics';
+import { normalizeLng } from '../../utils/layers';
 
 // components
 import BasemapControl from './basemap-control';
@@ -83,12 +84,14 @@ class DesktopMap extends PureComponent {
       onAddUnknownLocation,
       points,
       analysisData,
-      setSelectedData
+      setSelectedData,
+      setBounds
     } = this.props;
 
     if (layer) {
       const { editing: { _marker: { _latlng } } } = layer;
-      const { lat, lng } = _latlng;
+      const { lat } = _latlng;
+      const lng = normalizeLng(_latlng.lng);
       const indexFromData = analysisData.findIndex(({ longitude, latitude }) => {
         return isEqual({ lat: latitude, lng: longitude }, ({ lat, lng }));
       });
@@ -105,7 +108,11 @@ class DesktopMap extends PureComponent {
         setSelectedData([indexFromData]);
       }
     } else {
-      onAddPoint({ lat: latlng.lat, lng: latlng.lng });
+      const normalizedLng = normalizeLng(latlng.lng);
+      onAddPoint({ lat: latlng.lat, lng: normalizedLng });
+      if (latlng.lng > 180 || latlng.lng < -180) {
+        setBounds({ bbox: [(normalizedLng - 30), (latlng.lat + 10), (normalizedLng + 30), (latlng.lat - 10)] });
+      }
       onAddUnknownLocation();
     }
   }
@@ -164,7 +171,11 @@ class DesktopMap extends PureComponent {
     const { popup: { data: currentData }, setPopupLocation, setPopupData } = this.props;
     const { latlng, data } = e;
     setPopupLocation(latlng);
-    setPopupData({ ...currentData, ...data && data });
+    if (!currentData.counter) {
+      setPopupData({ ...data, counter: 2 });
+    } else {
+      setPopupData({ ...currentData, ...data, counter: currentData.counter - 1 });
+    }
   }
 
   updateMap(event, map) {
@@ -190,6 +201,7 @@ class DesktopMap extends PureComponent {
       basemap,
       layers,
       loading,
+      bounds,
       indicator,
       mapMode,
       setMapParams,
@@ -212,6 +224,7 @@ class DesktopMap extends PureComponent {
           mapOptions={map}
           events={mapEvents}
           basemap={basemap}
+          bounds={bounds}
           customClass={mapClass}
           onReady={(_map) => { this.map = _map; }}
           {...boundaries && { label: LABEL_LAYER_CONFIG }}
@@ -330,6 +343,8 @@ DesktopMap.propTypes = {
   layerGroup: PropTypes.array.isRequired,
   indicator: PropTypes.string,
   boundaries: PropTypes.bool.isRequired,
+  bounds: PropTypes.object.isRequired,
+  setBounds: PropTypes.func.isRequired,
   popup: PropTypes.object.isRequired,
   analysisPopupColumns: PropTypes.array.isRequired,
   mapMode: PropTypes.string.isRequired,

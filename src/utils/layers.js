@@ -151,6 +151,13 @@ export const getLayerLegend = (indicator) => {
   return legend;
 };
 
+export const normalizeLng = (lng) => {
+  if (lng === 0) return 0;
+  if (lng < -180) return (lng % 180) + 180;
+  if (lng > 180) return (lng % 180) - 180;
+  return lng;
+};
+
 export default {
   reduceParams,
   reduceSqlParams,

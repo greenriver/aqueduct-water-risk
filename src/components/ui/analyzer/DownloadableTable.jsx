@@ -14,7 +14,7 @@ class AnalyzerDownloadableTable extends PureComponent {
       downloadOptions = [],
       hideInstructions = false,
       downloadButtons = false,
-      instructionUrl = 'https://github.com/wri/aqueduct30_data_download/blob/master/metadata.md',
+      instructionUrl = 'https://github.com/wri/Aqueduct40',
       contentWrapper = node => (
         <div className="analyzer-content">
           {node}

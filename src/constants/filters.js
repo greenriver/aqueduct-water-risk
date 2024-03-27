@@ -1,8 +1,9 @@
-import { APP_DEFINITIONS } from "aqueduct-components";
+import { APP_DEFINITIONS } from 'aqueduct-components';
 
 export const TIMEFRAME_OPTIONS = [
   { value: '2030', label: '2030' },
-  { value: '2040', label: '2040' }
+  { value: '2050', label: '2050' },
+  { value: '2080', label: '2080' }
 ];
 
 export const timeScaleOptions = [
@@ -30,22 +31,55 @@ export const projectionOptions = [
   { value: 'bs', label: 'Change from baseline' }
 ];
 
-export const SCENARIO_MODAL_DESCRIPTION = {
-  title: 'Scenarios',
-  description: `<p>Optimistic:</p>
-  <p>The "optimistic" scenario (SSP2 RCP4.5) represents a world with stable economic development and carbon emissions peaking and declining by 2040, with emissions constrained to stabilize at ~650 ppm CO2 and temperatures to 1.1–2.6°C by 2100.</p>
-
-  <p>Business as usual</p>
-  </p>The "business as usual" scenario (SSP2 RCP8.5) represents a world with stable economic development and steadily rising global carbon emissions, with CO2 concentrations reaching ~1370 ppm by 2100 and global mean temperatures increasing by 2.6–4.8°C relative to 1986–2005 levels.</p>
-
-  <p>Pessimistic</p>
-  <p>The "pessimistic" scenario (SSP3 RCP8.5) represents a fragmented world with uneven economic development, higher population growth, lower GDP growth, and a lower rate of urbanization, all of which potentially affect water usage; and steadily rising global carbon emissions, with CO2 concentrations reaching ~1370 ppm by 2100 and global mean temperatures increasing by 2.6–4.8°C relative to 1986–2005 levels.</p>`,
-  source: '<a href="https://www.wri.org/publication/aqueduct-water-stress-projections-decadal-projections-water-supply-and-demand-using" target="_blank" rel="noopener noreferrer">Aqueduct 2015</a>'
+export const TIMEFRAME_MODAL_DESCRIPTION = {
+  title: 'Timeframe',
+  instructions: 'Each year represents the long-term trend over a 30 year period.',
+  description: `
+  <p>2030: 2015-2045</p>
+  
+  <p>2050: 2035-2065</p>
+  
+  <p>2080: 2065-2095</p>`,
+  source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
 };
 
-export const TIMEFRAME_MODAL_DESCRIPTION = {
+export const SCENARIO_MODAL_DESCRIPTION = {
+  title: 'Scenarios',
+  instructions: 'Select the scenario you want to check for each year and indicator',
+  description: `<p>Optimistic:</p>
+  <p>The "optimistic" scenario (SSP1 RCP2.6) represents a future that limits the rise in average global surface temperatures by 2100 to 1.3°C to 2.4°C compared to preindustrial levels (1850-1900). SSP1 is characterized by sustainable socioeconomic growth: stringent environmental regulations and effective institutions, rapid technological change and improved water use efficiencies, and low population growth.</p>
+
+  <p>Business as usual</p>
+  </p>The "business as usual" scenario (SSP3 RCP7.0) represents a middle-of-the-road future where temperatures increase by 2.8°C to 4.6°C by 2100. SSP3 is a socioeconomic scenario characterized by regional competition and inequality, including slow economic growth, weak governance and institutions, low investment in the environment and technology, and high population growth, especially in developing countries.</p>
+
+  <p>Pessimistic</p>
+  <p>The "pessimistic" scenario (SSP5 RCP8.5) represents a future where temperatures increase up to 3.3°C to 5.7°C by 2100. SSP5 describes fossil-fueled development: rapid economic growth and globalization powered by carbon-intensive energy, strong institutions with high investment in education and technology but a lack of global environmental concern, and the population peaking and declining in the 21st century.</p>  
+  
+  <p>GLOBAL CIRCULATION MODELS</p>
+  <p>For each scenario, we ran five GCMs to account for the uncertainty in climate models: GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MRI-ESM2-0, and UKESM1-0-LL. They were chosen because they represent a span of temperature-precipitation variations (e.g., wet-cold). We display the median of the 5 GCMs for each scenario.</p>`,
+  source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
+};
+
+export const UNITOFMESUREMENT_MODAL_DESCRIPTION = {
+  title: 'Unit of mesurement',
+  instructions: 'Review the details that are associated with this measurement.',
+  description: `
+  <p>ABSOLUTE VALUE</p>
+  <p>The Absolute value shows the projected score or volume at the selected timeframe. It represents the median of the 5 global climate models run under the scenario of choice.</p>
+  
+  <p>GLOBAL CIRCULATION MODELS</p>
+  <p>For each scenario, we ran five GCMs to account for the uncertainty in climate models: GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MRI-ESM2-0, and UKESM1-0-LL. They were chosen because they represent a span of temperature-precipitation variations (e.g., wet-cold).</p>
+  
+  <p>COMING SOON:</p>
+  <p>Aqueduct will soon include “Change from baseline” and “Uncertainty” terms. Change from baseline will show the relative change expected in the future year compared to the 2019 baseline. Uncertainty will show the level of alignment among the 5 global climate models.</p>
+  `,
+  source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
+};
+
+export const TEMPORAL_RESOLUTION_MODAL_DESCRIPTION = {
   title: 'Temporal resolution',
-  description: 'Depending on the temporal resolution selected, different indicators will be available.'
+  instructions: 'Click on the Annual or Monthly button to change the temporal resolution. If you select Monthly, you can change the Month using the drop-down list.',
+  description: 'View water risk data annually or by individual month.  Note: depending on the temporal resolution selected, different indicators will be available.'
 };
 
 export const BASIN_MODAL_PROPS = {
@@ -70,6 +104,8 @@ export default {
   MONTH_OPTIONS,
   projectionOptions,
   SCENARIO_MODAL_DESCRIPTION,
+  TEMPORAL_RESOLUTION_MODAL_DESCRIPTION,
   TIMEFRAME_MODAL_DESCRIPTION,
+  UNITOFMESUREMENT_MODAL_DESCRIPTION,
   BASIN_MODAL_PROPS
 };

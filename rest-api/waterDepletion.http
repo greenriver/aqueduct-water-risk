@@ -1,0 +1,89 @@
+@host = https://api.resourcewatch.org/v1
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzcwOTBiZTU5MTU5NmYyN2MxOThjYSIsInJvbGUiOiJBRE1JTiIsInByb3ZpZGVyIjoibG9jYWwiLCJlbWFpbCI6IkNhcmxvcy5EZWxSZWFsLjVAd3JpY29uc3VsdGFudC5vcmciLCJleHRyYVVzZXJEYXRhIjp7ImFwcHMiOlsicnciLCJhcXVlZHVjdCIsImFxdWVkdWN0LXdhdGVyLXJpc2siXX0sImNyZWF0ZWRBdCI6MTY4Njc3NTUyNTAyNSwicGhvdG8iOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vd3JpLWFwaS1iYWNrdXBzL3Jlc291cmNld2F0Y2gvc3RhZ2luZy9wcm9maWxlcy9hdmF0YXJzLzAwMC8wMDAvMjU4L29yaWdpbmFsL2RhdGE_MTY3NDA2ODA0NyIsIm5hbWUiOiJDYXJsb3MgRGVsIFJlYWwiLCJpYXQiOjE2ODY3NzU1MjV9.3J7HR6Et_5wmJbbfjnh_7ZvrClzIsRAdwaqMJEMmOuM
+
+
+POST {{host}}/dataset/851b8ad1-1d80-46a7-b71a-e9dfa062f7b0/layer
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Projected Water Depletion",
+  "application": [
+    "aqueduct-water-risk"
+  ],
+  "provider": "cartodb",
+  "layerConfig": {
+    "sql_config": [],
+    "params_config": [
+      {
+        "required": true,
+        "key": "year"
+      },
+      {
+        "required": true,
+        "key": "scenario"
+      }
+    ],
+    "body": {
+      "layers": [
+        {
+          "options": {
+            "cartocss_version": "2.3.0",
+            "cartocss": "#water_risk_indicators_future_aqueduct40{ polygon-fill:transparent; polygon-opacity: 1; line-color:transparent; line-width: 1; line-opacity: 1; } #water_risk_indicators_future_aqueduct40 [label='Extremely High (>75%)'] { polygon-fill:#990000; line-color:#990000 } #water_risk_indicators_future_aqueduct40 [label='High'] { polygon-fill:  #FF1900; line-color:  #FF1900 } #water_risk_indicators_future_aqueduct40 [label='Medium - High (25-50%)'] { polygon-fill: #FF9900; line-color: #FF9900 } #water_risk_indicators_future_aqueduct40 [label='Low - Medium (5-25%)'] { polygon-fill: #FFE600; line-color:  #FFE600 } #water_risk_indicators_future_aqueduct40 [label='Low (<5%)'] { polygon-fill: #FFFF99; line-color:  #FFFF99 } #water_risk_indicators_future_aqueduct40 [label='Arid and Low Water Use'] { polygon-fill: #4E4E4E; line-color:  #4E4E4E }",
+            "sql": "with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'water_depletion' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null"
+          },
+          "type": "cartodb"
+        }
+      ]
+    },
+    "account": "wri-rw"
+  },
+  "legendConfig": {
+    "type": "choropleth",
+    "items": [
+      {
+        "value": "(<5%)",
+        "name": "Low",
+        "color": "#FFFF99"
+      },
+      {
+        "value": "(5-25%)",
+        "name": "Low - Medium",
+        "color": "#FFE600"
+      },
+      {
+        "value": "(25-50%)",
+        "name": "Medium - High",
+        "color": "#FF9900"
+      },
+      {
+        "value": "(50-75%)",
+        "name": "High",
+        "color": "#FF1900"
+      },
+      {
+        "value": "(>75%)",
+        "name": "Extremely High",
+        "color": "#990000"
+      }
+    ],
+    "disclaimer": [
+      {
+        "name": "Arid and Low Water Use",
+        "color": "#4E4E4E"
+      }
+    ]
+  },
+  "interactionConfig": {
+    "output": [
+      {
+        "type": "string",
+        "suffix": "",
+        "property": "Category",
+        "prefix": "",
+        "format": null,
+        "column": "label"
+      }
+    ]
+  }
+}
