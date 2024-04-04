@@ -6,6 +6,13 @@ export default {
     loading: false,
     error: null
   },
+  basinAnalysis: {
+    data: [],
+    selected: [],
+    downloadUrl: null,
+    loading: false,
+    error: null
+  },
   points: {
     list: [],
     selected: []

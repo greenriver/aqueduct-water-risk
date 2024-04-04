@@ -5,7 +5,7 @@ import { toggleModal } from 'aqueduct-components';
 export default connect(
   state => ({
     filters: state.settings.tabFilters.basins,
-    analysis: state.analyzeLocations.analysis
+    analysis: state.analyzeLocations.basinAnalysis
   }), {
     toggleModal
   }
