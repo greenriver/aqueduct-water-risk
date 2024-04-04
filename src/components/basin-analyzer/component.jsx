@@ -63,7 +63,7 @@ class BasinAnalyzer extends PureComponent {
   render() {
     const {
       points,
-      analysis: { data = [], loading = false } = {},
+      basinAnalysis: { data = [], loading = false } = {},
       filters: { indicator } = {}
     } = this.props;
 
@@ -116,7 +116,7 @@ BasinAnalyzer.propTypes = {
   toggleModal: func.isRequired,
   toggleMobileFilters: func.isRequired,
   onApplyBasinAnalysis: func.isRequired,
-  analysis: object,
+  basinAnalysis: object,
   filters: object
 };
 

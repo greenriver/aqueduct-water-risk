@@ -1,6 +1,6 @@
 import { createAction, createThunkAction } from 'redux-tools';
 import compact from 'lodash/compact';
-import isNil from 'lodash/isNil'
+import isNil from 'lodash/isNil';
 
 // services
 import { fetchGeostore, saveGeostore } from 'services/geostore';
@@ -25,6 +25,9 @@ export const setSelectedPoints = createAction('ANALYZE-LOCATIONS-TAB__SET-SELECT
 export const setAnalysis = createAction('ANALYZE-LOCATIONS-TAB__SET-ANALYSIS');
 export const setAnalysisLoading = createAction('ANALYZE-LOCATIONS-TAB__SET-ANALYSIS-LOADING');
 export const setAnalysisError = createAction('ANALYZE-LOCATIONS-TAB__SET-ANALYSIS-ERROR');
+export const setBasinAnalysis = createAction('ANALYZE-LOCATIONS-TAB__SET-BASIN-ANALYSIS');
+export const setBasinAnalysisLoading = createAction('ANALYZE-LOCATIONS-TAB__SET-BASIN-ANALYSIS-LOADING');
+export const setBasinAnalysisError = createAction('ANALYZE-LOCATIONS-TAB__SET-BASIN-ANALYSIS-ERROR');
 export const setDownloadUrl = createAction('ANALYZE-LOCATIONS-TAB__SET-DOWNLOAD-ERROR');
 export const setSelectedData = createAction('ANALYZE-LOCATIONS-TAB__SET-SELECTED-DATA');
 export const clearAnalysis = createAction('ANALYZE-LOCATIONS-TAB__CLEAR-ANALYSIS');
@@ -50,12 +53,12 @@ export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FE
     fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, mergedLocations) })
     .then(({ rows = [] }) => {
       logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
-      dispatch(setAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
-      dispatch(setAnalysisLoading(false));
+      dispatch(setBasinAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
+      dispatch(setBasinAnalysisLoading(false));
     })
     .catch((err) => {
-      dispatch(setAnalysisError(err));
-      dispatch(setAnalysisLoading(false));
+      dispatch(setBasinAnalysisError(err));
+      dispatch(setBasinAnalysisLoading(false));
     });
   });
 
@@ -280,6 +283,9 @@ export default {
   setAnalysis,
   setAnalysisLoading,
   setAnalysisError,
+  setBasinAnalysis,
+  setBasinAnalysisLoading,
+  setBasinAnalysisError,
   setDownloadUrl,
   setSelectedData,
   clearAnalysis,

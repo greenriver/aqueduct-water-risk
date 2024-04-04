@@ -20,7 +20,7 @@ export default connect(
     points: state.analyzeLocations.points.list,
     mapMode: state.app.mapMode,
     scope: state.app.scope,
-    analysis: state.analyzeLocations.analysis
+    basinAnalysis: state.analyzeLocations.basinAnalysis
   }),
   {
     toggleModal,

@@ -46,6 +46,28 @@ export default {
       error: payload
     }
   }),
+  // basin analysis
+  [actions.setBasinAnalysis]: (state, { payload }) => ({
+    ...state,
+    basinAnalysis: {
+      ...state.basinAnalysis,
+      data: payload
+    }
+  }),
+  [actions.setBasinAnalysisLoading]: (state, { payload }) => ({
+    ...state,
+    basinAnalysis: {
+      ...state.basinAnalysis,
+      loading: payload
+    }
+  }),
+  [actions.setBasinAnalysisError]: (state, { payload }) => ({
+    ...state,
+    basinAnalysis: {
+      ...state.basinAnalysis,
+      error: payload
+    }
+  }),
   [actions.clearAnalysis]: state => ({
     ...state,
     points: initialState.points,
