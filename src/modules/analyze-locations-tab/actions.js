@@ -37,31 +37,6 @@ export const setGeostoreLocations = createAction('ANALYZE-LOCATIONS-TAB__SET-GEO
 export const setGeostoreLoading = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-LOADING');
 export const setGeostoreError = createAction('ANALYZE-LOCATIONS-TAB__SET-GEOSTORE-ERROR');
 
-export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-BASIN-ANALYSIS', () =>
-  (dispatch, getState) => {
-    const {
-      analyzeLocations,
-      settings: {
-        filters: { threshold: thresholdParam, indicator }
-      }
-    } = getState();
-    const {
-      points: { list: pointsList },
-      geostore: { locations }
-    } = analyzeLocations;
-    const mergedLocations = locations.map((l, i) => ({ ...l, ...pointsList[i] }));
-    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, mergedLocations) })
-    .then(({ rows = [] }) => {
-      logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
-      dispatch(setBasinAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
-      dispatch(setBasinAnalysisLoading(false));
-    })
-    .catch((err) => {
-      dispatch(setBasinAnalysisError(err));
-      dispatch(setBasinAnalysisLoading(false));
-    });
-  });
-
 export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-ANALYSIS', () =>
   (dispatch, getState) => {
     const {
@@ -119,6 +94,32 @@ export const onFetchAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-A
         dispatch(setAnalysisError(err));
         dispatch(setAnalysisLoading(false));
       });
+  });
+
+export const onFetchBasinAnalysis = createThunkAction('ANALYZE-LOCATIONS-TAB__FETCH-BASIN-ANALYSIS', () =>
+  (dispatch, getState) => {
+    const {
+      analyzeLocations,
+      settings: {
+        filters: { threshold: thresholdParam, indicator }
+      }
+    } = getState();
+    const {
+      points: { list: pointsList },
+      geostore: { locations }
+    } = analyzeLocations;
+    const mergedLocations = locations.map((l, i) => ({ ...l, ...pointsList[i] }));
+    fetchQuery(undefined, { q: getExportSql(indicator, thresholdParam, mergedLocations) })
+    .then(({ rows = [] }) => {
+      logEvent('Analysis', 'Analyze Basins', 'Complete Analysis');
+      dispatch(setBasinAnalysis(rows.map(r => ({ ...r, ...((!isNil(r.point_index) && mergedLocations[r.point_index]) || {}) }))));
+      dispatch(onFetchAnalysis());
+      dispatch(setBasinAnalysisLoading(false));
+    })
+    .catch((err) => {
+      dispatch(setBasinAnalysisError(err));
+      dispatch(setBasinAnalysisLoading(false));
+    });
   });
 
 export const getGeostore = createThunkAction('ANALYZE-LOCATIONS-TAB__GET-GEOSTORE', () =>
