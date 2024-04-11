@@ -4,7 +4,7 @@ import { func, object, string } from 'prop-types';
 import { CustomSelect, InfoModal, ThresholdSlider } from 'aqueduct-components';
 
 // constants
-import { BASIN_MODAL_PROPS, WATER_RISK_PROPS } from 'constants/filters';
+import { BASIN_MODAL_PROPS, SELECT_WATER_RISK_INDICATOR } from 'constants/filters';
 import { BASIN_INDICATORS, INDICATORS } from 'components/map/constants';
 
 // utils
@@ -71,10 +71,10 @@ class Filters extends Component {
   }
 
   handleInfoClick() {
-    const { toggleAside } = this.props;
-    return toggleAside(true, {
+    const { toggleModal } = this.props;
+    return toggleModal(true, {
       children: InfoModal,
-      childrenProps: WATER_RISK_PROPS
+      childrenProps: { info: SELECT_WATER_RISK_INDICATOR }
     });
   }
 

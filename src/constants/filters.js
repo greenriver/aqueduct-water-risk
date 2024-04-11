@@ -60,6 +60,30 @@ export const SCENARIO_MODAL_DESCRIPTION = {
   source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
 };
 
+export const SELECT_WATER_RISK_INDICATOR = {
+  title: 'Select Water Risk Indicator',
+  description: `
+  <p>WATER STRESS</p>
+  <p>Baseline water stress measures the ratio of total water demand to available renewable surface and groundwater supplies. Water demand include domestic, industrial, irrigation, and livestock uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate more competition among users.</p>
+  
+  <p>WATER DEPLETION</p>
+  <p>Baseline water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Baseline water depletion is similar to baseline water stress; however, instead of looking at total water demand (consumptive plus nonconsumptive), baseline water depletion is calculated using consumptive withdrawal only.</p>
+  
+  <p>GROWNWATER TABLE DECLINE</p>
+  <p>Groundwater table decline measures the average decline of the groundwater table as the average change for the period of study (1990–2014). The result is expressed in centimeters per year (cm/yr). Higher values indicate higher levels of unsustainable groundwater withdrawals.</p>
+
+  <p>COASTAL EUTROPHICATION POTENTIAL </p>
+  <p>Coastal eutrophication potential (CEP) measures the potential for riverine loadings of nitrogen (N), phosphorus (P), and silica (Si) to stimulate harmful algal blooms in coastal waters. The CEP indicator is a useful metric to map where anthropogenic activities produce enough point-source and nonpoint-source pollution to potentially degrade the environment. When N and P are discharged in excess over Si with respect to diatoms, a major type of algae, undesirable algal species often develop. The stimulation of algae leading to large blooms may in turn result in eutrophication and hypoxia (excessive biological growth and decomposition that reduces oxygen available to other organisms). It is therefore possible to assess the potential for coastal eutrophication from a river’s N, P, and Si loading. Higher values indicate higher levels of excess nutrients with respect to silica, creating more favorable conditions for harmful algal growth and eutrophication in coastal waters downstream.</p>
+
+  <p>UNIMPROVED / NO DRINKING WATER</p>
+  <p>Unimproved/no drinking water reflects the percentage of the population collecting drinking water from an unprotected dug well or spring, or directly from a river, dam, lake, pond, stream, canal, or irrigation canal (WHO and UNICEF 2017). Specifically, the indicator aligns with the unimproved and surface water categories of the Joint Monitoring Programme (JMP)—the lowest tiers of drinking water services. Higher values indicate areas where people have less access to safe drinking water supplies.</p>
+
+  <p>UNIMPROVED / NO SANITATION</p>
+  <p>Unimproved/no sanitation reflects the percentage of the population using pit latrines without a slab or platform, hanging/bucket latrines, or directly disposing human waste in fields, forests, bushes, open bodies of water, beaches, other open spaces, or with solid waste (WHO and UNICEF 2017). Specifically, the indicator aligns with JMP’s unimproved and open defecation categories— the lowest tier of sanitation services. Higher values indicate areas where people have less access to improved sanitation services.</p>
+  `,
+  source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
+};
+
 export const UNITOFMESUREMENT_MODAL_DESCRIPTION = {
   title: 'Unit of mesurement',
   instructions: 'Review the details that are associated with this measurement.',
@@ -84,18 +108,7 @@ export const TEMPORAL_RESOLUTION_MODAL_DESCRIPTION = {
 
 export const BASIN_MODAL_PROPS = {
   name: 'Desired Conditions Threshold',
-  description: 'A Desired condition threshold refers to the strategic goal relating to the reduction or elimination of a water challenge. Adjust the slider based on your ambition or basin needs. The provided default values represent examples of thresholds that have been adopted by the private sector for setting contextual water targets. The map will display catchments not meeting the specified desired conditions.'
-};
-
-// The content rendered in AsideContext is edited
-// A few columns in the description table are removed
-export const WATER_RISK_PROPS = {
-  info: Object.assign(APP_DEFINITIONS['water-risk'], {
-    content: "<div class='c-table' style='margin-top: 0px'><table class='table'><tr><th>Indicator</th><th class='description'>Description</th></tr><tr><td>Baseline Water Stress</td><td>Baseline water stress measures the ratio of total water withdrawals to available renewable surface and groundwater supplies. Water withdrawals include domestic, industrial, irrigation, and livestock consumptive and nonconsumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate more competition among users.</td></tr><tr><td>Baseline Water Depletion</td><td>Baseline water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Baseline water depletion is similar to baseline water stress; however, instead of looking at total water withdrawal (consumptive plus nonconsumptive), baseline water depletion is calculated using consumptive withdrawal only.</td></tr><tr><td>Groundwater Table Decline</td><td>Groundwater table decline measures the average decline of the groundwater table as the average change for the period of study (1990–2014). The result is expressed in centimeters per year (cm/yr). Higher values indicate higher levels of unsustainable groundwater withdrawals.</td></tr><tr><td>Coastal Eutrophication Potential</td><td>Coastal eutrophication potential (CEP) measures the potential for riverine loadings of nitrogen (N), phosphorus (P), and silica (Si) to stimulate harmful algal blooms in coastal waters. The CEP indicator is a useful metric to map where anthropogenic activities produce enough point-source and nonpoint-source pollution to potentially degrade the environment. When N and P are discharged in excess over Si with respect to diatoms, a major type of algae, undesirable algal species often develop. The stimulation of algae leading to large blooms may in turn result in eutrophication and hypoxia (excessive biological growth and decomposition that reduces oxygen available to other organisms). It is therefore possible to assess the potential for coastal eutrophication from a river’s N, P, and Si loading. Higher values indicate higher levels of excess nutrients with respect to silica, creating more favorable conditions for harmful algal growth and eutrophication in coastal waters downstream.</td></tr><tr><td>Unimproved/No Drinking Water</td><td>Unimproved/no drinking water reflects the percentage of the population collecting drinking water from an unprotected dug well or spring, or directly from a river, dam, lake, pond, stream, canal, or irrigation canal (WHO and UNICEF 2017). Specifically, the indicator aligns with the unimproved and surface water categories of the Joint Monitoring Programme (JMP)—the lowest tiers of drinking water services. Higher values indicate areas where people have less access to safe drinking water supplies.</td></tr><tr><td>Unimproved/No Sanitation</td><td>Unimproved/no sanitation reflects the percentage of the population using pit latrines without a slab or platform, hanging/bucket latrines, or directly disposing human waste in fields, forests, bushes, open bodies of water, beaches, other open spaces, or with solid waste (WHO and UNICEF 2017). Specifically, the indicator aligns with JMP’s unimproved and open defecation categories— the lowest tier of sanitation services. Higher values indicate areas where people have less access to improved sanitation services.</td></tr></table></div>",
-    source: "WRI Aqueduct 2019 (Hyperlink: <a href='https://www.wri.org/publication/aqueduct-30'>https://www.wri.org/publication/aqueduct-30</a>)"
-  }),
-  omitDescription: true,
-  omitInstructions: true
+  description: 'A Desired condition threshold refers to your strategic goal for reducing or eliminating a specific water challenge (e.g., water stress, scarcity). Adjust the slider based on your ambition or the specific needs of each basin. The provided default values represent examples of thresholds that the private sector has adopted for setting contextual water targets. The map will then highlight areas that exceed your desired thresholds, indicating potential water challenges.'
 };
 
 export default {
