@@ -93,7 +93,11 @@ class DesktopMap extends PureComponent {
       const { lat } = _latlng;
       const lng = normalizeLng(_latlng.lng);
       const indexFromData = analysisData.findIndex(({ longitude, latitude }) => {
-        return isEqual({ lat: latitude, lng: longitude }, ({ lat, lng }));
+        const latDelta = Math.abs(latitude - lat);
+        const lngDelta = Math.abs(longitude - lng);
+        // 5 meters to grades
+        const MAX_DISTANCE_TO_POINT = 0.0000007;
+        return latDelta < MAX_DISTANCE_TO_POINT && lngDelta < MAX_DISTANCE_TO_POINT;
       });
 
       if (indexFromData === -1) {
