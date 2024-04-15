@@ -62,23 +62,24 @@ export const SCENARIO_MODAL_DESCRIPTION = {
 
 export const SELECT_WATER_RISK_INDICATOR = {
   title: 'Select Water Risk Indicator',
+  instructions: 'Select the most suitable water risk indicator for your analysis.',
   description: `
-  <p>WATER STRESS</p>
+  <b>WATER STRESS</b>
   <p>Baseline water stress measures the ratio of total water demand to available renewable surface and groundwater supplies. Water demand include domestic, industrial, irrigation, and livestock uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate more competition among users.</p>
   
-  <p>WATER DEPLETION</p>
+  <b>WATER DEPLETION</b>
   <p>Baseline water depletion measures the ratio of total water consumption to available renewable water supplies. Total water consumption includes domestic, industrial, irrigation, and livestock consumptive uses. Available renewable water supplies include the impact of upstream consumptive water users and large dams on downstream water availability. Higher values indicate larger impact on the local water supply and decreased water availability for downstream users. Baseline water depletion is similar to baseline water stress; however, instead of looking at total water demand (consumptive plus nonconsumptive), baseline water depletion is calculated using consumptive withdrawal only.</p>
   
-  <p>GROWNWATER TABLE DECLINE</p>
+  <b>GROWNWATER TABLE DECLINE</b>
   <p>Groundwater table decline measures the average decline of the groundwater table as the average change for the period of study (1990–2014). The result is expressed in centimeters per year (cm/yr). Higher values indicate higher levels of unsustainable groundwater withdrawals.</p>
 
-  <p>COASTAL EUTROPHICATION POTENTIAL </p>
+  <b>COASTAL EUTROPHICATION POTENTIAL </b>
   <p>Coastal eutrophication potential (CEP) measures the potential for riverine loadings of nitrogen (N), phosphorus (P), and silica (Si) to stimulate harmful algal blooms in coastal waters. The CEP indicator is a useful metric to map where anthropogenic activities produce enough point-source and nonpoint-source pollution to potentially degrade the environment. When N and P are discharged in excess over Si with respect to diatoms, a major type of algae, undesirable algal species often develop. The stimulation of algae leading to large blooms may in turn result in eutrophication and hypoxia (excessive biological growth and decomposition that reduces oxygen available to other organisms). It is therefore possible to assess the potential for coastal eutrophication from a river’s N, P, and Si loading. Higher values indicate higher levels of excess nutrients with respect to silica, creating more favorable conditions for harmful algal growth and eutrophication in coastal waters downstream.</p>
 
-  <p>UNIMPROVED / NO DRINKING WATER</p>
+  <b>UNIMPROVED / NO DRINKING WATER</b>
   <p>Unimproved/no drinking water reflects the percentage of the population collecting drinking water from an unprotected dug well or spring, or directly from a river, dam, lake, pond, stream, canal, or irrigation canal (WHO and UNICEF 2017). Specifically, the indicator aligns with the unimproved and surface water categories of the Joint Monitoring Programme (JMP)—the lowest tiers of drinking water services. Higher values indicate areas where people have less access to safe drinking water supplies.</p>
 
-  <p>UNIMPROVED / NO SANITATION</p>
+  <b>UNIMPROVED / NO SANITATION</b>
   <p>Unimproved/no sanitation reflects the percentage of the population using pit latrines without a slab or platform, hanging/bucket latrines, or directly disposing human waste in fields, forests, bushes, open bodies of water, beaches, other open spaces, or with solid waste (WHO and UNICEF 2017). Specifically, the indicator aligns with JMP’s unimproved and open defecation categories— the lowest tier of sanitation services. Higher values indicate areas where people have less access to improved sanitation services.</p>
   `,
   source: '<a href="https://doi.org/10.46830/writn.23.00061" target="_blank" rel="noopener noreferrer">Aqueduct 4.0</a>'
