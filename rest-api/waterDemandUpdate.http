@@ -1,0 +1,92 @@
+@host = https://api.resourcewatch.org/v1
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzcwOTBiZTU5MTU5NmYyN2MxOThjYSIsInJvbGUiOiJBRE1JTiIsInByb3ZpZGVyIjoibG9jYWwiLCJlbWFpbCI6IkNhcmxvcy5EZWxSZWFsLjVAd3JpY29uc3VsdGFudC5vcmciLCJleHRyYVVzZXJEYXRhIjp7ImFwcHMiOlsicnciLCJhcXVlZHVjdCIsImFxdWVkdWN0LXdhdGVyLXJpc2siXX0sImNyZWF0ZWRBdCI6MTY4Njc3NTUyNTAyNSwicGhvdG8iOiJodHRwczovL3MzLmFtYXpvbmF3cy5jb20vd3JpLWFwaS1iYWNrdXBzL3Jlc291cmNld2F0Y2gvc3RhZ2luZy9wcm9maWxlcy9hdmF0YXJzLzAwMC8wMDAvMjU4L29yaWdpbmFsL2RhdGE_MTY3NDA2ODA0NyIsIm5hbWUiOiJDYXJsb3MgRGVsIFJlYWwiLCJpYXQiOjE2ODY3NzU1MjV9.3J7HR6Et_5wmJbbfjnh_7ZvrClzIsRAdwaqMJEMmOuM
+
+
+PATCH  {{host}}/dataset/851b8ad1-1d80-46a7-b71a-e9dfa062f7b0/layer/2c41af51-4ea0-4e00-a7ab-30d7268c39ad
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "name": "Projected Water Demand",
+  "slug": "Projected-Water-Demand_1",
+  "dataset": "851b8ad1-1d80-46a7-b71a-e9dfa062f7b0",
+  "description": "",
+  "application": [
+    "aqueduct-water-risk"
+  ],
+  "iso": [],
+  "provider": "cartodb",
+  "userId": "63c7090be591596f27c198ca",
+  "default": false,
+  "protected": false,
+  "published": true,
+  "thumbnailUrl": "https://s3.amazonaws.com/wri-api-backups/resourcewatch/prod/thumbnails/2c41af51-4ea0-4e00-a7ab-30d7268c39ad-1688745993404.png",
+  "env": "production",
+  "layerConfig": {
+    "sql_config": [],
+    "params_config": [
+      {
+        "required": true,
+        "key": "year"
+      },
+      {
+        "required": true,
+        "key": "scenario"
+      }
+    ],
+    "body": {
+      "layers": [
+        {
+          "options": {
+            "cartocss_version": "2.3.0",
+            "cartocss": "#water_risk_indicators_future_aqueduct40{ polygon-fill:transparent; polygon-opacity: 1; line-color:transparent; line-width: 1; line-opacity: 1; } #water_risk_indicators_future_aqueduct40 [label='>30 cm'] { polygon-fill:#8B4513; line-color:#8B4513 } #water_risk_indicators_future_aqueduct40 [label='10-30 cm'] { polygon-fill:  #DAA520; line-color:  #DAA520 } #water_risk_indicators_future_aqueduct40 [label='3-10 cm'] { polygon-fill: #D2B48C; line-color: #D2B48C } #water_risk_indicators_future_aqueduct40 [label='1-3 cm'] { polygon-fill: #FFDEAD; line-color:  #FFDEAD } #water_risk_indicators_future_aqueduct40 [label='< 1 cm'] { polygon-fill: #FFF8DC; line-color:  #FFF8DC }",
+            "sql": "with r as (SELECT pfaf_id, label FROM water_risk_indicators_future_aqueduct40 WHERE year = {{year}} and type = 'future_value' and indicator = 'water_demand' and scenario = '{{scenario}}') SELECT s.cartodb_id, s.pfaf_id, s.the_geom, s.the_geom_webmercator, r.label FROM y2018m12d06_rh_master_shape_v01 s  LEFT JOIN r on s.pfaf_id=r.pfaf_id WHERE s.the_geom is not null and r.label is not null"
+          },
+          "type": "cartodb"
+        }
+      ]
+    },
+    "account": "wri-rw"
+  },
+  "legendConfig": {
+    "items": [
+      {
+        "color": "#8B4513",
+        "name": "> 30 cm"
+      },
+      {
+        "color": "#DAA520",
+        "name": "10-30 cm"
+      },
+      {
+        "color": "#D2B48C",
+        "name": "3-10 cm"
+      },
+      {
+        "color": "#FFDEAD",
+        "name": "1-3 cm"
+      },
+      {
+        "color": "#FFF8DC",
+        "name": "< 1 cm"
+      }
+    ],
+    "type": "choropleth"
+  },
+  "interactionConfig": {
+    "output": [
+      {
+        "column": "label",
+        "format": null,
+        "prefix": "",
+        "property": "Category",
+        "suffix": "",
+        "type": "string"
+      }
+    ]
+  },
+  "applicationConfig": {},
+  "staticImageConfig": {},
+  "createdAt": "2023-06-22T16:56:49.882Z",
+  "updatedAt": "2023-07-07T16:06:33.211Z"
+}
