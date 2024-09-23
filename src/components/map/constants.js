@@ -39,15 +39,15 @@ export const BASEMAPS = {
   },
   terrain: {
     id: 'terrain',
-    value: 'https://api.mapbox.com/styles/v1/resourcewatch/cjhqi456h02pg2rp6w2mwp61c/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVzb3VyY2V3YXRjaCIsImEiOiJjbHNueDl0NmgwOGg3MmttcjloYjBkZjRsIn0.VDkI_f2sQELKtwGa4FScYA',
+    value: 'https://api.mapbox.com/styles/v1/resourcewatch/cjhqi456h02pg2rp6w2mwp61c/tiles/512/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVzb3VyY2V3YXRjaCIsImEiOiJjbHNueDl0NmgwOGg3MmttcjloYjBkZjRsIn0.VDkI_f2sQELKtwGa4FScYA',
     label: 'Terrain',
-    options: { attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a>' }
+    options: { zoomOffset: -1, tileSize: 512, attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a>' }
   },
   hydro: {
     id: 'hydro',
-    value: 'https://api.mapbox.com/styles/v1/resourcewatch/cjtr6fhr3060g1fok829tfwm7/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmVzb3VyY2V3YXRjaCIsImEiOiJjbHNueDl0NmgwOGg3MmttcjloYjBkZjRsIn0.VDkI_f2sQELKtwGa4FScYA',
+    value: 'https://api.mapbox.com/styles/v1/resourcewatch/cjtr6fhr3060g1fok829tfwm7/tiles/512/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmVzb3VyY2V3YXRjaCIsImEiOiJjbHNueDl0NmgwOGg3MmttcjloYjBkZjRsIn0.VDkI_f2sQELKtwGa4FScYA',
     label: 'Hydrography',
-    options: { attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a>' }
+    options: { zoomOffset: -1, tileSize: 512, attribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a>' }
   }
 };
 
@@ -58,7 +58,7 @@ export const BASEMAP_CONFIG = {
 
 export const LABEL_LAYER_CONFIG = {
   url: process.env.BASEMAP_LABEL_URL,
-  options: { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>' }
+  options: { zoomOffset: -1, tileSize: 512, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>' }
 };
 
 export const MARKER_LAYER = {
