@@ -6,7 +6,7 @@ on:
     - wrios-version
 
 jobs:
-  build:
+  deploy-wrios-version:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout Repository
@@ -14,20 +14,15 @@ jobs:
       - uses: thaind0/envfile@v1
         with:
           secrets: ${{ toJSON(secrets) }}
-      - name: Install dependencies
-        run: |
-          docker compose up -d shell
-  deploy-wrios-version:
-    needs: build
-    runs-on: ubuntu-22.04
-    steps:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 10.20.1
+      - name: Install dependencies
+        run: |
+          docker compose up -d shell
       - name: Build dependencies
         run: |
-          ls
           yarn build
       - name: gha import
         run: ghp-import
