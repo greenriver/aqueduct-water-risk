@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { SegmentedUi } from 'aqueduct-components';
 import ImportTabCoordinates from './tabs/coordinates';
 import ImportTabAddresses from './tabs/addresses';
+import ImportTabLink from './tabs/link';
 
 // constants
 import { TAB_OPTIONS } from './constants';
@@ -26,6 +27,7 @@ class ImportModal extends PureComponent {
           selected={tab}
           onChange={({ value }) => { this.setState({ tab: value }); }}
         />
+        {tab === 'link' && (<ImportTabLink />)}
         {tab === 'coordinates' && (<ImportTabCoordinates />)}
         {tab === 'addresses' && (<ImportTabAddresses />)}
       </div>
