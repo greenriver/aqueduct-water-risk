@@ -9,7 +9,9 @@ jobs:
   deploy-wrios-version:
     runs-on: ubuntu-22.04
 
-    steps: 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
