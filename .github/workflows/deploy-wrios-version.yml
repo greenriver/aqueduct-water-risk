@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: 10.20.1
       - name: Build dependencies
-        run: yarn build
+        run: |
+          ls
+          yarn build
       - name: gha import
         run: ghp-import
