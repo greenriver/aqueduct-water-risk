@@ -20,12 +20,10 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
-          docker compose up -d
-      - name: Build dependencies
-        run: |
+          docker compose up -d shell
           ls -la
           docker volume ls
           docker volume ps
-          yarn build
+          yarn build          
       - name: gha import
         run: ghp-import
