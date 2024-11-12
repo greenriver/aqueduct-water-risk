@@ -24,6 +24,8 @@ jobs:
       - name: Build dependencies
         run: |
           ls -la
+          docker volume ls
+          docker volume ps
           yarn build
       - name: gha import
         run: ghp-import
