@@ -17,6 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           ls
+          pwd
           yarn install 
       - name: Build dependencies
         run: yarn build
