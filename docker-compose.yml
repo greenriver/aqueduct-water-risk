@@ -35,7 +35,7 @@ services:
       - "${PORT-3000}:${PORT-3000}"
   shell:
     <<: *app
-    command: /bin/sh
+    command: yarn build && /bin/sh
 
 volumes:
   node_modules:
