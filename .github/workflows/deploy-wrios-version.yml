@@ -23,7 +23,7 @@ jobs:
           sudo apt update
       - name: Install dependencies
         run: |
-          apt install -y yarn
+          sudo apt install -y yarn
           yarn global add yalc
           yarn install
           yarn build
