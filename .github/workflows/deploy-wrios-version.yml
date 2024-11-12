@@ -1,0 +1,22 @@
+name: Deploy water risk wrios version
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - wrios-version
+
+jobs:
+  deploy-wrios-version:
+    runs-on: ubuntu-22.04
+
+    steps: 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Install dependencies
+        run: yarn install 
+      - name: Build dependencies
+        run: yarn build
+      - name: gha import
+        run: ghp-import
