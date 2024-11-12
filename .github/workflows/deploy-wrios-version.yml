@@ -20,7 +20,7 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
-          apt update
+          sudo apt update
       - name: Install dependencies
         run: |
           apt install -y yarn
