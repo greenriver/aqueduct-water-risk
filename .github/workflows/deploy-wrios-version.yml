@@ -23,6 +23,7 @@ jobs:
           docker compose up -d shell
       - name: Build dependencies
         run: |
+          ls
           yarn build
       - name: gha import
         run: ghp-import
