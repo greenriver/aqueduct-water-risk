@@ -6,6 +6,12 @@ import { Spinner, post } from 'aqueduct-components';
 import Axios from 'axios';
 import { setGeostoreLocations } from '../../../../../modules/analyze-locations-tab/actions';
 
+const LambdaGeoJsonToPoints = process.env.LAMBDA_GEOJSONTOPOINTS;
+
+if (!LambdaGeoJsonToPoints) {
+  throw Error('LAMBDA_GEOJSONTOPOINTS is not defined');
+}
+
 class ImportTabLink extends PureComponent {
   constructor(props) {
     super(props);
@@ -76,7 +82,7 @@ class ImportTabLink extends PureComponent {
     Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     Axios.get(this.state.link).then((res) => {
       // console.log(res.data);
-      Axios.post('https://61pcps7lgi.execute-api.us-east-1.amazonaws.com/geoJsonToPoints', res.data).then((d) => {
+      Axios.post(LambdaGeoJsonToPoints, res.data).then((d) => {
         const points = d.data.map(p => ({ lat: p[1], lng: p[0] }));
         console.log(points);
 
