@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { Spinner, post } from 'aqueduct-components';
 import Axios from 'axios';
 import { setGeostoreLocations } from '../../../../../modules/analyze-locations-tab/actions';
-
-const LambdaGeoJsonToPoints = process.env.LAMBDA_GEOJSONTOPOINTS;
+import { LambdaGeoJsonToPoints } from '../../../../map/constants';
 
 if (!LambdaGeoJsonToPoints) {
   throw Error('LAMBDA_GEOJSONTOPOINTS is not defined');
@@ -201,7 +200,7 @@ class ImportTabLink extends PureComponent {
     } = this.state;
 
     return (
-      <div className="c-import-modal">
+      <div className="c-import-modal geojsonlink">
         <Spinner isLoading={loading} />
         <header className="dropzone-header">
           <h2>Import Geo Json from link</h2>

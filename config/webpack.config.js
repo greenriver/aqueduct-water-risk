@@ -82,7 +82,8 @@ const config = {
         BASEMAP_TILE_URL: JSON.stringify(process.env.BASEMAP_TILE_URL),
         BASEMAP_LABEL_URL: JSON.stringify(process.env.BASEMAP_LABEL_URL),
         GOOGLE_PLACES_API_KEY: JSON.stringify(process.env.GOOGLE_PLACES_API_KEY),
-        GOOGLE_ANALYTICS: JSON.stringify(process.env.GOOGLE_ANALYTICS)
+        GOOGLE_ANALYTICS: JSON.stringify(process.env.GOOGLE_ANALYTICS),
+        LAMBDA_GEOJSONTOPOINTS: JSON.stringify(process.env.LAMBDA_GEOJSONTOPOINTS)
       },
       config: {
         API_URL: JSON.stringify(process.env.API_URL),

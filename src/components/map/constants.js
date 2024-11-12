@@ -21,6 +21,8 @@ export const SHORT_NAMES = {
   rri_cat: 'RRI'
 };
 
+export const LambdaGeoJsonToPoints = process.env.LAMBDA_GEOJSONTOPOINTS;
+
 export const BASEMAPS = {
   // Open Street Maps
   osm: {
