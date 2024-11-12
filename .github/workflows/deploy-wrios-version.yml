@@ -20,11 +20,13 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-          && echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list \
-          && apt-get update \
-          && apt-get install -y yarn \
-          && yarn global add yalc
+          sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt add - \
+          echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list \
+          apt update \
+      - name: Install dependencies
+        run: |
+          apt-get install -y yarn \
+          yarn global add yalc
           yarn install
           yarn build
       - name: gha import
