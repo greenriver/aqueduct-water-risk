@@ -20,7 +20,7 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
-          docker compose up
+          docker compose up -d
       - name: Build dependencies
         run: |
           ls -la
