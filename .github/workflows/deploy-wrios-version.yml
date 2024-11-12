@@ -11,8 +11,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+      - uses: thaind0/envfile@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
       - name: Install dependencies
-        run: docker compose up -d shell
+        run: |
+          docker compose up -d shell
   deploy-wrios-version:
     needs: build
     runs-on: ubuntu-22.04
