@@ -20,6 +20,7 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
+          sudo apt install curl
           sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt add - \
           echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list \
           apt update \
