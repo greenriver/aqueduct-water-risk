@@ -15,7 +15,9 @@ jobs:
         with:
           node-version: 10
       - name: Install dependencies
-        run: yarn install 
+        run: |
+          ls
+          yarn install 
       - name: Build dependencies
         run: yarn build
       - name: gha import
