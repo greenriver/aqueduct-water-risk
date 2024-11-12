@@ -6,9 +6,16 @@ on:
     - wrios-version
 
 jobs:
-  deploy-wrios-version:
+  build:
     runs-on: ubuntu-22.04
-
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: docker compose up -d shell
+  deploy-wrios-version:
+    needs: build
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -16,10 +23,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 10.20.1
-      - name: Install dependencies
-        run: |
-          npm install --force
-          yarn install --force
       - name: Build dependencies
         run: yarn build
       - name: gha import
