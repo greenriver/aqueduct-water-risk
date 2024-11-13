@@ -20,7 +20,7 @@ jobs:
           node-version: 10.20.1
       - name: Install dependencies
         run: |
-          docker compose up shell --exit-code-from shell
+          docker compose up -d
       - name: Install dependencies
         run: |
           container_id=$(docker ps -aqf "name=aqueduct-water-risk-shell-1")
