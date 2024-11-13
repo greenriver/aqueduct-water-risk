@@ -21,6 +21,7 @@ x-app: &app
   volumes:
     - .:/app:cached
     - node_modules:/node_modules
+    - dist:/dist
     - bash_history:/bash_history
     - ~/docker/volumes/yalc:/yalc
 
