@@ -25,7 +25,7 @@ jobs:
         run: |
           container_id=$(docker ps -aqf "name=aqueduct-water-risk-shell-1")
           echo $container_id
-          docker cp $container_id:/app/dist ./dist
+          docker cp $container_id:/app/dist .
           ls -la
 
       - name: gha import
