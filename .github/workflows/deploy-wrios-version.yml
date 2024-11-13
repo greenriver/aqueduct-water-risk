@@ -24,7 +24,7 @@ jobs:
           docker compose up -d shell
           container_id=$(docker ps -aqf "name=aqueduct-water-risk-shell-1")
           echo $container_id
-          docker cp $container_id:/app/dist ./dist
+          docker cp $container_id:/app/dist ./dist2
       - name: Install dependencies
         run: |
           ls -la
