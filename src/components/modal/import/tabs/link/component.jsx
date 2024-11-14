@@ -85,25 +85,25 @@ class ImportTabLink extends PureComponent {
         const points = d.data.map(p => ({ lat: p[1], lng: p[0] }));
         console.log(points);
 
-        const locations = d.data.map(_feature => ({
-          id: _feature.properties.id,
-          location_name: _feature.properties.location_name || _feature.properties['location name'],
-          input_address: '_',
-          match_address: '-'
-        }));
+        // const locations = d.data.map(_feature => ({
+        //   id: _feature.properties.id,
+        //   location_name: _feature.properties.location_name || _feature.properties['location name'],
+        //   input_address: '_',
+        //   match_address: '-'
+        // }));
         onAddPoint(points);
-        setGeostoreLocations(locations);
+        // setGeostoreLocations(locations);
 
-        onSaveGeostore()
-              .then(() => {
-                onFetchAnalysis()
-                  .then(() => {
-                    this.setState({ loading: false }, () => {
-                      setAnalyzerOpen(true);
-                      toggleModal(false, {});
-                    });
-                  });
-              });
+        // onSaveGeostore()
+        //       .then(() => {
+        //         onFetchAnalysis()
+        //           .then(() => {
+        //             this.setState({ loading: false }, () => {
+        //               setAnalyzerOpen(true);
+        //               toggleModal(false, {});
+        //             });
+        //           });
+        //       });
       });
 
       this.setState({ loading: false });
@@ -200,14 +200,14 @@ class ImportTabLink extends PureComponent {
     } = this.state;
 
     return (
-      <div className="c-import-modal geojsonlink">
+      <div className="c-dropzone geojsonlink">
         <Spinner isLoading={loading} />
         <header className="dropzone-header">
           <h2>Import Geo Json from link</h2>
         </header>
 
         <div className="dropzone-file">
-          <div >
+          <div className="flexcontainer">
             <input type="text" onChange={e => this.setLink(e.target.value)} value={this.link} />
             <button
               className="c-btn -primary -light"

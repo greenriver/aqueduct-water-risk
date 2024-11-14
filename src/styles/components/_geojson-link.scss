@@ -1,5 +1,10 @@
 .geojsonlink {
-  header {
-    padding: 1rem;
+  input {
+    width: 100%;
+    padding: 10px;
+  }
+  .flexcontainer {
+    display: flex;
+    gap: 5px;
   }
 }
