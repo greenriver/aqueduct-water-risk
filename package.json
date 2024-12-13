@@ -1,7 +1,7 @@
 {
   "name": "aqueduct-water-risk",
   "version": "1.0.0",
-  "description": "TODO: write a description",
+  "description": "the aqueduct water risk atlas app",
   "main": "server.js",
   "scripts": {
     "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./config/webpack.config.js",
@@ -20,7 +20,7 @@
   },
   "homepage": ".",
   "dependencies": {
-    "aqueduct-components": "^0.3.18",
+    "aqueduct-components": "^0.3.19",
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^6.2.7",
